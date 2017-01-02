@@ -15,11 +15,20 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from UI import views
+from ML import views as MLViews
+from UI import views as UIViews
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^form$', views.form),
-    url(r'^result$', views.result),
-    url(r'', views.home),
+
+    # 'submission' endpoint - where ML analysis is run
+    url(r'^submit$', MLViews.submit),
+
+    # actual UI pages
+    url(r'^form$', UIViews.form),
+    url(r'^result/(\d+)-(\d+)-(\d+)$', UIViews.result),
+    url(r'^result/', UIViews.result),
+
+    # fall-through to home page (can configure to 404 instead)
+    url(r'', UIViews.home),
 ]
