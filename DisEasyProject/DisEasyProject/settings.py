@@ -25,7 +25,7 @@ SECRET_KEY = 'f&zsrgb3&%babdo)!q^-q%*ljzr@$ui_z$r!%$lv+1dj*g95m+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['129.25.4.138']
 
 
 # Application definition
@@ -121,3 +121,22 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
             os.path.join(BASE_DIR, "static"),
 ]
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/home/lucy/django-log',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
