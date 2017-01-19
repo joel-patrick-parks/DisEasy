@@ -1029,6 +1029,7 @@ h1[id] {
 /* Navbars */
 .bs-example .navbar:last-child {
   margin-bottom: 0;
+  color: #ff2b6b;
 }
 .bs-navbar-top-example,
 .bs-navbar-bottom-example {
