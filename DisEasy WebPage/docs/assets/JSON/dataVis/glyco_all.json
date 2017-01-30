@@ -1,0 +1,24 @@
+{
+	IV: "Glycohemoglobin"
+	Feature:
+	{
+		Type: "All"
+		Value: "None"
+	}
+	Data:
+	[
+		[4.5,0.09],
+		[5.5,0.73],
+		[6.5,0.13],
+		[7.5,0.03],
+		[8.5,0.01],
+		[9.5,0.01],
+		[10.5,0.00],
+		[11.5,0.00]
+	]
+	User:
+	{
+		result: 0
+		probability: 0
+	}
+}
