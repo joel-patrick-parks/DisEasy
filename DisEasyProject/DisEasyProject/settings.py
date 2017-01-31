@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'UI',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +130,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/home/lucy/django-log',
+            'filename': '../django-log',
         },
     },
     'loggers': {
