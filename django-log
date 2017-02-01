@@ -56,3 +56,477 @@ CREATE INDEX "UI_visualization_db0f6f37" ON "UI_visualization" ("group"); (param
 (0.000) BEGIN; args=None
 (0.001) INSERT INTO "auth_permission" ("name", "content_type_id", "codename") SELECT 'Can add visualization', 7, 'add_visualization' UNION ALL SELECT 'Can change visualization', 7, 'change_visualization' UNION ALL SELECT 'Can delete visualization', 7, 'delete_visualization'; args=(u'Can add visualization', 7, u'add_visualization', u'Can change visualization', 7, u'change_visualization', u'Can delete visualization', 7, u'delete_visualization')
 (0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'UI'; args=('UI',)
+(0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) PRAGMA foreign_keys; args=None
+(0.000) PRAGMA foreign_keys = 0; args=None
+(0.000) BEGIN; args=None
+ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; (params [])
+(0.001) ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; args=[]
+CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "json" text NOT NULL, "test" varchar(50) NOT NULL); (params None)
+(0.000) CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "json" text NOT NULL, "test" varchar(50) NOT NULL); args=None
+INSERT INTO "UI_visualization" ("test", "json", "id") SELECT "test", "json", "id" FROM "UI_visualization__old"; (params [])
+(0.000) INSERT INTO "UI_visualization" ("test", "json", "id") SELECT "test", "json", "id" FROM "UI_visualization__old"; args=[]
+DROP TABLE "UI_visualization__old"; (params [])
+(0.000) DROP TABLE "UI_visualization__old"; args=[]
+CREATE INDEX "UI_visualization_098f6bcd" ON "UI_visualization" ("test"); (params [])
+(0.000) CREATE INDEX "UI_visualization_098f6bcd" ON "UI_visualization" ("test"); args=[]
+ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; (params [])
+(0.000) ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; args=[]
+CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "test" varchar(50) NOT NULL); (params None)
+(0.000) CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "test" varchar(50) NOT NULL); args=None
+INSERT INTO "UI_visualization" ("test", "id") SELECT "test", "id" FROM "UI_visualization__old"; (params [])
+(0.000) INSERT INTO "UI_visualization" ("test", "id") SELECT "test", "id" FROM "UI_visualization__old"; args=[]
+DROP TABLE "UI_visualization__old"; (params [])
+(0.000) DROP TABLE "UI_visualization__old"; args=[]
+CREATE INDEX "UI_visualization_098f6bcd" ON "UI_visualization" ("test"); (params [])
+(0.000) CREATE INDEX "UI_visualization_098f6bcd" ON "UI_visualization" ("test"); args=[]
+ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; (params [])
+(0.000) ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; args=[]
+CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT); (params None)
+(0.000) CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT); args=None
+INSERT INTO "UI_visualization" ("id") SELECT "id" FROM "UI_visualization__old"; (params [])
+(0.000) INSERT INTO "UI_visualization" ("id") SELECT "id" FROM "UI_visualization__old"; args=[]
+DROP TABLE "UI_visualization__old"; (params [])
+(0.000) DROP TABLE "UI_visualization__old"; args=[]
+ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; (params [])
+(0.000) ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; args=[]
+CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "Data" text NULL); (params None)
+(0.000) CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "Data" text NULL); args=None
+INSERT INTO "UI_visualization" ("Data", "id") SELECT NULL, "id" FROM "UI_visualization__old"; (params [])
+(0.000) INSERT INTO "UI_visualization" ("Data", "id") SELECT NULL, "id" FROM "UI_visualization__old"; args=[]
+DROP TABLE "UI_visualization__old"; (params [])
+(0.000) DROP TABLE "UI_visualization__old"; args=[]
+ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; (params [])
+(0.000) ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; args=[]
+CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "Data" text NULL, "FeatureType" varchar(30) NULL); (params None)
+(0.000) CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "Data" text NULL, "FeatureType" varchar(30) NULL); args=None
+INSERT INTO "UI_visualization" ("FeatureType", "Data", "id") SELECT NULL, "Data", "id" FROM "UI_visualization__old"; (params [])
+(0.000) INSERT INTO "UI_visualization" ("FeatureType", "Data", "id") SELECT NULL, "Data", "id" FROM "UI_visualization__old"; args=[]
+DROP TABLE "UI_visualization__old"; (params [])
+(0.000) DROP TABLE "UI_visualization__old"; args=[]
+CREATE INDEX "UI_visualization_d3abdac0" ON "UI_visualization" ("FeatureType"); (params [])
+(0.000) CREATE INDEX "UI_visualization_d3abdac0" ON "UI_visualization" ("FeatureType"); args=[]
+ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; (params [])
+(0.000) ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; args=[]
+CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "Data" text NULL, "FeatureType" varchar(30) NULL, "FeatureValue" varchar(30) NULL); (params None)
+(0.000) CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "Data" text NULL, "FeatureType" varchar(30) NULL, "FeatureValue" varchar(30) NULL); args=None
+INSERT INTO "UI_visualization" ("FeatureType", "Data", "id", "FeatureValue") SELECT "FeatureType", "Data", "id", NULL FROM "UI_visualization__old"; (params [])
+(0.000) INSERT INTO "UI_visualization" ("FeatureType", "Data", "id", "FeatureValue") SELECT "FeatureType", "Data", "id", NULL FROM "UI_visualization__old"; args=[]
+DROP TABLE "UI_visualization__old"; (params [])
+(0.000) DROP TABLE "UI_visualization__old"; args=[]
+CREATE INDEX "UI_visualization_d3abdac0" ON "UI_visualization" ("FeatureType"); (params [])
+(0.000) CREATE INDEX "UI_visualization_d3abdac0" ON "UI_visualization" ("FeatureType"); args=[]
+CREATE INDEX "UI_visualization_b7ffcd08" ON "UI_visualization" ("FeatureValue"); (params [])
+(0.000) CREATE INDEX "UI_visualization_b7ffcd08" ON "UI_visualization" ("FeatureValue"); args=[]
+ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; (params [])
+(0.000) ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; args=[]
+CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "Data" text NULL, "FeatureType" varchar(30) NULL, "FeatureValue" varchar(30) NULL, "IV" varchar(30) NULL); (params None)
+(0.000) CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "Data" text NULL, "FeatureType" varchar(30) NULL, "FeatureValue" varchar(30) NULL, "IV" varchar(30) NULL); args=None
+INSERT INTO "UI_visualization" ("FeatureType", "IV", "Data", "id", "FeatureValue") SELECT "FeatureType", NULL, "Data", "id", "FeatureValue" FROM "UI_visualization__old"; (params [])
+(0.000) INSERT INTO "UI_visualization" ("FeatureType", "IV", "Data", "id", "FeatureValue") SELECT "FeatureType", NULL, "Data", "id", "FeatureValue" FROM "UI_visualization__old"; args=[]
+DROP TABLE "UI_visualization__old"; (params [])
+(0.000) DROP TABLE "UI_visualization__old"; args=[]
+CREATE INDEX "UI_visualization_d3abdac0" ON "UI_visualization" ("FeatureType"); (params [])
+(0.000) CREATE INDEX "UI_visualization_d3abdac0" ON "UI_visualization" ("FeatureType"); args=[]
+CREATE INDEX "UI_visualization_b7ffcd08" ON "UI_visualization" ("FeatureValue"); (params [])
+(0.000) CREATE INDEX "UI_visualization_b7ffcd08" ON "UI_visualization" ("FeatureValue"); args=[]
+ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; (params [])
+(0.000) ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; args=[]
+CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "Data" text NULL, "FeatureType" varchar(30) NULL, "FeatureValue" varchar(30) NULL, "IV" varchar(30) NULL, "UserProbability" decimal NOT NULL); (params None)
+(0.000) CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "Data" text NULL, "FeatureType" varchar(30) NULL, "FeatureValue" varchar(30) NULL, "IV" varchar(30) NULL, "UserProbability" decimal NOT NULL); args=None
+INSERT INTO "UI_visualization" ("FeatureType", "UserProbability", "FeatureValue", "IV", "Data", "id") SELECT "FeatureType", '0.000', "FeatureValue", "IV", "Data", "id" FROM "UI_visualization__old"; (params [])
+(0.000) INSERT INTO "UI_visualization" ("FeatureType", "UserProbability", "FeatureValue", "IV", "Data", "id") SELECT "FeatureType", '0.000', "FeatureValue", "IV", "Data", "id" FROM "UI_visualization__old"; args=[]
+DROP TABLE "UI_visualization__old"; (params [])
+(0.000) DROP TABLE "UI_visualization__old"; args=[]
+CREATE INDEX "UI_visualization_d3abdac0" ON "UI_visualization" ("FeatureType"); (params [])
+(0.000) CREATE INDEX "UI_visualization_d3abdac0" ON "UI_visualization" ("FeatureType"); args=[]
+CREATE INDEX "UI_visualization_b7ffcd08" ON "UI_visualization" ("FeatureValue"); (params [])
+(0.000) CREATE INDEX "UI_visualization_b7ffcd08" ON "UI_visualization" ("FeatureValue"); args=[]
+ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; (params [])
+(0.000) ALTER TABLE "UI_visualization" RENAME TO "UI_visualization__old"; args=[]
+CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "Data" text NULL, "FeatureType" varchar(30) NULL, "FeatureValue" varchar(30) NULL, "IV" varchar(30) NULL, "UserProbability" decimal NOT NULL, "UserResult" decimal NOT NULL); (params None)
+(0.000) CREATE TABLE "UI_visualization" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "Data" text NULL, "FeatureType" varchar(30) NULL, "FeatureValue" varchar(30) NULL, "IV" varchar(30) NULL, "UserProbability" decimal NOT NULL, "UserResult" decimal NOT NULL); args=None
+INSERT INTO "UI_visualization" ("FeatureType", "UserProbability", "FeatureValue", "IV", "UserResult", "Data", "id") SELECT "FeatureType", "UserProbability", "FeatureValue", "IV", '0.000', "Data", "id" FROM "UI_visualization__old"; (params [])
+(0.000) INSERT INTO "UI_visualization" ("FeatureType", "UserProbability", "FeatureValue", "IV", "UserResult", "Data", "id") SELECT "FeatureType", "UserProbability", "FeatureValue", "IV", '0.000', "Data", "id" FROM "UI_visualization__old"; args=[]
+DROP TABLE "UI_visualization__old"; (params [])
+(0.000) DROP TABLE "UI_visualization__old"; args=[]
+CREATE INDEX "UI_visualization_d3abdac0" ON "UI_visualization" ("FeatureType"); (params [])
+(0.000) CREATE INDEX "UI_visualization_d3abdac0" ON "UI_visualization" ("FeatureType"); args=[]
+CREATE INDEX "UI_visualization_b7ffcd08" ON "UI_visualization" ("FeatureValue"); (params [])
+(0.000) CREATE INDEX "UI_visualization_b7ffcd08" ON "UI_visualization" ("FeatureValue"); args=[]
+(0.000) PRAGMA foreign_keys = 0; args=None
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) BEGIN; args=None
+(0.000) INSERT INTO "django_migrations" ("app", "name", "applied") VALUES ('UI', '0002_auto_20170201_1927', '2017-02-01 19:27:53.661109'); args=['UI', u'0002_auto_20170201_1927', u'2017-02-01 19:27:53.661109']
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'logentry' AND "django_content_type"."app_label" = 'admin'); args=('logentry', 'admin')
+(0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (1) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(1,)
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'admin'; args=('admin',)
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'permission' AND "django_content_type"."app_label" = 'auth'); args=('permission', 'auth')
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'user' AND "django_content_type"."app_label" = 'auth'); args=('user', 'auth')
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'group' AND "django_content_type"."app_label" = 'auth'); args=('group', 'auth')
+(0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (2, 3, 4) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(2, 3, 4)
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'auth'; args=('auth',)
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'contenttype' AND "django_content_type"."app_label" = 'contenttypes'); args=('contenttype', 'contenttypes')
+(0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (5) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(5,)
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'contenttypes'; args=('contenttypes',)
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'session' AND "django_content_type"."app_label" = 'sessions'); args=('session', 'sessions')
+(0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (6) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(6,)
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'sessions'; args=('sessions',)
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE ("django_content_type"."model" = 'visualization' AND "django_content_type"."app_label" = 'UI'); args=('visualization', 'UI')
+(0.000) SELECT "auth_permission"."content_type_id", "auth_permission"."codename" FROM "auth_permission" INNER JOIN "django_content_type" ON ("auth_permission"."content_type_id" = "django_content_type"."id") WHERE "auth_permission"."content_type_id" IN (7) ORDER BY "django_content_type"."app_label" ASC, "django_content_type"."model" ASC, "auth_permission"."codename" ASC; args=(7,)
+(0.000) SELECT "django_content_type"."id", "django_content_type"."app_label", "django_content_type"."model" FROM "django_content_type" WHERE "django_content_type"."app_label" = 'UI'; args=('UI',)
+(0.000) BEGIN; args=None
+(0.002) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES ('Albumin', 'Age', '18-30', '2.625,0.0|2.875,0.0|3.125,0.0|3.375,0.0|3.625,0.02|3.875,0.07|4.125,0.23|4.375,0.23|4.625,0.31|4.875,0.09|5.125,0.03|5.375,0.0', '0.000', '0.000'); args=['Albumin', 'Age', '18-30', '2.625,0.0|2.875,0.0|3.125,0.0|3.375,0.0|3.625,0.02|3.875,0.07|4.125,0.23|4.375,0.23|4.625,0.31|4.875,0.09|5.125,0.03|5.375,0.0', u'0.000', u'0.000']
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 21; args=()
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 21; args=()
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 1; args=()
+(0.002) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+(0.002) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+"GET / HTTP/1.1" 200 750
+"GET /favicon.ico HTTP/1.1" 200 750
+Internal Server Error: /result/0-0-0
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/exception.py", line 39, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/lucy/DisEasy/DisEasyProject/UI/views.py", line 17, in result
+    'visualizations': models.Visualization.objects.all(),
+NameError: global name 'models' is not defined
+"GET /result/0-0-0 HTTP/1.1" 500 62195
+"GET /favicon.ico HTTP/1.1" 200 750
+(0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/0-0-0 HTTP/1.1" 200 3674
+"GET /static/css/ie10-viewport-bug-workaround.css HTTP/1.1" 200 433
+"GET /static/css/starter-template.css HTTP/1.1" 200 96
+"GET /static/js/bootstrap.min.js HTTP/1.1" 200 37045
+"GET /static/js/ie10-viewport-bug-workaround.js HTTP/1.1" 200 641
+"GET /static/css/bootstrap.min.css HTTP/1.1" 200 121200
+"GET /static/imgs/favicon.ico HTTP/1.1" 404 1748
+(0.002) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/0-0-0 HTTP/1.1" 200 3632
+(0.004) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/0-0-0 HTTP/1.1" 200 3632
+(0.002) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+"GET / HTTP/1.1" 200 750
+"GET /favicon.ico HTTP/1.1" 200 750
+"GET /submit HTTP/1.1" 302 0
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3631
+"GET /static/css/starter-template.css HTTP/1.1" 200 96
+"GET /static/js/bootstrap.min.js HTTP/1.1" 200 37045
+"GET /static/css/ie10-viewport-bug-workaround.css HTTP/1.1" 200 433
+"GET /static/js/ie10-viewport-bug-workaround.js HTTP/1.1" 200 641
+"GET /static/css/bootstrap.min.css HTTP/1.1" 200 121200
+"GET /static/imgs/favicon.ico HTTP/1.1" 404 1748
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3646
+Internal Server Error: /result/8-9-85
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/exception.py", line 39, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/lucy/DisEasy/DisEasyProject/UI/views.py", line 21, in result
+    return render(request, 'UI/result.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 21, in get_template
+    return engine.get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/backends/django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/engine.py", line 160, in get_template
+    template, origin = self.find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/engine.py", line 134, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loaders/base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 233, in compile_nodelist
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 489, in parse
+    raise self.error(token, e)
+TemplateSyntaxError: Could not parse the remainder: '[0]' from 'visualizations[0]'
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 21; args=()
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 21; args=()
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 21; args=()
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 21; args=()
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 21; args=()
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 21; args=()
+"GET /result/8-9-85 HTTP/1.1" 500 123329
+"GET /favicon.ico HTTP/1.1" 200 750
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3714
+"GET /static/css/bootstrap.min.css.map HTTP/1.1" 200 542194
+Internal Server Error: /result/8-9-85
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/exception.py", line 39, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 187, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/usr/local/lib/python2.7/dist-packages/django/core/handlers/base.py", line 185, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/lucy/DisEasy/DisEasyProject/UI/views.py", line 21, in result
+    return render(request, 'UI/result.html', context)
+  File "/usr/local/lib/python2.7/dist-packages/django/shortcuts.py", line 30, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 67, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loader.py", line 21, in get_template
+    return engine.get_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/backends/django.py", line 39, in get_template
+    return Template(self.engine.get_template(template_name), self)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/engine.py", line 160, in get_template
+    template, origin = self.find_template(template_name)
+  File "/usr/local/lib/python2.7/dist-packages/django/template/engine.py", line 134, in find_template
+    name, template_dirs=dirs, skip=skip,
+  File "/usr/local/lib/python2.7/dist-packages/django/template/loaders/base.py", line 44, in get_template
+    contents, origin, origin.template_name, self.engine,
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 191, in __init__
+    self.nodelist = self.compile_nodelist()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 233, in compile_nodelist
+    return parser.parse()
+  File "/usr/local/lib/python2.7/dist-packages/django/template/base.py", line 489, in parse
+    raise self.error(token, e)
+TemplateSyntaxError: Could not parse the remainder: '.as_json' from 'visualizations|first.as_json'
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 21; args=()
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 21; args=()
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 21; args=()
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 21; args=()
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 21; args=()
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization" LIMIT 21; args=()
+"GET /result/8-9-85 HTTP/1.1" 500 123533
+"GET /favicon.ico HTTP/1.1" 200 750
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 4076
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 4098
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 4010
+(0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 4008
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3658
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3354
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3354
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3354
+"GET /static/js/bootstrap.min.js HTTP/1.1" 200 37045
+"GET /static/js/ie10-viewport-bug-workaround.js HTTP/1.1" 200 641
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3354
+"GET /static/css/starter-template.css HTTP/1.1" 200 96
+"GET /static/css/ie10-viewport-bug-workaround.css HTTP/1.1" 200 433
+"GET /static/js/ie10-viewport-bug-workaround.js HTTP/1.1" 200 641
+"GET /static/js/bootstrap.min.js HTTP/1.1" 200 37045
+"GET /static/css/bootstrap.min.css HTTP/1.1" 200 121200
+"GET /static/imgs/favicon.ico HTTP/1.1" 404 1748
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3354
+"GET /static/css/ie10-viewport-bug-workaround.css HTTP/1.1" 200 433
+"GET /static/css/bootstrap.min.css HTTP/1.1" 200 121200
+"GET /static/css/starter-template.css HTTP/1.1" 200 96
+"GET /static/js/ie10-viewport-bug-workaround.js HTTP/1.1" 200 641
+"GET /static/js/bootstrap.min.js HTTP/1.1" 200 37045
+"GET /static/imgs/favicon.ico HTTP/1.1" 404 1748
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3354
+"GET /static/css/ie10-viewport-bug-workaround.css HTTP/1.1" 200 433
+"GET /static/css/bootstrap.min.css HTTP/1.1" 200 121200
+"GET /static/css/starter-template.css HTTP/1.1" 200 96
+"GET /static/js/bootstrap.min.js HTTP/1.1" 200 37045
+"GET /static/js/ie10-viewport-bug-workaround.js HTTP/1.1" 200 641
+"GET /static/imgs/favicon.ico HTTP/1.1" 404 1748
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3354
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3371
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3371
+(0.000) BEGIN; args=None
+(0.002) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES ('Albumin', 'Age', '31-40', '3.125,0.0|3.375,0.0|3.625,0.04|3.875,0.11|4.125,0.28|4.375,0.24|4.625,0.22|4.875,0.07|5.125,0.02', '0.000', '0.000'); args=['Albumin', 'Age', '31-40', '3.125,0.0|3.375,0.0|3.625,0.04|3.875,0.11|4.125,0.28|4.375,0.24|4.625,0.22|4.875,0.07|5.125,0.02', u'0.000', u'0.000']
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3742
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 3766
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES ('Albumin', 'Age', '41-55', '2.625,0.0|2.875, 0.0|3.125, 0.0|3.375, 0.01|3.625, 0.05|3.875, 0.1|4.125, 0.31|4.375, 0.25|4.625, 0.22|4.875, 0.03|5.125, 0.01', '0.000', '0.000'); args=['Albumin', 'Age', '41-55', '2.625,0.0|2.875, 0.0|3.125, 0.0|3.375, 0.01|3.625, 0.05|3.875, 0.1|4.125, 0.31|4.375, 0.25|4.625, 0.22|4.875, 0.03|5.125, 0.01', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES ('Albumin', 'Age', '56-70', '3.125,0.0|3.375, 0.0|3.625, 0.05|3.875, 0.11|4.125, 0.36|4.375, 0.27|4.625, 0.16|4.875, 0.02|5.125, 0.01', '0.000', '0.000'); args=['Albumin', 'Age', '56-70', '3.125,0.0|3.375, 0.0|3.625, 0.05|3.875, 0.11|4.125, 0.36|4.375, 0.27|4.625, 0.16|4.875, 0.02|5.125, 0.01', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES ('Albumin', 'Age', '71-85', '3.125, 0.01|3.375, 0.01|3.625, 0.09|3.875, 0.16|4.125, 0.39|4.375, 0.20|4.625, 0.13|4.875, 0.01', '0.000', '0.000'); args=['Albumin', 'Age', '71-85', '3.125, 0.01|3.375, 0.01|3.625, 0.09|3.875, 0.16|4.125, 0.39|4.375, 0.20|4.625, 0.13|4.875, 0.01', u'0.000', u'0.000']
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 4929
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES ('Albumin', 'All', 'None', '2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.01|3.625, 0.04|3.875, 0.1|4.125, 0.3|4.375, 0.24|4.625, 0.23|4.875, 0.05|5.125, 0.01', '0.000', '0.000'); args=['Albumin', 'All', 'None', '2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.01|3.625, 0.04|3.875, 0.1|4.125, 0.3|4.375, 0.24|4.625, 0.23|4.875, 0.05|5.125, 0.01', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.000) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES ('Albumin', 'BMI', '0-18.5', '2.625,0.0|2.875,0.0|3.125,0.0|3.375,0.0|3.625,0.01|3.875,0.04|4.125,0.23|4.375,0.26|4.625,0.34|4.875,0.05|5.125,0.04|5.375,0.0', '0.000', '0.000'); args=['Albumin', 'BMI', '0-18.5', '2.625,0.0|2.875,0.0|3.125,0.0|3.375,0.0|3.625,0.01|3.875,0.04|4.125,0.23|4.375,0.26|4.625,0.34|4.875,0.05|5.125,0.04|5.375,0.0', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.000) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES ('Albumin', 'BMI', '18.6-24.9', '2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.0|3.625, 0.02|3.875, 0.05|4.125, 0.24|4.375, 0.24|4.625, 0.31|4.875, 0.08|5.125, 0.03|5.375, 0.00', '0.000', '0.000'); args=['Albumin', 'BMI', '18.6-24.9', '2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.0|3.625, 0.02|3.875, 0.05|4.125, 0.24|4.375, 0.24|4.625, 0.31|4.875, 0.08|5.125, 0.03|5.375, 0.00', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES ('Albumin', 'BMI', '25-29.9', '2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.0|3.625, 0.02|3.875, 0.08|4.125, 0.31|4.375, 0.27|4.625, 0.24|4.875, 0.05|5.125, 0.01', '0.000', '0.000'); args=['Albumin', 'BMI', '25-29.9', '2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.0|3.625, 0.02|3.875, 0.08|4.125, 0.31|4.375, 0.27|4.625, 0.24|4.875, 0.05|5.125, 0.01', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'BMI', '30-50', '3.125, 0.0|3.375, 0.01|3.625, 0.08|3.875, 0.17|4.125, 0.35|4.375, 0.21|4.625, 0.13|4.875, 0.02|5.125, 0.0', '0.000', '0.000'); args=[None, 'BMI', '30-50', '3.125, 0.0|3.375, 0.01|3.625, 0.08|3.875, 0.17|4.125, 0.35|4.375, 0.21|4.625, 0.13|4.875, 0.02|5.125, 0.0', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.000) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'Diabetic', 'True', '2.625, 0.0|2.875, 0.0|3.125, 0.01|3.375, 0.02|3.625, 0.09|3.875, 0.14|4.125, 0.34|4.375, 0.21|4.625, 0.14|4.875, 0.01|5.125, 0.01', '0.000', '0.000'); args=[None, 'Diabetic', 'True', '2.625, 0.0|2.875, 0.0|3.125, 0.01|3.375, 0.02|3.625, 0.09|3.875, 0.14|4.125, 0.34|4.375, 0.21|4.625, 0.14|4.875, 0.01|5.125, 0.01', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'Gender', 'Female', '2.625,0.0|2.875,0.0|3.125,0.0|3.375,0.01|3.625,0.07|3.875,0.14|4.125,0.35|4.375,0.23|4.625,0.16|4.875,0.02|5.125,0.0', '0.000', '0.000'); args=[None, 'Gender', 'Female', '2.625,0.0|2.875,0.0|3.125,0.0|3.375,0.01|3.625,0.07|3.875,0.14|4.125,0.35|4.375,0.23|4.625,0.16|4.875,0.02|5.125,0.0', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.000) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'Gender', 'Male', '2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.0|3.625, 0.02|3.875, 0.06|4.125, 0.25|4.375, 0.25|4.625, 0.30|4.875, 0.08|5.125, 0.03|5.375, 0.0', '0.000', '0.000'); args=[None, 'Gender', 'Male', '2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.0|3.625, 0.02|3.875, 0.06|4.125, 0.25|4.375, 0.25|4.625, 0.30|4.875, 0.08|5.125, 0.03|5.375, 0.0', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) UPDATE "UI_visualization" SET "IV" = NULL, "FeatureType" = 'Gender', "FeatureValue" = 'Male', "Data" = '2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.0|3.625, 0.02|3.875, 0.06|4.125, 0.25|4.375, 0.25|4.625, 0.30|4.875, 0.08|5.125, 0.03|5.375, 0.0', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 13; args=('Gender', 'Male', '2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.0|3.625, 0.02|3.875, 0.06|4.125, 0.25|4.375, 0.25|4.625, 0.30|4.875, 0.08|5.125, 0.03|5.375, 0.0', u'0.000', u'0.000', 13)
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'Diabetic', 'False', '2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.0|3.625, 0.04|3.875,0.09|4.125,0.29|4.375,0.25|4.625,0.24|4.875,0.05|5.125,0.02', '0.000', '0.000'); args=[None, 'Diabetic', 'False', '2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.0|3.625, 0.04|3.875,0.09|4.125,0.29|4.375,0.25|4.625,0.24|4.875,0.05|5.125,0.02', u'0.000', u'0.000']
+(0.002) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 6686
+(0.000) BEGIN; args=None
+(0.000) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES ('Glycohemoglobin', 'Age', '18-30', '4.5,0.18|5.5,0.79|6.5,0.02|7.5,0.0|8.5,0.0|9.5,0.0|10.5,0.0|11.5,0.0|12.5,0.0|13.5,0.0', '0.000', '0.000'); args=['Glycohemoglobin', 'Age', '18-30', '4.5,0.18|5.5,0.79|6.5,0.02|7.5,0.0|8.5,0.0|9.5,0.0|10.5,0.0|11.5,0.0|12.5,0.0|13.5,0.0', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES ('Glycohemoglobin', NULL, '31-40', '4.5,0.11|5.5,0.81|6.5,0.05|7.5,0.01|8.5,0|9.5,0|10.5,0|11.5,0|12.5,0', '0.000', '0.000'); args=['Glycohemoglobin', None, '31-40', '4.5,0.11|5.5,0.81|6.5,0.05|7.5,0.01|8.5,0|9.5,0|10.5,0|11.5,0|12.5,0', u'0.000', u'0.000']
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 6718
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 6718
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 9135
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+(0.000) BEGIN; args=None
+(0.001) UPDATE "UI_visualization" SET "IV" = 'Albumin', "FeatureType" = 'BMI', "FeatureValue" = '30-50', "Data" = '3.125, 0.0|3.375, 0.01|3.625, 0.08|3.875, 0.17|4.125, 0.35|4.375, 0.21|4.625, 0.13|4.875, 0.02|5.125, 0.0', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 10; args=('Albumin', u'BMI', u'30-50', u'3.125, 0.0|3.375, 0.01|3.625, 0.08|3.875, 0.17|4.125, 0.35|4.375, 0.21|4.625, 0.13|4.875, 0.02|5.125, 0.0', u'0.000', u'0.000', 10)
+(0.000) BEGIN; args=None
+(0.000) UPDATE "UI_visualization" SET "IV" = 'Albumin', "FeatureType" = 'Diabetic', "FeatureValue" = 'True', "Data" = '2.625, 0.0|2.875, 0.0|3.125, 0.01|3.375, 0.02|3.625, 0.09|3.875, 0.14|4.125, 0.34|4.375, 0.21|4.625, 0.14|4.875, 0.01|5.125, 0.01', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 11; args=('Albumin', u'Diabetic', u'True', u'2.625, 0.0|2.875, 0.0|3.125, 0.01|3.375, 0.02|3.625, 0.09|3.875, 0.14|4.125, 0.34|4.375, 0.21|4.625, 0.14|4.875, 0.01|5.125, 0.01', u'0.000', u'0.000', 11)
+(0.000) BEGIN; args=None
+(0.000) UPDATE "UI_visualization" SET "IV" = 'Albumin', "FeatureType" = 'Gender', "FeatureValue" = 'Female', "Data" = '2.625,0.0|2.875,0.0|3.125,0.0|3.375,0.01|3.625,0.07|3.875,0.14|4.125,0.35|4.375,0.23|4.625,0.16|4.875,0.02|5.125,0.0', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 12; args=('Albumin', u'Gender', u'Female', u'2.625,0.0|2.875,0.0|3.125,0.0|3.375,0.01|3.625,0.07|3.875,0.14|4.125,0.35|4.375,0.23|4.625,0.16|4.875,0.02|5.125,0.0', u'0.000', u'0.000', 12)
+(0.000) BEGIN; args=None
+(0.000) UPDATE "UI_visualization" SET "IV" = 'Albumin', "FeatureType" = 'Gender', "FeatureValue" = 'Male', "Data" = '2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.0|3.625, 0.02|3.875, 0.06|4.125, 0.25|4.375, 0.25|4.625, 0.30|4.875, 0.08|5.125, 0.03|5.375, 0.0', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 13; args=('Albumin', u'Gender', u'Male', u'2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.0|3.625, 0.02|3.875, 0.06|4.125, 0.25|4.375, 0.25|4.625, 0.30|4.875, 0.08|5.125, 0.03|5.375, 0.0', u'0.000', u'0.000', 13)
+(0.000) BEGIN; args=None
+(0.000) UPDATE "UI_visualization" SET "IV" = 'Albumin', "FeatureType" = 'Diabetic', "FeatureValue" = 'False', "Data" = '2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.0|3.625, 0.04|3.875,0.09|4.125,0.29|4.375,0.25|4.625,0.24|4.875,0.05|5.125,0.02', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 14; args=('Albumin', u'Diabetic', u'False', u'2.625, 0.0|2.875, 0.0|3.125, 0.0|3.375, 0.0|3.625, 0.04|3.875,0.09|4.125,0.29|4.375,0.25|4.625,0.24|4.875,0.05|5.125,0.02', u'0.000', u'0.000', 14)
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 9150
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES ('Glycohemoglobin', 'Age', '41-55', '4.5,0.06|5.5,0.75|6.5,0.13|7.5,0.03|8.5,0.01|9.5,0.01|10.5,0.01|11.5,0.01|12.5,0', '0.000', '0.000'); args=['Glycohemoglobin', 'Age', '41-55', '4.5,0.06|5.5,0.75|6.5,0.13|7.5,0.03|8.5,0.01|9.5,0.01|10.5,0.01|11.5,0.01|12.5,0', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES ('Glycohemoglobin', 'Age', '56-70', '4.5,0.03|5.5,0.6|6.5,0.25|7.5,0.06|8.5,0.02|9.5,0.02|10.5,0.01|11.5,0.0|12.5,0.01|13.5,0.0', '0.000', '0.000'); args=['Glycohemoglobin', 'Age', '56-70', '4.5,0.03|5.5,0.6|6.5,0.25|7.5,0.06|8.5,0.02|9.5,0.02|10.5,0.01|11.5,0.0|12.5,0.01|13.5,0.0', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'Age', '71-85', '4.5,0.02|5.5,0.58|6.5,0.28|7.5,0.07|8.5,0.02|9.5,0.01|10.5,0.00', '0.000', '0.000'); args=[None, 'Age', '71-85', '4.5,0.02|5.5,0.58|6.5,0.28|7.5,0.07|8.5,0.02|9.5,0.01|10.5,0.00', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'All', 'None', '4.5,0.09|5.5,0.73|6.5,0.13|7.5,0.03|8.5,0.01|9.5,0.01|10.5,0.00|11.5,0.00', '0.000', '0.000'); args=[None, 'All', 'None', '4.5,0.09|5.5,0.73|6.5,0.13|7.5,0.03|8.5,0.01|9.5,0.01|10.5,0.00|11.5,0.00', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'BMI', '0-18.5', '4.5,0.13|5.5,0.84|6.5,0.02|7.5,0.0|8.5,0.0|9.5,0.0|10.5,0.0|11.5,0.0', '0.000', '0.000'); args=[None, 'BMI', '0-18.5', '4.5,0.13|5.5,0.84|6.5,0.02|7.5,0.0|8.5,0.0|9.5,0.0|10.5,0.0|11.5,0.0', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'BMI', '18.6-24.9', '4.5,0.12|5.5,0.81|6.5,0.05|7.5,0.01|8.5,0.01|9.5,0.0', '0.000', '0.000'); args=[None, 'BMI', '18.6-24.9', '4.5,0.12|5.5,0.81|6.5,0.05|7.5,0.01|8.5,0.01|9.5,0.0', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'BMI', '25-29.9', '4.5,0.08|5.5,0.74|6.5,0.14|7.5,0.02|8.5,0.01|9.5,0.01|10.5,0.0|11.5,0.0|12.5,0.0', '0.000', '0.000'); args=[None, 'BMI', '25-29.9', '4.5,0.08|5.5,0.74|6.5,0.14|7.5,0.02|8.5,0.01|9.5,0.01|10.5,0.0|11.5,0.0|12.5,0.0', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.000) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'BMI', '30-50', '4.5,0.06|5.5,0.62|6.5,0.21|7.5,0.06|8.5,0.02|9.5,0.01|10.5,0.01|11.5,0.01|12.5,0.0|13.5,0.0', '0.000', '0.000'); args=[None, 'BMI', '30-50', '4.5,0.06|5.5,0.62|6.5,0.21|7.5,0.06|8.5,0.02|9.5,0.01|10.5,0.01|11.5,0.01|12.5,0.0|13.5,0.0', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'Diabetic', 'True', '4.5,0.02|5.5,0.28|6.5,0.34|7.5,0.18|8.5,0.07|9.5,0.05|10.5,0.02|11.5,0.02|12.5,0.01|13.5,0.0|14.5,0.0|15.5,0.0|16.5,0.0', '0.000', '0.000'); args=[None, 'Diabetic', 'True', '4.5,0.02|5.5,0.28|6.5,0.34|7.5,0.18|8.5,0.07|9.5,0.05|10.5,0.02|11.5,0.02|12.5,0.01|13.5,0.0|14.5,0.0|15.5,0.0|16.5,0.0', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'Gender', 'Female', '4.5,0.09|5.5,0.72|6.5,0.13|7.5,0.03|8.5,0.01|9.5,0.01|10.5,0.0|11.5,0.0', '0.000', '0.000'); args=[None, 'Gender', 'Female', '4.5,0.09|5.5,0.72|6.5,0.13|7.5,0.03|8.5,0.01|9.5,0.01|10.5,0.0|11.5,0.0', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'Gender', 'Male', '4.5,0.09|5.5,0.72|6.5,0.13|7.5,0.03|8.5,0.01|9.5,0.01|10.5,0.01|11.5,0.0|12.5,0.0', '0.000', '0.000'); args=[None, 'Gender', 'Male', '4.5,0.09|5.5,0.72|6.5,0.13|7.5,0.03|8.5,0.01|9.5,0.01|10.5,0.01|11.5,0.0|12.5,0.0', u'0.000', u'0.000']
+(0.000) BEGIN; args=None
+(0.001) INSERT INTO "UI_visualization" ("IV", "FeatureType", "FeatureValue", "Data", "UserResult", "UserProbability") VALUES (NULL, 'Diabetic', 'False', '4.5,0.10|5.5,0.79|6.5,0.10|7.5,0.01', '0.000', '0.000'); args=[None, 'Diabetic', 'False', '4.5,0.10|5.5,0.79|6.5,0.10|7.5,0.01', u'0.000', u'0.000']
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+(0.000) BEGIN; args=None
+(0.000) UPDATE "UI_visualization" SET "IV" = 'Glycohemoglobin', "FeatureType" = 'Age', "FeatureValue" = '71-85', "Data" = '4.5,0.02|5.5,0.58|6.5,0.28|7.5,0.07|8.5,0.02|9.5,0.01|10.5,0.00', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 19; args=('Glycohemoglobin', u'Age', u'71-85', u'4.5,0.02|5.5,0.58|6.5,0.28|7.5,0.07|8.5,0.02|9.5,0.01|10.5,0.00', u'0.000', u'0.000', 19)
+(0.000) BEGIN; args=None
+(0.000) UPDATE "UI_visualization" SET "IV" = 'Glycohemoglobin', "FeatureType" = 'All', "FeatureValue" = 'None', "Data" = '4.5,0.09|5.5,0.73|6.5,0.13|7.5,0.03|8.5,0.01|9.5,0.01|10.5,0.00|11.5,0.00', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 20; args=('Glycohemoglobin', u'All', u'None', u'4.5,0.09|5.5,0.73|6.5,0.13|7.5,0.03|8.5,0.01|9.5,0.01|10.5,0.00|11.5,0.00', u'0.000', u'0.000', 20)
+(0.000) BEGIN; args=None
+(0.000) UPDATE "UI_visualization" SET "IV" = 'Glycohemoglobin', "FeatureType" = 'BMI', "FeatureValue" = '0-18.5', "Data" = '4.5,0.13|5.5,0.84|6.5,0.02|7.5,0.0|8.5,0.0|9.5,0.0|10.5,0.0|11.5,0.0', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 21; args=('Glycohemoglobin', u'BMI', u'0-18.5', u'4.5,0.13|5.5,0.84|6.5,0.02|7.5,0.0|8.5,0.0|9.5,0.0|10.5,0.0|11.5,0.0', u'0.000', u'0.000', 21)
+(0.000) BEGIN; args=None
+(0.000) UPDATE "UI_visualization" SET "IV" = 'Glycohemoglobin', "FeatureType" = 'BMI', "FeatureValue" = '18.6-24.9', "Data" = '4.5,0.12|5.5,0.81|6.5,0.05|7.5,0.01|8.5,0.01|9.5,0.0', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 22; args=('Glycohemoglobin', u'BMI', u'18.6-24.9', u'4.5,0.12|5.5,0.81|6.5,0.05|7.5,0.01|8.5,0.01|9.5,0.0', u'0.000', u'0.000', 22)
+(0.000) BEGIN; args=None
+(0.000) UPDATE "UI_visualization" SET "IV" = 'Glycohemoglobin', "FeatureType" = 'BMI', "FeatureValue" = '25-29.9', "Data" = '4.5,0.08|5.5,0.74|6.5,0.14|7.5,0.02|8.5,0.01|9.5,0.01|10.5,0.0|11.5,0.0|12.5,0.0', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 23; args=('Glycohemoglobin', u'BMI', u'25-29.9', u'4.5,0.08|5.5,0.74|6.5,0.14|7.5,0.02|8.5,0.01|9.5,0.01|10.5,0.0|11.5,0.0|12.5,0.0', u'0.000', u'0.000', 23)
+(0.000) BEGIN; args=None
+(0.000) UPDATE "UI_visualization" SET "IV" = 'Glycohemoglobin', "FeatureType" = 'BMI', "FeatureValue" = '30-50', "Data" = '4.5,0.06|5.5,0.62|6.5,0.21|7.5,0.06|8.5,0.02|9.5,0.01|10.5,0.01|11.5,0.01|12.5,0.0|13.5,0.0', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 24; args=('Glycohemoglobin', u'BMI', u'30-50', u'4.5,0.06|5.5,0.62|6.5,0.21|7.5,0.06|8.5,0.02|9.5,0.01|10.5,0.01|11.5,0.01|12.5,0.0|13.5,0.0', u'0.000', u'0.000', 24)
+(0.000) BEGIN; args=None
+(0.000) UPDATE "UI_visualization" SET "IV" = 'Glycohemoglobin', "FeatureType" = 'Diabetic', "FeatureValue" = 'True', "Data" = '4.5,0.02|5.5,0.28|6.5,0.34|7.5,0.18|8.5,0.07|9.5,0.05|10.5,0.02|11.5,0.02|12.5,0.01|13.5,0.0|14.5,0.0|15.5,0.0|16.5,0.0', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 25; args=('Glycohemoglobin', u'Diabetic', u'True', u'4.5,0.02|5.5,0.28|6.5,0.34|7.5,0.18|8.5,0.07|9.5,0.05|10.5,0.02|11.5,0.02|12.5,0.01|13.5,0.0|14.5,0.0|15.5,0.0|16.5,0.0', u'0.000', u'0.000', 25)
+(0.000) BEGIN; args=None
+(0.000) UPDATE "UI_visualization" SET "IV" = 'Glycohemoglobin', "FeatureType" = 'Gender', "FeatureValue" = 'Female', "Data" = '4.5,0.09|5.5,0.72|6.5,0.13|7.5,0.03|8.5,0.01|9.5,0.01|10.5,0.0|11.5,0.0', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 26; args=('Glycohemoglobin', u'Gender', u'Female', u'4.5,0.09|5.5,0.72|6.5,0.13|7.5,0.03|8.5,0.01|9.5,0.01|10.5,0.0|11.5,0.0', u'0.000', u'0.000', 26)
+(0.000) BEGIN; args=None
+(0.000) UPDATE "UI_visualization" SET "IV" = 'Glycohemoglobin', "FeatureType" = 'Gender', "FeatureValue" = 'Male', "Data" = '4.5,0.09|5.5,0.72|6.5,0.13|7.5,0.03|8.5,0.01|9.5,0.01|10.5,0.01|11.5,0.0|12.5,0.0', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 27; args=('Glycohemoglobin', u'Gender', u'Male', u'4.5,0.09|5.5,0.72|6.5,0.13|7.5,0.03|8.5,0.01|9.5,0.01|10.5,0.01|11.5,0.0|12.5,0.0', u'0.000', u'0.000', 27)
+(0.000) BEGIN; args=None
+(0.000) UPDATE "UI_visualization" SET "IV" = 'Glycohemoglobin', "FeatureType" = 'Diabetic', "FeatureValue" = 'False', "Data" = '4.5,0.10|5.5,0.79|6.5,0.10|7.5,0.01', "UserResult" = '0.000', "UserProbability" = '0.000' WHERE "UI_visualization"."id" = 28; args=('Glycohemoglobin', u'Diabetic', u'False', u'4.5,0.10|5.5,0.79|6.5,0.10|7.5,0.01', u'0.000', u'0.000', 28)
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 13379

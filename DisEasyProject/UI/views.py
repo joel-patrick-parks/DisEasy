@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from models import Visualization
+
 # display homepage
 def home(request):
     return render(request, 'UI/index.html')
@@ -14,5 +16,6 @@ def result(request, figure=0, supplementary=0,score=0):
             'figure': figure,
             'supplementary': supplementary,
             'score': score,
+            'visualizations': Visualization.objects.all(),
             }
     return render(request, 'UI/result.html', context)

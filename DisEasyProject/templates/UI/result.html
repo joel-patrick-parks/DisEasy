@@ -48,39 +48,26 @@
 			</div>
 		</nav>
 		<div class="container">
-			<ul class="nav nav-pills nav-stacked">
-				<li class="active">
-					<a data-toggle="pill" href="#fig">Figures</a>
-				</li>
-				<li>
-					<a data-toggle="pill" href="#supp">Supplementary Figures</a>
-				</li> 
-				<li>
-					<a data-toggle="pill" href="#score">Confidence Score</a>
-				</li>
-			</ul>
-			<div class="tab-content">
-				<div id="fig" class="tab-pane fade in active">
-					<h3>FIGURES</h3>
-          <p> {{ figure }} </p>
-				</div>
-				<div id="supp" class="tab-pane fade">
-					<h3>SUPPLEMENTARY FIGURES</h3>
-          <p> {{ supplementary }} </p>
-				</div>
-				<div id="score" class="tab-pane fade">
-					<h3>SCORE</h3>
-          <p> {{ score }} </p>
-				</div>
-			</div>
+      {% for visualization in visualizations %}
+       {{ visualization.as_json }}
+       <br>
+      {% endfor %}
 		</div>
+
+    <script>
+      var v = {{ visualizations.0.as_json|safe }};
+      console.log(v);
+    </script>
+      
 
 	    <!-- Bootstrap core JavaScript
 	    ================================================== -->
 	    <!-- Placed at the end of the document so the pages load faster -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="{% static 'js/jquery.min.js' %}"><\/script>')</script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <script>window.jQuery || document.write('<script src="{% static 'js/jquery.min.js' %}"><\/script>')
+      
+      </script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
 	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
       <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
 	    <script src="https://d3js.org/d3.v4.min.js"></script>
