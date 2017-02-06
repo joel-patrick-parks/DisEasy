@@ -139,12 +139,12 @@
 
 					//chart size/placement
 						var vis = d3.select("#albuVis"),
-							WIDTH = 500,
-							HEIGHT = 300,
+							WIDTH = 1000,
+							HEIGHT = 500,
 							MARGINS = {
-								top: 50,
+								top: 20,
 								right: 20,
-								bottom: 50,
+								bottom: 20,
 								left: 50
 							};
 
@@ -156,35 +156,15 @@
 					  	var xAxis = d3.svg.axis().scale(xScale).ticks(20);
 						var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
-					  	vis.append('g')
-					    	.attr('class', 'axis')
-					    	.attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
-					    	.call(xAxis)
-					    	.selectAll('text')
-						    .style('text-anchor', 'end')
-						    .attr('dx', '-.8em')
-						    .attr('dy', '.15em')
-						    .attr('transform', 'rotate(-65)');
+					  vis.append('svg:g')
+					    .attr('class', 'axis')
+					    .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
+					    .call(xAxis);
 
-					  	vis.append('g')
-						    .attr('class', 'axis')
-						    .attr('transform', 'translate(' + (MARGINS.left) + ',' + (MARGINS.top - MARGINS.bottom) + ')')
-						    .call(yAxis);
-
-					//writting x axis label
-						vis.append('text')
-					    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
-					    	.style('text-anchor', 'middle')
-					    	.text('Albumin Value');
-
-					//writting y axis label
-						vis.append('text')
-					        .attr('transform', 'rotate(-90)')
-					        .attr('y', 0)
-					        .attr('x',0 - (HEIGHT / 2))
-					        .attr('dy', '1em')
-					        .style('text-anchor', 'middle')
-					        .text('Probability');
+					  vis.append('svg:g')
+					    .attr('class', 'axis')
+					    .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
+					    .call(yAxis);
 
 					//drawing data line
 					    var lineFunc = d3.svg.line()
@@ -199,21 +179,11 @@
 					    	.interpolate("cardinal")
 					    	.tension(0.6);
 
-					    vis.append('path')
+					    vis.append('svg:path')
 					    	.attr('stroke', "#337ab7")
 					    	.attr('stroke-width', 2)
 					    	.attr('fill', 'none')
 					    	.attr('d', lineFunc(LineData));
-
-					//writting Title
-					    vis.append('text')
-					        .attr('x', (WIDTH / 2))     
-					        .attr('y', 0 + (MARGINS.top / 2))
-					        .attr('text-anchor', 'middle')
-					        .style('font-size', '16px')
-					        .style('text-decoration', 'underline')
-					        .text('Albumin vs Ages 18 - 30');
-
 					</script>
 				</div>
 				<div id="supp" class="tab-pane fade">
@@ -270,12 +240,12 @@
 
 					//chart size/placement
 						var vis = d3.select("#glycoVis"),
-							WIDTH = 500,
-							HEIGHT = 300,
+							WIDTH = 1000,
+							HEIGHT = 500,
 							MARGINS = {
-								top: 50,
+								top: 20,
 								right: 20,
-								bottom: 50,
+								bottom: 20,
 								left: 50
 							};
 
@@ -290,32 +260,12 @@
 					  vis.append('svg:g')
 					    .attr('class', 'axis')
 					    .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
-					    .call(xAxis)
-					    .selectAll('text')
-					    .style('text-anchor', 'end')
-					    .attr('dx', '-.8em')
-					    .attr('dy', '.15em')
-					    .attr('transform', 'rotate(-65)');
+					    .call(xAxis);
 
 					  vis.append('svg:g')
 					    .attr('class', 'axis')
-						.attr('transform', 'translate(' + (MARGINS.left) + ',' + (MARGINS.top - MARGINS.bottom) + ')')
-						.call(yAxis);
-
-					//writting x axis label
-						vis.append('text')
-					    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
-					    	.style('text-anchor', 'middle')
-					    	.text('Glycohemoglobin Value');
-
-					//writting y axis label
-						vis.append('text')
-					        .attr('transform', 'rotate(-90)')
-					        .attr('y', 0)
-					        .attr('x',0 - (HEIGHT / 2))
-					        .attr('dy', '1em')
-					        .style('text-anchor', 'middle')
-					        .text('Probability');
+					    .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
+					    .call(yAxis);
 
 					//drawing data line
 					    var lineFunc = d3.svg.line()
@@ -327,24 +277,13 @@
 					    	{
 					    		return yScale(d.probability);
 					    	})
-					    	.interpolate("cardinal")
-					    	.tension(0.6);
+					    	.interpolate("monotone");
 
 					    vis.append('svg:path')
 					    	.attr('stroke', "#337ab7")
 					    	.attr('stroke-width', 2)
 					    	.attr('fill', 'none')
 					    	.attr('d', lineFunc(LineData));
-
-					    //writting Title
-					    vis.append('text')
-					        .attr('x', (WIDTH / 2))     
-					        .attr('y', 0 + (MARGINS.top / 2))
-					        .attr('text-anchor', 'middle')
-					        .style('font-size', '16px')
-					        .style('text-decoration', 'underline')
-					        .text('Glycohemoglobin vs Ages 18 - 30');
-
 					</script>
 				</div>
 			</div>
