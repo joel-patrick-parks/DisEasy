@@ -153,7 +153,7 @@
 						var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
 
 					//drawing axis
-					  	var xAxis = d3.svg.axis().scale(xScale).ticks(20);
+					  	var xAxis = d3.svg.axis().scale(xScale).orient("bottom").ticks(20);
 						var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
 					  	vis.append('g')

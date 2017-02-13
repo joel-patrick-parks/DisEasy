@@ -83,207 +83,266 @@
 			<div class="tab-content">
 				<div id="fig" class="tab-pane fade in active">
 					<h2>ALBUMIN FIGURES</h2>
-					<svg id="albuVis" width="1000" height="500"></svg>
+					<svg id="albuVisAll" width="1000" height="500"></svg>
+					<svg id="albuVisAge" width="1000" height="500"></svg>
+					<svg id="albuVisGend" width="1000" height="500"></svg>
+					<svg id="albuVisBMI" width="1000" height="500"></svg>
+					<svg id="albuVisDiab" width="1000" height="500"></svg>
+					<svg id="albuVisNoDiab" width="1000" height="500"></svg>
+					<div class="container">
+      					{% for visualization in visualizations %}
+       						{{ visualization.as_json }}
+       						<br>
+     					{% endfor %}
+					</div>
 					<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
 					<script>
-						//data
-						var LineData =[
-						{
-							"probability": 0.0,
-							"value": 2.625
-						},	
-						{
-							"probability": 0.0,
-							"value": 2.875
-						},	
-						{
-							"probability": 0.0,
-							"value": 3.125
-						},	
-						{
-							"probability": 0.0,
-							"value": 3.375
-						},	
-						{
-							"probability": 0.02,
-							"value": 3.625
-						},	
-						{
-							"probability": 0.07,
-							"value": 3.875
-						},	
-						{
-							"probability": 0.23,
-							"value": 4.125
-						},	
-						{
-							"probability": 0.23,
-							"value": 4.375
-						},	
-						{
-							"probability": 0.31,
-							"value": 4.625
-						},	
-						{
-							"probability": 0.09,
-							"value": 4.875
-						},	
-						{
-							"probability": 0.03,
-							"value": 5.125
-						},
-						{
-							"probability": 0.0,
-							"value": 5.375
-						}];
-
-					//chart size/placement
-						var vis = d3.select("#albuVis"),
-							WIDTH = 1000,
-							HEIGHT = 500,
+						//dimensions for svg elements
+						WIDTH = 500,
+							HEIGHT = 300,
 							MARGINS = {
-								top: 20,
+								top: 50,
 								right: 20,
-								bottom: 20,
+								bottom: 50,
 								left: 50
 							};
+						//data
+						{% for visualization in visualizations %}
 
-					//setting scales
-						var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([2.5, 5.5]);
-						var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
+       						var LineData = {{ visualization.as_json }};
+							console.log(LineData);
 
-					//drawing axis
-					  	var xAxis = d3.svg.axis().scale(xScale).ticks(20);
-						var yAxis = d3.svg.axis().scale(yScale).orient("left");
+							//setting scales
+							var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([2.5, 5.5]);
+							var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
 
-					  vis.append('svg:g')
-					    .attr('class', 'axis')
-					    .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
-					    .call(xAxis);
+							var vis;
+							var IV = LineData.IV;
+							
+							if(IV == "Albumin")
+							{
+								//svg selection
+								if(LineData.FeatureType == "All")
+								{
+									vis = d3.select("#albuVisAll");
+								}
+								else if(LineData.FeatureType == "Age")
+								{
+									vis = d3.select("#albuVisAge");
+								}
+								else if(LineData.FeatureType == "Gender")
+								{
+									vis = d3.select("#albuVisGend");
+								}
+								else if(LineData.FeatureType == "BMI")
+								{
+									vis = d3.select("#albuVisBMI");
+								}
+								else if(LineData.FeatureType = "Diabetic")
+								{
+									if(LineData.FeatureType.FeatureValue = "True")
+									{
+										vis = d3.select("#albuVisDiab");
+									}
+									if(LineData.FeatureType.FeatureValue = "False")
+									{
+										vis = d3.select("#albuVisNoDiab");
+									}
+								}
+								//drawing axis
+							  	var xAxis = d3.svg.axis().scale(xScale).ticks(20);
+								var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
-					  vis.append('svg:g')
-					    .attr('class', 'axis')
-					    .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
-					    .call(yAxis);
+							  	vis.append('g')
+							    	.attr('class', 'axis')
+							    	.attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
+							    	.call(xAxis)
+							    	.selectAll('text')
+								    .style('text-anchor', 'end')
+								    .attr('dx', '-.8em')
+								    .attr('dy', '.15em')
+								    .attr('transform', 'rotate(-65)');
 
-					//drawing data line
-					    var lineFunc = d3.svg.line()
-					    	.x(function(d)
-					    	{
-					    		return xScale(d.value);
-					    	})
-					    	.y(function(d)
-					    	{
-					    		return yScale(d.probability);
-					    	})
-					    	.interpolate("cardinal")
-					    	.tension(0.6);
+							  	vis.append('g')
+								    .attr('class', 'axis')
+								    .attr('transform', 'translate(' + (MARGINS.left) + ',' + (MARGINS.top - MARGINS.bottom) + ')')
+								    .call(yAxis);
 
-					    vis.append('svg:path')
-					    	.attr('stroke', "#337ab7")
-					    	.attr('stroke-width', 2)
-					    	.attr('fill', 'none')
-					    	.attr('d', lineFunc(LineData));
+								//writting x axis label
+								vis.append('text')
+							    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
+							    	.style('text-anchor', 'middle')
+							    	.text(IV + ' Value');
+
+								//writting y axis label
+								vis.append('text')
+							        .attr('transform', 'rotate(-90)')
+							        .attr('y', 0)
+							        .attr('x',0 - (HEIGHT / 2))
+							        .attr('dy', '1em')
+							        .style('text-anchor', 'middle')
+							        .text('Percentage');
+
+								//drawing data line
+							    var lineFunc = d3.svg.line()
+							    	.x(function(d)
+							    	{
+							    		return xScale(d.Data.x);
+							    	})
+							    	.y(function(d)
+							    	{
+							    		return yScale(d.Data.y);
+							    	})
+							    	.interpolate("cardinal")
+							    	.tension(0.6);
+
+							    vis.append('path')
+							    	.attr('stroke', "#337ab7")
+							    	.attr('stroke-width', 2)
+							    	.attr('fill', 'none')
+							    	.attr('d', lineFunc(LineData));
+
+								//writting Title
+							    vis.append('text')
+							        .attr('x', (WIDTH / 2))     
+							        .attr('y', 0 + (MARGINS.top / 2))
+							        .attr('text-anchor', 'middle')
+							        .style('font-size', '16px')
+							        .style('text-decoration', 'underline')
+							        .text(IV + ' vs ' + LineData.Feature.FeatureType + ' ' + LineData.Feature.FeatureValue);
+							}
+							
+						{% endfor %}
+
 					</script>
 				</div>
 				<div id="supp" class="tab-pane fade">
 					<h2>GLYCOHEMOGLOBIN FIGURES</h2>
-					<svg id="glycoVis" width="1000" height="500"></svg>
+					<svg id="glycoVisAll" width="1000" height="500"></svg>
+					<svg id="glycoVisAge" width="1000" height="500"></svg>
+					<svg id="glycoVisGend" width="1000" height="500"></svg>
+					<svg id="glycoVisBMI" width="1000" height="500"></svg>
+					<svg id="glycoVisDiab" width="1000" height="500"></svg>
+					<svg id="glycoVisNoDiab" width="1000" height="500"></svg>
 					<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
 					<script>
+						//Dimensions for svg elements
+						WIDTH = 500,
+						HEIGHT = 300,
+						MARGINS = {
+							top: 50,
+							right: 20,
+							bottom: 50,
+							left: 50
+						};
 						//data
-						var LineData =[
-						{
-							"probability": 0.0,
-							"value": 4.0
-						},
-						{
-							"probability": 0.18,
-							"value": 4.5
-						},	
-						{
-							"probability": 0.79,
-							"value": 5.5
-						},	
-						{
-							"probability": 0.02,
-							"value": 6.5
-						},	
-						{
-							"probability": 0.0,
-							"value": 7.5
-						},	
-						{
-							"probability": 0.0,
-							"value": 8.5
-						},	
-						{
-							"probability": 0.0,
-							"value": 9.5
-						},	
-						{
-							"probability": 0.0,
-							"value": 10.5
-						},	
-						{
-							"probability": 0.0,
-							"value": 11.5
-						},	
-						{
-							"probability": 0.0,
-							"value": 12.5
-						},		
-						{
-							"probability": 0.0,
-							"value": 13.5
-						}];
+						{% for visualization in visualizations %}
 
-					//chart size/placement
-						var vis = d3.select("#glycoVis"),
-							WIDTH = 1000,
-							HEIGHT = 500,
-							MARGINS = {
-								top: 20,
-								right: 20,
-								bottom: 20,
-								left: 50
-							};
+							var LineData = {{ visualization.as_json }};
+							console.log(LineData);
 
-					//setting scales
-						var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4, 13.5]);
-						var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
+							//setting scales
+							var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4, 13.5]);
+							var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
 
-					//drawing axis
-					  	var xAxis = d3.svg.axis().scale(xScale).ticks(20);
-						var yAxis = d3.svg.axis().scale(yScale).orient("left");
+							var vis;
+							var IV = LineData.IV;
+								
+							if(IV == "Glycohemoglobin")
+							{
+								if(LineData.FeatureType = "All")
+								{
+									vis = d3.select("#glycoVisAll");
+								}
+								else if(LineData.FeatureType = "Age")
+								{
+									vis = d3.select("#glycoVisAge");
+								}
+								else if(LineData.FeatureType = "Gender")
+								{
+									vis = d3.select("#glycoVisGend");
+								}
+								else if(LineData.FeatureType = "BMI")
+								{
+									vis = d3.select("#glycoVisBMI");
+								}
+								else if(LineData.FeatureType = "Diabetic")
+								{
+									if(LineData.FeatureType.FeatureValue = "True")
+									{
+										vis = d3.select("#glycoVisDiab");
+									}
+									if(LineData.FeatureType.FeatureValue = "False")
+									{
+										vis = d3.select("#glycoVisNoDiab");
+									}
+								}
 
-					  vis.append('svg:g')
-					    .attr('class', 'axis')
-					    .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
-					    .call(xAxis);
+								//drawing axis
+							  	var xAxis = d3.svg.axis().scale(xScale).ticks(20);
+								var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
-					  vis.append('svg:g')
-					    .attr('class', 'axis')
-					    .attr('transform', 'translate(' + (MARGINS.left) + ',0)')
-					    .call(yAxis);
+							  vis.append('svg:g')
+							    .attr('class', 'axis')
+							    .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
+							    .call(xAxis)
+							    .selectAll('text')
+							    .style('text-anchor', 'end')
+							    .attr('dx', '-.8em')
+							    .attr('dy', '.15em')
+							    .attr('transform', 'rotate(-65)');
 
-					//drawing data line
-					    var lineFunc = d3.svg.line()
-					    	.x(function(d)
-					    	{
-					    		return xScale(d.value);
-					    	})
-					    	.y(function(d)
-					    	{
-					    		return yScale(d.probability);
-					    	})
-					    	.interpolate("monotone");
+							  vis.append('svg:g')
+							    .attr('class', 'axis')
+								.attr('transform', 'translate(' + (MARGINS.left) + ',' + (MARGINS.top - MARGINS.bottom) + ')')
+								.call(yAxis);
 
-					    vis.append('svg:path')
-					    	.attr('stroke', "#337ab7")
-					    	.attr('stroke-width', 2)
-					    	.attr('fill', 'none')
-					    	.attr('d', lineFunc(LineData));
+								//writting x axis label
+								vis.append('text')
+							    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
+							    	.style('text-anchor', 'middle')
+							    	.text(IV + ' Value');
+
+								//writting y axis label
+								vis.append('text')
+							        .attr('transform', 'rotate(-90)')
+							        .attr('y', 0)
+							        .attr('x',0 - (HEIGHT / 2))
+							        .attr('dy', '1em')
+							        .style('text-anchor', 'middle')
+							        .text('Percentage');
+
+								//drawing data line
+							    var lineFunc = d3.svg.line()
+							    	.x(function(d)
+							    	{
+							    		return xScale(d.Data.x);
+							    	})
+							    	.y(function(d)
+							    	{
+							    		return yScale(d.Data.y);
+							    	})
+							    	.interpolate("cardinal")
+							    	.tension(0.6);
+
+							    vis.append('svg:path')
+							    	.attr('stroke', "#337ab7")
+							    	.attr('stroke-width', 2)
+							    	.attr('fill', 'none')
+							    	.attr('d', lineFunc(LineData));
+
+							    //writting Title
+							    vis.append('text')
+							        .attr('x', (WIDTH / 2))     
+							        .attr('y', 0 + (MARGINS.top / 2))
+							        .attr('text-anchor', 'middle')
+							        .style('font-size', '16px')
+							        .style('text-decoration', 'underline')
+							        .text(IV + ' vs ' + LineData.Feature.FeatureType + ' ' + LineData.Feature.FeatureValue);
+							}
+
+						{% endfor %}
+
 					</script>
 				</div>
 			</div>
