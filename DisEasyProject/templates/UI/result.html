@@ -8,13 +8,7 @@
 	    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	    <meta name="description" content="">
 	    <meta name="author" content="">
-<<<<<<< HEAD:DisEasy WebPage/docs/html/webpage/index2.html
-
-	    <!--    icon   -->
-	    <!--<link rel="icon" href="../../favicon.ico">-->
-=======
       <link rel="icon" href="{% static 'imgs/favicon.ico' %}">
->>>>>>> refs/remotes/origin/Django:DisEasyProject/templates/UI/result.html
 
 	    <title>DisEasy</title>
 
@@ -73,7 +67,6 @@
 			</div>
 		</nav>
 		<div class="container">
-<<<<<<< HEAD:DisEasy WebPage/docs/html/webpage/index2.html
 			<ul class="nav nav-pills nav-stacked">
 				<li class="active">
 					<a data-toggle="pill" href="#fig">Albumin</a>
@@ -350,12 +343,10 @@
 					</script>
 				</div>
 			</div>
-=======
       {% for visualization in visualizations %}
        {{ visualization.as_json }}
        <br>
       {% endfor %}
->>>>>>> refs/remotes/origin/Django:DisEasyProject/templates/UI/result.html
 		</div>
 
     <script>
@@ -372,14 +363,8 @@
       
       </script>
       <script src="{% static 'js/bootstrap.min.js' %}"></script>
-	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<<<<<<< HEAD:DisEasy WebPage/docs/html/webpage/index2.html
-	    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-=======
       <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
 	    <script src="https://d3js.org/d3.v4.min.js"></script>
- 
->>>>>>> refs/remotes/origin/Django:DisEasyProject/templates/UI/result.html
 	</body>
 	
 </html>

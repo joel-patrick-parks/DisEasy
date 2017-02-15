@@ -3051,3 +3051,34 @@ Invalid HTTP_HOST header: 'localhost'. You may need to add u'localhost' to ALLOW
 Invalid HTTP_HOST header: 'localhost'. You may need to add u'localhost' to ALLOWED_HOSTS.
 "GET / HTTP/1.0" 400 58704
 "GET / HTTP/1.1" 200 750
+(0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.001) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+"GET / HTTP/1.1" 200 750
+"GET /favicon.ico HTTP/1.1" 200 750
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/0-0-0 HTTP/1.1" 200 21648
+"GET /static/css/ie10-viewport-bug-workaround.css HTTP/1.1" 200 433
+"GET /static/css/starter-template.css HTTP/1.1" 200 96
+"GET /assets/js/visuals/sampleVisual.js HTTP/1.1" 200 750
+"GET /static/css/bootstrap.min.css HTTP/1.1" 200 121200
+"GET /static/js/bootstrap.min.js HTTP/1.1" 200 37045
+"GET /assets/js/ie10-viewport-bug-workaround.js HTTP/1.1" 200 750
+"GET /static/js/ie10-viewport-bug-workaround.js HTTP/1.1" 200 641
+"GET /favicon.ico HTTP/1.1" 200 750
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/0-0-0 HTTP/1.1" 200 20996
+"GET /static/css/bootstrap.min.css HTTP/1.1" 304 0
+"GET /static/css/starter-template.css HTTP/1.1" 304 0
+"GET /static/css/ie10-viewport-bug-workaround.css HTTP/1.1" 304 0
+"GET /assets/js/visuals/sampleVisual.js HTTP/1.1" 200 750
+"GET /static/js/ie10-viewport-bug-workaround.js HTTP/1.1" 304 0
+"GET /static/js/bootstrap.min.js HTTP/1.1" 304 0
+"GET /static/imgs/favicon.ico HTTP/1.1" 404 1748
