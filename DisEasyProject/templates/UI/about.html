@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -7,22 +8,20 @@
 	    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	    <meta name="description" content="">
 	    <meta name="author" content="">
-	    <link rel="icon" href="../../favicon.ico">
+      <link rel="icon" href="{% static 'imgs/favicon.ico' %}">
 
 	    <title>DisEasy</title>
 
 	    <!-- Bootstrap core CSS -->
-	    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
 
 	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+      <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
 
 	    <!-- Custom styles for this template -->
-	    <link href="starter-template.css" rel="stylesheet">
+      <link href="{% static 'css/starter-template.css' %}" rel="stylesheet">
 
-	    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-	    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-	    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+      <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
 
 	    <style type="text/css">
 	    	.nav > li > a:hover, .nav > li > a:focus {
@@ -42,12 +41,12 @@
 		<nav class="navbar navbar-fixed-top" style="background-color: #f47f58; color:black;">
 			<div class="container">
 				<div id="navbar" class="navbar-header">
-					<img src="../../assets/img/diseasylogo.png" width="50" height="50" alt="">
+          <img src="{% static 'img/diseasylogo.png' %}" width="50" height="50" alt="">
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li><a href="index.html" style="color: black;">Home</a></li>
-						<li class="active"><a href="about.html" style="color: black;">About</a></li>
+						<li><a href="/form" style="color: black;">Home</a></li>
+						<li class="active"><a href="/about" style="color: black;">About</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
@@ -65,13 +64,13 @@
 				    				<!--<label for="inputEmail3" class="col-sm-2 control-label">Condition:</label>-->
 				    				<div class="col-sm-12">
 
-			    						<p align = "center"><img src="../../assets/img/DiseasyMission.PNG" width="900" height="450" alt=""></p>
+                      <p align = "center"><img src="{% static 'img/DiseasyMission.PNG' %}" width="900" height="450" alt=""></p>
 
 				    					<p align="Just">The recent advances in digital therapeutics encourages adults to interface with technology (i.e. MayoClinic, WebMD) before seeking physician consultation. More patients are seeking alternatives to affordable health care and personal health information which has led to the rise of private organizations that provide lab result data to patients directly, bypassing physician supervision. While it may be more fiscally advantageous to seek private lab testing, it lacks the physician interpretation and global perspective necessary to take action.</p>
 
 				    					<br />
 				    					<br />
-				    					<p align = "center"><img src="../../assets/img/patientdiagram.PNG" width="900" height="450" alt=""></p>
+                      <p align = "center"><img src="{% static 'img/patientdiagram.PNG' %}" width="900" height="450" alt=""></p>
 				    					<br />
 				    					<br />
 
@@ -139,10 +138,10 @@
 	    ================================================== -->
 	    <!-- Placed at the end of the document so the pages load faster -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
-	    <script src="../../dist/js/bootstrap.min.js"></script>
+      <script>window.jQuery || document.write('<script src="{% static 'js/jquery.min.js' %}"><\/script>')</script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
 	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-	    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+      <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
 	    <script src="https://d3js.org/d3.v4.min.js"></script>
  
 	</body>
