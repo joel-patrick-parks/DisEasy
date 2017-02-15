@@ -1,0 +1,385 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	    <meta name="description" content="">
+	    <meta name="author" content="">
+<<<<<<< HEAD:DisEasy WebPage/docs/html/webpage/index2.html
+
+	    <!--    icon   -->
+	    <!--<link rel="icon" href="../../favicon.ico">-->
+=======
+      <link rel="icon" href="{% static 'imgs/favicon.ico' %}">
+>>>>>>> refs/remotes/origin/Django:DisEasyProject/templates/UI/result.html
+
+	    <title>DisEasy</title>
+
+	    <!-- Bootstrap core CSS -->
+      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+
+	    <!-- Custom styles for this template -->
+      <link href="{% static 'css/starter-template.css' %}" rel="stylesheet">
+
+	    <!-- d3.js Javascript
+	    =================================================== -->
+		<!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
+		<script src="https://d3js.org/d3.v3.min.js"></script>
+		<script src="../../assets/js/visuals/sampleVisual.js" type="text/javascript"></script>
+	    <!--<script type="text/JavaScript" src="sampleFigure.js"></script>-->
+	   
+	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+	    <!--[if lt IE 9]>
+	      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+
+	    <style>
+	    	.axis path {
+			    fill: none;
+			    stroke: #333;
+			    shape-rendering: crispEdges;
+			}
+			.axis text {
+			    font-family: Arial;
+			    font-size: 13px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">DisEasy</a>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#about">About</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+		</nav>
+		<div class="container">
+<<<<<<< HEAD:DisEasy WebPage/docs/html/webpage/index2.html
+			<ul class="nav nav-pills nav-stacked">
+				<li class="active">
+					<a data-toggle="pill" href="#fig">Albumin</a>
+				</li>
+				<li>
+					<a data-toggle="pill" href="#supp">Glycohemoblin</a>
+				</li> 
+			</ul>
+			<div class="tab-content">
+				<div id="fig" class="tab-pane fade in active">
+					<h2>ALBUMIN FIGURES</h2>
+					<svg id="albuVis" width="1000" height="500"></svg>
+					<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
+					<script>
+						//data
+						var LineData =[
+						{
+							"probability": 0.0,
+							"value": 2.625
+						},	
+						{
+							"probability": 0.0,
+							"value": 2.875
+						},	
+						{
+							"probability": 0.0,
+							"value": 3.125
+						},	
+						{
+							"probability": 0.0,
+							"value": 3.375
+						},	
+						{
+							"probability": 0.02,
+							"value": 3.625
+						},	
+						{
+							"probability": 0.07,
+							"value": 3.875
+						},	
+						{
+							"probability": 0.23,
+							"value": 4.125
+						},	
+						{
+							"probability": 0.23,
+							"value": 4.375
+						},	
+						{
+							"probability": 0.31,
+							"value": 4.625
+						},	
+						{
+							"probability": 0.09,
+							"value": 4.875
+						},	
+						{
+							"probability": 0.03,
+							"value": 5.125
+						},
+						{
+							"probability": 0.0,
+							"value": 5.375
+						}];
+
+					//chart size/placement
+						var vis = d3.select("#albuVis"),
+							WIDTH = 500,
+							HEIGHT = 300,
+							MARGINS = {
+								top: 50,
+								right: 20,
+								bottom: 50,
+								left: 50
+							};
+
+					//setting scales
+						var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([2.5, 5.5]);
+						var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
+
+					//drawing axis
+					  	var xAxis = d3.svg.axis().scale(xScale).orient("bottom").ticks(20);
+						var yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+					  	vis.append('g')
+					    	.attr('class', 'axis')
+					    	.attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
+					    	.call(xAxis)
+					    	.selectAll('text')
+						    .style('text-anchor', 'end')
+						    .attr('dx', '-.8em')
+						    .attr('dy', '.15em')
+						    .attr('transform', 'rotate(-65)');
+
+					  	vis.append('g')
+						    .attr('class', 'axis')
+						    .attr('transform', 'translate(' + (MARGINS.left) + ',' + (MARGINS.top - MARGINS.bottom) + ')')
+						    .call(yAxis);
+
+					//writting x axis label
+						vis.append('text')
+					    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
+					    	.style('text-anchor', 'middle')
+					    	.text('Albumin Value');
+
+					//writting y axis label
+						vis.append('text')
+					        .attr('transform', 'rotate(-90)')
+					        .attr('y', 0)
+					        .attr('x',0 - (HEIGHT / 2))
+					        .attr('dy', '1em')
+					        .style('text-anchor', 'middle')
+					        .text('Probability');
+
+					//drawing data line
+					    var lineFunc = d3.svg.line()
+					    	.x(function(d)
+					    	{
+					    		return xScale(d.value);
+					    	})
+					    	.y(function(d)
+					    	{
+					    		return yScale(d.probability);
+					    	})
+					    	.interpolate("cardinal")
+					    	.tension(0.6);
+
+					    vis.append('path')
+					    	.attr('stroke', "#337ab7")
+					    	.attr('stroke-width', 2)
+					    	.attr('fill', 'none')
+					    	.attr('d', lineFunc(LineData));
+
+					//writting Title
+					    vis.append('text')
+					        .attr('x', (WIDTH / 2))     
+					        .attr('y', 0 + (MARGINS.top / 2))
+					        .attr('text-anchor', 'middle')
+					        .style('font-size', '16px')
+					        .style('text-decoration', 'underline')
+					        .text('Albumin vs Ages 18 - 30');
+
+					</script>
+				</div>
+				<div id="supp" class="tab-pane fade">
+					<h2>GLYCOHEMOGLOBIN FIGURES</h2>
+					<svg id="glycoVis" width="1000" height="500"></svg>
+					<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
+					<script>
+						//data
+						var LineData =[
+						{
+							"probability": 0.0,
+							"value": 4.0
+						},
+						{
+							"probability": 0.18,
+							"value": 4.5
+						},	
+						{
+							"probability": 0.79,
+							"value": 5.5
+						},	
+						{
+							"probability": 0.02,
+							"value": 6.5
+						},	
+						{
+							"probability": 0.0,
+							"value": 7.5
+						},	
+						{
+							"probability": 0.0,
+							"value": 8.5
+						},	
+						{
+							"probability": 0.0,
+							"value": 9.5
+						},	
+						{
+							"probability": 0.0,
+							"value": 10.5
+						},	
+						{
+							"probability": 0.0,
+							"value": 11.5
+						},	
+						{
+							"probability": 0.0,
+							"value": 12.5
+						},		
+						{
+							"probability": 0.0,
+							"value": 13.5
+						}];
+
+					//chart size/placement
+						var vis = d3.select("#glycoVis"),
+							WIDTH = 500,
+							HEIGHT = 300,
+							MARGINS = {
+								top: 50,
+								right: 20,
+								bottom: 50,
+								left: 50
+							};
+
+					//setting scales
+						var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4, 13.5]);
+						var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
+
+					//drawing axis
+					  	var xAxis = d3.svg.axis().scale(xScale).ticks(20);
+						var yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+					  vis.append('svg:g')
+					    .attr('class', 'axis')
+					    .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
+					    .call(xAxis)
+					    .selectAll('text')
+					    .style('text-anchor', 'end')
+					    .attr('dx', '-.8em')
+					    .attr('dy', '.15em')
+					    .attr('transform', 'rotate(-65)');
+
+					  vis.append('svg:g')
+					    .attr('class', 'axis')
+						.attr('transform', 'translate(' + (MARGINS.left) + ',' + (MARGINS.top - MARGINS.bottom) + ')')
+						.call(yAxis);
+
+					//writting x axis label
+						vis.append('text')
+					    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
+					    	.style('text-anchor', 'middle')
+					    	.text('Glycohemoglobin Value');
+
+					//writting y axis label
+						vis.append('text')
+					        .attr('transform', 'rotate(-90)')
+					        .attr('y', 0)
+					        .attr('x',0 - (HEIGHT / 2))
+					        .attr('dy', '1em')
+					        .style('text-anchor', 'middle')
+					        .text('Probability');
+
+					//drawing data line
+					    var lineFunc = d3.svg.line()
+					    	.x(function(d)
+					    	{
+					    		return xScale(d.value);
+					    	})
+					    	.y(function(d)
+					    	{
+					    		return yScale(d.probability);
+					    	})
+					    	.interpolate("cardinal")
+					    	.tension(0.6);
+
+					    vis.append('svg:path')
+					    	.attr('stroke', "#337ab7")
+					    	.attr('stroke-width', 2)
+					    	.attr('fill', 'none')
+					    	.attr('d', lineFunc(LineData));
+
+					    //writting Title
+					    vis.append('text')
+					        .attr('x', (WIDTH / 2))     
+					        .attr('y', 0 + (MARGINS.top / 2))
+					        .attr('text-anchor', 'middle')
+					        .style('font-size', '16px')
+					        .style('text-decoration', 'underline')
+					        .text('Glycohemoglobin vs Ages 18 - 30');
+
+					</script>
+				</div>
+			</div>
+=======
+      {% for visualization in visualizations %}
+       {{ visualization.as_json }}
+       <br>
+      {% endfor %}
+>>>>>>> refs/remotes/origin/Django:DisEasyProject/templates/UI/result.html
+		</div>
+
+    <script>
+      var v = {{ visualizations.0.as_json|safe }};
+      console.log(v);
+    </script>
+      
+
+	    <!-- Bootstrap core JavaScript
+	    ================================================== -->
+	    <!-- Placed at the end of the document so the pages load faster -->
+	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="{% static 'js/jquery.min.js' %}"><\/script>')
+      
+      </script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<<<<<<< HEAD:DisEasy WebPage/docs/html/webpage/index2.html
+	    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+=======
+      <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+	    <script src="https://d3js.org/d3.v4.min.js"></script>
+ 
+>>>>>>> refs/remotes/origin/Django:DisEasyProject/templates/UI/result.html
+	</body>
+	
+</html>

@@ -1,0 +1,22 @@
+{
+	IV: "Glycohemoglobin"
+	Feature:
+	{
+		Type: "Diabetic"
+		Value: "False"
+	}
+	Data:
+	[
+		[4.5,0.10],
+		[5.5,0.79],
+		[6.5,0.10],
+		[7.5,0.01]
+	]
+	User:
+	{
+		result: 0
+		probability: 0
+	}
+}
+
+4.5,0.10|5.5,0.79|6.5,0.10|7.5,0.01
