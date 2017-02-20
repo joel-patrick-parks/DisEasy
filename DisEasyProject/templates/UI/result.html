@@ -117,29 +117,29 @@
 							if(IV == "Albumin")
 							{
 								//svg selection
-								if(LineData.FeatureType == "All")
+								if(LineData.Feature.Type == "All")
 								{
 									vis = d3.select("#albuVisAll");
 								}
-								else if(LineData.FeatureType == "Age")
+								else if(LineData.Feature.Type == "Age")
 								{
 									vis = d3.select("#albuVisAge");
 								}
-								else if(LineData.FeatureType == "Gender")
+								else if(LineData.Feature.Type == "Gender")
 								{
 									vis = d3.select("#albuVisGend");
 								}
-								else if(LineData.FeatureType == "BMI")
+								else if(LineData.Feature.Type == "BMI")
 								{
 									vis = d3.select("#albuVisBMI");
 								}
-								else if(LineData.FeatureType = "Diabetic")
+								else if(LineData.Feature.Type = "Diabetic")
 								{
-									if(LineData.FeatureType.FeatureValue = "True")
+									if(LineData.Feature.Value = "True")
 									{
 										vis = d3.select("#albuVisDiab");
 									}
-									if(LineData.FeatureType.FeatureValue = "False")
+									if(LineData.Feature.Value = "False")
 									{
 										vis = d3.select("#albuVisNoDiab");
 									}
@@ -182,11 +182,11 @@
 							    var lineFunc = d3.svg.line()
 							    	.x(function(d)
 							    	{
-							    		return xScale(d.Data.x);
+							    		return xScale(d.Data[0]);
 							    	})
 							    	.y(function(d)
 							    	{
-							    		return yScale(d.Data.y);
+							    		return yScale(d.Data[1]);
 							    	})
 							    	.interpolate("cardinal")
 							    	.tension(0.6);
@@ -204,7 +204,7 @@
 							        .attr('text-anchor', 'middle')
 							        .style('font-size', '16px')
 							        .style('text-decoration', 'underline')
-							        .text(IV + ' vs ' + LineData.Feature.FeatureType + ' ' + LineData.Feature.FeatureValue);
+							        .text(IV + ' vs ' + LineData.Feature.Type + ' ' + LineData.Feature.Value);
 							}
 							
 						{% endfor %}
@@ -311,11 +311,11 @@
 							    var lineFunc = d3.svg.line()
 							    	.x(function(d)
 							    	{
-							    		return xScale(d.Data.0);
+							    		return xScale(d.Data[0]);
 							    	})
 							    	.y(function(d)
 							    	{
-							    		return yScale(d.Data.1);
+							    		return yScale(d.Data[1]);
 							    	})
 							    	.interpolate("cardinal")
 							    	.tension(0.6);
