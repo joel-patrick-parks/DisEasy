@@ -3303,3 +3303,61 @@ TemplateSyntaxError: Invalid block tag on line 10: 'static'. Did you forget to r
 "GET /starter-template.css HTTP/1.1" 302 0
 "GET /form HTTP/1.1" 200 11943
 "GET /static/js/index.js HTTP/1.1" 404 1733
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to ALLOWED_HOSTS.
+"GET / HTTP/1.1" 400 62795
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to ALLOWED_HOSTS.
+"GET /favicon.ico HTTP/1.1" 400 62873
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to ALLOWED_HOSTS.
+"GET / HTTP/1.1" 400 62795
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to ALLOWED_HOSTS.
+"GET /favicon.ico HTTP/1.1" 400 62873
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.004) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to ALLOWED_HOSTS.
+"GET / HTTP/1.1" 400 62795
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to ALLOWED_HOSTS.
+"GET /favicon.ico HTTP/1.1" 400 62873
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to ALLOWED_HOSTS.
+"GET / HTTP/1.1" 400 26
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to ALLOWED_HOSTS.
+"GET /favicon.ico HTTP/1.1" 400 26
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to ALLOWED_HOSTS.
+"GET / HTTP/1.1" 400 26
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to ALLOWED_HOSTS.
+"GET /favicon.ico HTTP/1.1" 400 26
+Invalid HTTP_HOST header: '10.218.135.200:8000'. You may need to add u'10.218.135.200' to ALLOWED_HOSTS.
+"GET / HTTP/1.1" 400 26
+Invalid HTTP_HOST header: '10.218.135.200:8000'. You may need to add u'10.218.135.200' to ALLOWED_HOSTS.
+"GET /favicon.ico HTTP/1.1" 400 26
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to ALLOWED_HOSTS.
+"GET /admin/ HTTP/1.1" 400 26
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to ALLOWED_HOSTS.
+"GET /favicon.ico HTTP/1.1" 400 26
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
