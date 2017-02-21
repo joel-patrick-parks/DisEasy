@@ -61,7 +61,7 @@ def submit(request):
         tempval = ((testPoint[item])-m[item])/(s[item]+0.0001)
         val = int(tempval*1000)
         normPoint.append(float(val/1000))
-    print "prediction = " + str(mlp.predict_proba(np.array(testPoint).reshape(1,-1)))
+    #print "prediction = " + str(mlp.predict_proba(np.array(normPoint).reshape(1,-1)))
 
     # set values - real version will take results of analysis
     figure = random.randint(0,100)
