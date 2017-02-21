@@ -3361,3 +3361,31 @@ Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to 
             WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
             ORDER BY name; args=None
 (0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.016) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to ALLOWED_HOSTS.
+"GET / HTTP/1.1" 400 62795
+Invalid HTTP_HOST header: '127.0.0.1:8000'. You may need to add u'127.0.0.1' to ALLOWED_HOSTS.
+"GET /favicon.ico HTTP/1.1" 400 62873
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+Invalid HTTP_HOST header: 'localhost:8000'. You may need to add u'localhost' to ALLOWED_HOSTS.
+"GET / HTTP/1.1" 400 62795
+Invalid HTTP_HOST header: 'localhost:8000'. You may need to add u'localhost' to ALLOWED_HOSTS.
+"GET /favicon.ico HTTP/1.1" 400 62873
