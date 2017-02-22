@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -8,25 +7,31 @@
 	    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	    <meta name="description" content="">
 	    <meta name="author" content="">
-      <link rel="icon" href="{% static 'img/favicon.ico'%}">
+
+	    <!--    icon   -->
+	    <!--<link rel="icon" href="../../favicon.ico">-->
 
 	    <title>DisEasy</title>
 
 	    <!-- Bootstrap core CSS -->
-      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+	    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
 	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-      <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+	    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
 	    <!-- Custom styles for this template -->
-      <link href="{% static 'css/starter-template.css' %}" rel="stylesheet">
+	    <link href="starter-template.css" rel="stylesheet">
 
-      <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+	    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+	    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
 	    <!-- d3.js Javascript
 	    =================================================== -->
+		<!--<script src="https://d3js.org/d3.v4.min.js"></script>-->
 		<script src="https://d3js.org/d3.v3.min.js"></script>
-    <script src="{% static 'js/sampleVisual.js' %}" type="text/javascript"></script>
+		<script src="../../assets/js/visuals/sampleVisual.js" type="text/javascript"></script>
+	    <!--<script type="text/JavaScript" src="sampleFigure.js"></script>-->
 	   
 	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	    <!--[if lt IE 9]>
@@ -34,7 +39,7 @@
 	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	    <![endif]-->
 
-	    <style type = "text/css">
+	    <style>
 	    	.axis path {
 			    fill: none;
 			    stroke: #333;
@@ -44,85 +49,51 @@
 			    font-family: Arial;
 			    font-size: 13px;
 			}
-			.nav > li > a:hover,.nav > li > a:focus{
-  			background-color: #f47f58;
-  			color:black;
-  			text-decoration: none;
-  			}
-  			body{
-  				padding-top: 70px;
-  			}
-  			.navbar-nav > li, .navbar-nav > li:hover, .navbar-nav > li > a:focus, .navbar-nav > li > .active {
-  				background-color: #f47f58;
-  				color:black;
-  				text-decoration: none;
-  			}
-  			.navbar {
-  				min-height:50px !important;
-  				max-height:50px !important;
-  				color:black;
-  			}
-  			.navbar-brand {
-  				padding: 0px;
-  			}
-  			.navbar-brand>img {
-  				height: 100%;
-  				padding: 0px;
-  				width: auto;
-  			}
 		</style>
 	</head>
 
 	<body>
-	<div class="container">
-		<nav class="navbar navbar-inverse navbar-fixed-top" style = "background-color: #f47f58; color:black;">
-			<div class="container-fluid">
-				<div id = "navbar" class= "navbar-header nav navbar-nav">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarButton" aria-expanded="false" aria-controls="navbar">
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#"><img src="{% static 'img/diseasylogo.png' %}" width="50" height="50" hspace = "20" alt=""></a>
+					<a class="navbar-brand" href="#">DisEasy</a>
 				</div>
-				<div class="collapse navbar-collapse" id="navbarButton">
-  					<ul class="nav navbar-nav">
-    					<li><a href="/form">Home</a></li>
-    					<li><a href="/about">About</a></li> 
-  					</ul>
-  				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="#">Home</a></li>
+						<li><a href="#about">About</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
 			</div>
 		</nav>
-		</div>
 		<div class="container">
 			<ul class="nav nav-pills nav-stacked">
 				<li class="active">
 					<a data-toggle="pill" href="#fig">Albumin</a>
 				</li>
 				<li>
-					<a data-toggle="pill" href="#supp">Glycohemoglobin</a>
+					<a data-toggle="pill" href="#supp">Glycohemoblin</a>
 				</li> 
 			</ul>
 			<div class="tab-content">
 				<div id="fig" class="tab-pane fade in active">
 					<h2>ALBUMIN FIGURES</h2>
-					<div class="container">
 					<svg id="albuVisAll" width="1000" height="500"></svg>
-					</div>
-					<div class="container">
 					<svg id="albuVisAge" width="1000" height="500"></svg>
-					</div>
-					<div class="container">
 					<svg id="albuVisGend" width="1000" height="500"></svg>
-					</div>
-					<div class="container">
 					<svg id="albuVisBMI" width="1000" height="500"></svg>
-					</div>
-					<div class="container">
 					<svg id="albuVisDiab" width="1000" height="500"></svg>
-					</div>
-					<div class="container">
 					<svg id="albuVisNoDiab" width="1000" height="500"></svg>
+					<div class="container">
+      					{% for visualization in visualizations %}
+       						{{ visualization.as_json }}
+       						<br>
+     					{% endfor %}
 					</div>
 					<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
 					<script>
@@ -138,8 +109,8 @@
 						//data
 						{% for visualization in visualizations %}
 
-       						var LineData = {{ visualization.as_json|safe }};
-							//console.log(LineData);
+       						var LineData = {{ visualization.as_json }};
+							console.log(LineData);
 
 							//setting scales
 							var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([2.5, 5.5]);
@@ -150,43 +121,35 @@
 							
 							if(IV == "Albumin")
 							{
-								console.log("Length of Data array: " + LineData.Data.length);
-								var myValues = []
-								for(i = 0; i < LineData.Data.length; i++)
-								{
-									myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]})
-								}
-								console.log(myValues);
 								//svg selection
-								if(LineData.Feature.Type == "All")
+								if(LineData.FeatureType == "All")
 								{
 									vis = d3.select("#albuVisAll");
 								}
-								else if(LineData.Feature.Type == "Age")
+								else if(LineData.FeatureType == "Age")
 								{
 									vis = d3.select("#albuVisAge");
 								}
-								else if(LineData.Feature.Type == "Gender")
+								else if(LineData.FeatureType == "Gender")
 								{
 									vis = d3.select("#albuVisGend");
 								}
-								else if(LineData.Feature.Type == "BMI")
+								else if(LineData.FeatureType == "BMI")
 								{
 									vis = d3.select("#albuVisBMI");
 								}
-								else if(LineData.Feature.Type == "Diabetic")
+								else if(LineData.FeatureType = "Diabetic")
 								{
-									if(LineData.Feature.Value == "True")
+									if(LineData.FeatureType.FeatureValue = "True")
 									{
 										vis = d3.select("#albuVisDiab");
 									}
-									if(LineData.Feature.Value == "False")
+									if(LineData.FeatureType.FeatureValue = "False")
 									{
 										vis = d3.select("#albuVisNoDiab");
 									}
 								}
 								//drawing axis
-
 							  	var xAxis = d3.svg.axis().scale(xScale).ticks(20);
 								var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
@@ -224,21 +187,20 @@
 							    var lineFunc = d3.svg.line()
 							    	.x(function(d)
 							    	{
-							    		return xScale(d.value);
+							    		return xScale(d.Data.x);
 							    	})
 							    	.y(function(d)
 							    	{
-							    		return yScale(d.percentage);
+							    		return yScale(d.Data.y);
 							    	})
 							    	.interpolate("cardinal")
 							    	.tension(0.6);
 
 							    vis.append('path')
-							    	.attr('stroke', "red")
+							    	.attr('stroke', "#337ab7")
 							    	.attr('stroke-width', 2)
 							    	.attr('fill', 'none')
-							    	.attr('d', lineFunc(myValues));
-							    console.log("Read data for: " + LineData.Feature.Type + " " + LineData.Feature.Value);
+							    	.attr('d', lineFunc(LineData));
 
 								//writting Title
 							    vis.append('text')
@@ -247,7 +209,7 @@
 							        .attr('text-anchor', 'middle')
 							        .style('font-size', '16px')
 							        .style('text-decoration', 'underline')
-							        .text(IV + ' vs ' + LineData.Feature.Type + ' ' + LineData.Feature.Value);
+							        .text(IV + ' vs ' + LineData.Feature.FeatureType + ' ' + LineData.Feature.FeatureValue);
 							}
 							
 						{% endfor %}
@@ -256,24 +218,12 @@
 				</div>
 				<div id="supp" class="tab-pane fade">
 					<h2>GLYCOHEMOGLOBIN FIGURES</h2>
-					<div class="container">
 					<svg id="glycoVisAll" width="1000" height="500"></svg>
-					</div>
-					<div class="container">
 					<svg id="glycoVisAge" width="1000" height="500"></svg>
-					</div>
-					<div class="container">
 					<svg id="glycoVisGend" width="1000" height="500"></svg>
-					</div>
-					<div class="container">
 					<svg id="glycoVisBMI" width="1000" height="500"></svg>
-					</div>
-					<div class="container">
 					<svg id="glycoVisDiab" width="1000" height="500"></svg>
-					</div>
-					<div class="container">
 					<svg id="glycoVisNoDiab" width="1000" height="500"></svg>
-					</div>
 					<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
 					<script>
 						//Dimensions for svg elements
@@ -288,8 +238,8 @@
 						//data
 						{% for visualization in visualizations %}
 
-							var LineData = {{ visualization.as_json|safe }};
-							//console.log(LineData);
+							var LineData = {{ visualization.as_json }};
+							console.log(LineData);
 
 							//setting scales
 							var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4, 13.5]);
@@ -300,36 +250,29 @@
 								
 							if(IV == "Glycohemoglobin")
 							{
-								console.log("Length of Data array: " + LineData.Data.length);
-								var myValues = []
-								for(i = 0; i < LineData.Data.length; i++)
-								{
-									myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]})
-								}
-								console.log(myValues);
-								if(LineData.Feature.Type == "All")
+								if(LineData.FeatureType = "All")
 								{
 									vis = d3.select("#glycoVisAll");
 								}
-								else if(LineData.Feature.Type == "Age")
+								else if(LineData.FeatureType = "Age")
 								{
 									vis = d3.select("#glycoVisAge");
 								}
-								else if(LineData.Feature.Type == "Gender")
+								else if(LineData.FeatureType = "Gender")
 								{
 									vis = d3.select("#glycoVisGend");
 								}
-								else if(LineData.Feature.Type == "BMI")
+								else if(LineData.FeatureType = "BMI")
 								{
 									vis = d3.select("#glycoVisBMI");
 								}
-								else if(LineData.Feature.Type == "Diabetic")
+								else if(LineData.FeatureType = "Diabetic")
 								{
-									if(LineData.Feature.Value == "True")
+									if(LineData.FeatureType.FeatureValue = "True")
 									{
 										vis = d3.select("#glycoVisDiab");
 									}
-									if(LineData.Feature.Value == "False")
+									if(LineData.FeatureType.FeatureValue = "False")
 									{
 										vis = d3.select("#glycoVisNoDiab");
 									}
@@ -373,22 +316,20 @@
 							    var lineFunc = d3.svg.line()
 							    	.x(function(d)
 							    	{
-							    		return xScale(d.value);
+							    		return xScale(d.Data.x);
 							    	})
 							    	.y(function(d)
 							    	{
-							    		return yScale(d.percentage);
+							    		return yScale(d.Data.y);
 							    	})
 							    	.interpolate("cardinal")
 							    	.tension(0.6);
 
-							    vis.append('path')
-							    	.attr('stroke', "red")
+							    vis.append('svg:path')
+							    	.attr('stroke', "#337ab7")
 							    	.attr('stroke-width', 2)
 							    	.attr('fill', 'none')
-							    	.attr('d', lineFunc(myValues));
-							    console.log("Read data for: " + LineData.Feature.Type + " " + LineData.Feature.Value);
-
+							    	.attr('d', lineFunc(LineData));
 
 							    //writting Title
 							    vis.append('text')
@@ -397,7 +338,7 @@
 							        .attr('text-anchor', 'middle')
 							        .style('font-size', '16px')
 							        .style('text-decoration', 'underline')
-							        .text(IV + ' vs ' + LineData.Feature.Type + ' ' + LineData.Feature.Value);
+							        .text(IV + ' vs ' + LineData.Feature.FeatureType + ' ' + LineData.Feature.FeatureValue);
 							}
 
 						{% endfor %}
@@ -406,21 +347,15 @@
 				</div>
 			</div>
 		</div>
-		<nav class="navbar navbar-fixed-bottom" style="background-color: #f47f58; color:black;">
-			<div class="container">
-				<p style="text-align: center; margin-top: 10px"><i>Some sample text for the footer</i></p>
-			</div>
-		</nav>
-
 
 	    <!-- Bootstrap core JavaScript
 	    ================================================== -->
 	    <!-- Placed at the end of the document so the pages load faster -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="{% static 'js/jquery.min.js' %}"><\/script>')</script>
-      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+	    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+	    <script src="../../dist/js/bootstrap.min.js"></script>
 	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-      <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+	    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 	</body>
 	
 </html>

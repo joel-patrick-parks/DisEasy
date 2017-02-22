@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^form$', UIViews.form),
     url(r'^result/(\d+)-(\d+)-(\d+)$', UIViews.result),
     url(r'^result/', UIViews.result),
+    url(r'^about$', UIViews.about),
 
     # fall-through to home page (can configure to 404 instead)
     url(r'', UIViews.home),

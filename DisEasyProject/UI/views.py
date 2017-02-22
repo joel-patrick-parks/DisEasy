@@ -1,10 +1,11 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 
 from models import Visualization
 
 # display homepage
 def home(request):
-    return render(request, 'UI/index.html')
+    return HttpResponseRedirect("/form");
 
 # display form
 def form(request):
@@ -19,3 +20,7 @@ def result(request, figure=0, supplementary=0,score=0):
             'visualizations': Visualization.objects.all(),
             }
     return render(request, 'UI/result.html', context)
+
+# about page
+def about(request):
+    return render(request, 'UI/about.html')

@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -8,24 +7,26 @@
 	    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	    <meta name="description" content="">
 	    <meta name="author" content="">
-      <link rel="icon" href="{% static 'imgs/favicon.ico' %}">
+	    <link rel="icon" href="../../favicon.ico">
 
 	    <title>DisEasy</title>
 
 	    <!-- Bootstrap core CSS -->
-      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+	    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
 	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-      <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+	    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
 	    <!-- Custom styles for this template -->
 	    <link href="starter-template.css" rel="stylesheet">
 
-      <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+	    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+	    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
 	    <!-- Our jQuery file, as well as the link to the google repository -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <script src="{% static 'js/index.js' %}"></script>
+	    <script src="index.js"></script>
 
 	    <style type="text/css">
 	    	.nav > li > a:hover, .nav > li > a:focus {
@@ -45,12 +46,12 @@
 		<nav class="navbar navbar-fixed-top" style="background-color: #f47f58; color:black;">
 			<div class="container">
 				<div id="navbar" class="navbar-header">
-          <img src="{% static 'img/diseasylogo.png' %}" width="50" height="50" alt="">
+					<img src="../../assets/img/diseasylogo.png" width="50" height="50" alt="">
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="/form" style="color: black;">Home</a></li>
-						<li><a href="/about" style="color: black;">About</a></li>
+						<li class="active"><a href="index.html" style="color: black;">Home</a></li>
+						<li><a href="about.html" style="color: black;">About</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
@@ -257,10 +258,10 @@
 	    ================================================== -->
 	    <!-- Placed at the end of the document so the pages load faster -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="{% static 'js/jquery.min.js'%}"><\/script>')</script>
-      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+	    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+	    <script src="../../dist/js/bootstrap.min.js"></script>
 	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-      <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+	    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 	    <script src="https://d3js.org/d3.v4.min.js"></script>
  
 	</body>
