@@ -34,7 +34,7 @@
 	      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	    <![endif]-->
 
-	    <style>
+	    <style type = "text/css">
 	    	.axis path {
 			    fill: none;
 			    stroke: #333;
@@ -44,28 +44,56 @@
 			    font-family: Arial;
 			    font-size: 13px;
 			}
+			.nav > li > a:hover,.nav > li > a:focus{
+  			background-color: #f47f58;
+  			color:black;
+  			text-decoration: none;
+  			}
+  			body{
+  				padding-top: 70px;
+  			}
+  			.navbar-nav > li, .navbar-nav > li:hover, .navbar-nav > li > a:focus, .navbar-nav > li > .active {
+  				background-color: #f47f58;
+  				color:black;
+  				text-decoration: none;
+  			}
+  			.navbar {
+  				min-height:50px !important;
+  				max-height:50px !important;
+  				color:black;
+  			}
+  			.navbar-brand {
+  				padding: 0px;
+  			}
+  			.navbar-brand>img {
+  				height: 100%;
+  				padding: 0px;
+  				width: auto;
+  			}
 		</style>
 	</head>
 
 	<body>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	<div class="container">
+		<nav class="navbar navbar-inverse navbar-fixed-top" style = "background-color: #f47f58; color:black;">
+			<div class="container-fluid">
+				<div id = "navbar" class= "navbar-header nav navbar-nav">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarButton" aria-expanded="false" aria-controls="navbar">
 						<span class="sr-only">Toggle navigation</span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">DisEasy</a>
+					<a class="navbar-brand" href="#"><img src="{% static 'img/diseasylogo.png' %}" width="50" height="50" hspace = "20" alt=""></a>
 				</div>
-				<div id="navbar" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="/form">Home</a></li>
-						<li><a href="/about">About</a></li>
-					</ul>
-				</div><!--/.nav-collapse -->
+				<div class="collapse navbar-collapse" id="navbarButton">
+  					<ul class="nav navbar-nav">
+    					<li><a href="/form">Home</a></li>
+    					<li><a href="/about">About</a></li> 
+  					</ul>
+  				</div>
 			</div>
 		</nav>
+		</div>
 		<div class="container">
 			<ul class="nav nav-pills nav-stacked">
 				<li class="active">
@@ -78,17 +106,23 @@
 			<div class="tab-content">
 				<div id="fig" class="tab-pane fade in active">
 					<h2>ALBUMIN FIGURES</h2>
-					<svg id="albuVisAll" width="1000" height="500"></svg>
-					<svg id="albuVisAge" width="1000" height="500"></svg>
-					<svg id="albuVisGend" width="1000" height="500"></svg>
-					<svg id="albuVisBMI" width="1000" height="500"></svg>
-					<svg id="albuVisDiab" width="1000" height="500"></svg>
-					<svg id="albuVisNoDiab" width="1000" height="500"></svg>
 					<div class="container">
-      					{% for visualization in visualizations %}
-       						{{ visualization.as_json }}
-       						<br>
-     					{% endfor %}
+					<svg id="albuVisAll" width="1000" height="500"></svg>
+					</div>
+					<div class="container">
+					<svg id="albuVisAge" width="1000" height="500"></svg>
+					</div>
+					<div class="container">
+					<svg id="albuVisGend" width="1000" height="500"></svg>
+					</div>
+					<div class="container">
+					<svg id="albuVisBMI" width="1000" height="500"></svg>
+					</div>
+					<div class="container">
+					<svg id="albuVisDiab" width="1000" height="500"></svg>
+					</div>
+					<div class="container">
+					<svg id="albuVisNoDiab" width="1000" height="500"></svg>
 					</div>
 					<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
 					<script>
@@ -105,7 +139,7 @@
 						{% for visualization in visualizations %}
 
        						var LineData = {{ visualization.as_json|safe }};
-							console.log(LineData);
+							//console.log(LineData);
 
 							//setting scales
 							var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([2.5, 5.5]);
@@ -116,6 +150,13 @@
 							
 							if(IV == "Albumin")
 							{
+								console.log("Length of Data array: " + LineData.Data.length);
+								var myValues = []
+								for(i = 0; i < LineData.Data.length; i++)
+								{
+									myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]})
+								}
+								console.log(myValues);
 								//svg selection
 								if(LineData.Feature.Type == "All")
 								{
@@ -133,18 +174,19 @@
 								{
 									vis = d3.select("#albuVisBMI");
 								}
-								else if(LineData.Feature.Type = "Diabetic")
+								else if(LineData.Feature.Type == "Diabetic")
 								{
-									if(LineData.Feature.Value = "True")
+									if(LineData.Feature.Value == "True")
 									{
 										vis = d3.select("#albuVisDiab");
 									}
-									if(LineData.Feature.Value = "False")
+									if(LineData.Feature.Value == "False")
 									{
 										vis = d3.select("#albuVisNoDiab");
 									}
 								}
 								//drawing axis
+
 							  	var xAxis = d3.svg.axis().scale(xScale).ticks(20);
 								var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
@@ -182,20 +224,21 @@
 							    var lineFunc = d3.svg.line()
 							    	.x(function(d)
 							    	{
-							    		return xScale(d.Data[0]);
+							    		return xScale(d.value);
 							    	})
 							    	.y(function(d)
 							    	{
-							    		return yScale(d.Data[1]);
+							    		return yScale(d.percentage);
 							    	})
 							    	.interpolate("cardinal")
 							    	.tension(0.6);
 
 							    vis.append('path')
-							    	.attr('stroke', "#337ab7")
+							    	.attr('stroke', "red")
 							    	.attr('stroke-width', 2)
 							    	.attr('fill', 'none')
-							    	.attr('d', lineFunc(LineData));
+							    	.attr('d', lineFunc(myValues));
+							    console.log("Read data for: " + LineData.Feature.Type + " " + LineData.Feature.Value);
 
 								//writting Title
 							    vis.append('text')
@@ -213,12 +256,24 @@
 				</div>
 				<div id="supp" class="tab-pane fade">
 					<h2>GLYCOHEMOGLOBIN FIGURES</h2>
+					<div class="container">
 					<svg id="glycoVisAll" width="1000" height="500"></svg>
+					</div>
+					<div class="container">
 					<svg id="glycoVisAge" width="1000" height="500"></svg>
+					</div>
+					<div class="container">
 					<svg id="glycoVisGend" width="1000" height="500"></svg>
+					</div>
+					<div class="container">
 					<svg id="glycoVisBMI" width="1000" height="500"></svg>
+					</div>
+					<div class="container">
 					<svg id="glycoVisDiab" width="1000" height="500"></svg>
+					</div>
+					<div class="container">
 					<svg id="glycoVisNoDiab" width="1000" height="500"></svg>
+					</div>
 					<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
 					<script>
 						//Dimensions for svg elements
@@ -234,7 +289,7 @@
 						{% for visualization in visualizations %}
 
 							var LineData = {{ visualization.as_json|safe }};
-							console.log(LineData);
+							//console.log(LineData);
 
 							//setting scales
 							var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4, 13.5]);
@@ -245,29 +300,36 @@
 								
 							if(IV == "Glycohemoglobin")
 							{
-								if(LineData.Feature.Type = "All")
+								console.log("Length of Data array: " + LineData.Data.length);
+								var myValues = []
+								for(i = 0; i < LineData.Data.length; i++)
+								{
+									myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]})
+								}
+								console.log(myValues);
+								if(LineData.Feature.Type == "All")
 								{
 									vis = d3.select("#glycoVisAll");
 								}
-								else if(LineData.Feature.Type = "Age")
+								else if(LineData.Feature.Type == "Age")
 								{
 									vis = d3.select("#glycoVisAge");
 								}
-								else if(LineData.Feature.Type = "Gender")
+								else if(LineData.Feature.Type == "Gender")
 								{
 									vis = d3.select("#glycoVisGend");
 								}
-								else if(LineData.Feature.Type = "BMI")
+								else if(LineData.Feature.Type == "BMI")
 								{
 									vis = d3.select("#glycoVisBMI");
 								}
-								else if(LineData.Feature.Type = "Diabetic")
+								else if(LineData.Feature.Type == "Diabetic")
 								{
-									if(LineData.Feature.Value = "True")
+									if(LineData.Feature.Value == "True")
 									{
 										vis = d3.select("#glycoVisDiab");
 									}
-									if(LineData.Feature.Value = "False")
+									if(LineData.Feature.Value == "False")
 									{
 										vis = d3.select("#glycoVisNoDiab");
 									}
@@ -311,20 +373,22 @@
 							    var lineFunc = d3.svg.line()
 							    	.x(function(d)
 							    	{
-							    		return xScale(d.Data[0]);
+							    		return xScale(d.value);
 							    	})
 							    	.y(function(d)
 							    	{
-							    		return yScale(d.Data[1]);
+							    		return yScale(d.percentage);
 							    	})
 							    	.interpolate("cardinal")
 							    	.tension(0.6);
 
-							    vis.append('svg:path')
-							    	.attr('stroke', "#337ab7")
+							    vis.append('path')
+							    	.attr('stroke', "red")
 							    	.attr('stroke-width', 2)
 							    	.attr('fill', 'none')
-							    	.attr('d', lineFunc(LineData));
+							    	.attr('d', lineFunc(myValues));
+							    console.log("Read data for: " + LineData.Feature.Type + " " + LineData.Feature.Value);
+
 
 							    //writting Title
 							    vis.append('text')
@@ -342,6 +406,12 @@
 				</div>
 			</div>
 		</div>
+		<nav class="navbar navbar-fixed-bottom" style="background-color: #f47f58; color:black;">
+			<div class="container">
+				<p style="text-align: center; margin-top: 10px"><i>Some sample text for the footer</i></p>
+			</div>
+		</nav>
+
 
 	    <!-- Bootstrap core JavaScript
 	    ================================================== -->
