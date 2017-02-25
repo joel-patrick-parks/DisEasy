@@ -34,7 +34,7 @@ def submit(request):
     for row in range(len(data)) :
         line = []
         for col in range(len(data[row])) :
-            tempval = ((data[row][col])-m[col])/(s[col]+0.001)
+            tempval = ((data[row][col])-m[col])/(s[col]+0.0001)
             val = int(tempval*1000)
             line.append(float(val/1000))
         normData.append(line)
@@ -55,7 +55,7 @@ def submit(request):
     tempfit = mlp.fit(X_train, y_train)
     
     #example of making a prediction for a sample
-    testPoint = [34.16666667, 87.4, 164.7, 5.2, 0.94, 4.8]
+    testPoint = [34.16666667, 87.4, 164.7, 5.2, 4.8]
     normPoint = []
     for item in range(len(testPoint)) :
         tempval = ((testPoint[item])-m[item])/(s[item]+0.0001)
@@ -63,11 +63,11 @@ def submit(request):
         normPoint.append(float(val/1000))
     
     #prediction score
-    #score = mlp.predict_proba(np.array(normPoint).reshape(1,-1))[0]
-    
+    probability = mlp.predict_proba(np.array(normPoint).reshape(1,-1))[0] * 100
+    result = int(probability + 0.5)
     # set values - real version will take results of analysis
     figure = random.randint(0,100)
     supplementary = random.randint(0,100)
     score = random.randint(0,100)
 
-    return HttpResponseRedirect("/result/%s-%s-%s" % (figure, supplementary, score))
+    return HttpResponseRedirect("/result/%s-%s" % (probability, result))
