@@ -18,6 +18,8 @@
 	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
       <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
 
+	  <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+
 	    <!-- Custom styles for this template -->
 	    <link href="starter-template.css" rel="stylesheet">
 
@@ -25,12 +27,17 @@
 
 	    <!-- Our jQuery file, as well as the link to the google repository -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
       <script src="{% static 'js/index.js' %}"></script>
 
 	    <style type="text/css">
 	    	.nav > li > a:hover, .nav > li > a:focus {
-  			background-color: #f47f58;
+  			background-color: #77bbbb;
   			text-decoration: none;
+		}
+		body{
+			font-family: Abel;
+				font-weight: bold;
 		}
 	    </style>
 
@@ -42,7 +49,7 @@
 	</head>
 
 	<body>
-		<nav class="navbar navbar-fixed-top" style="background-color: #f47f58; color:black;">
+		<nav class="navbar navbar-fixed-top" style="background-color: #77bbbb; color:black;">
 			<div class="container">
 				<div id="navbar" class="navbar-header">
           <img src="{% static 'img/diseasylogo.png' %}" width="50" height="50" alt="">
@@ -51,6 +58,7 @@
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="/form" style="color: black;">Home</a></li>
 						<li><a href="/about" style="color: black;">About</a></li>
+						<li><a href="" style="color: black;">Log-In</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
