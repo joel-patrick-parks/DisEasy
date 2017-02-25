@@ -35,40 +35,69 @@
 	    <![endif]-->
 
 	    <style type = "text/css">
-	    	.axis path {
+	    	.axis path 
+	    	{
 			    fill: none;
 			    stroke: #333;
 			    shape-rendering: crispEdges;
 			}
-			.axis text {
+			.axis text 
+			{
 			    font-family: Arial;
 			    font-size: 13px;
 			}
-			.nav > li > a:hover,.nav > li > a:focus{
-  			background-color: #f47f58;
-  			color:black;
+			.nav > li > a:hover,.nav > li > a:focus
+			{
+  			background-color: #f47f58 !important;
+  			color:black !important;
   			text-decoration: none;
   			}
-  			body{
-  				padding-top: 70px;
+  			body
+  			{
+  				padding-top: 60px;
   			}
-  			.navbar-nav > li, .navbar-nav > li:hover, .navbar-nav > li > a:focus, .navbar-nav > li > .active {
-  				background-color: #f47f58;
-  				color:black;
+  			.navbar-nav > li > a, .navbar-nav > li.hover, .navbar-nav > li.active > a:focus, .navbar-nav > li.active > a:hover 
+  			{
+  				background-color: #f47f58 !important;
+  				color:black !important;
   				text-decoration: none;
   			}
-  			.navbar {
+  			.navbar-nav > li.active > a:hover 
+  			{
+  				background-color: #f47f58 !important;
+  				color:grey !important;
+  				text-decoration: none;
+  			}
+  			.navbar 
+  			{
   				min-height:50px !important;
   				max-height:50px !important;
+  				padding:0px;
   				color:black;
+
   			}
-  			.navbar-brand {
+  			.navbar-brand 
+  			{
   				padding: 0px;
+  				min-height:50px !important;
+  				max-height:50px !important;
   			}
-  			.navbar-brand>img {
+  			.navbar-brand>img 
+  			{
   				height: 100%;
+  				min-height:50px !important;
+  				max-height:50px !important;
   				padding: 0px;
   				width: auto;
+  			}
+  			.nav-pills> li.active > a, .nav-pills > li.active > a:hover
+  			{
+  				background-color: #f47f58 !important;
+  				color:black !important;
+  			}
+  			.nav-pills > li > a
+  			{
+  				color: #f47f58;
   			}
 		</style>
 	</head>
@@ -76,21 +105,20 @@
 	<body>
 	<div class="container">
 		<nav class="navbar navbar-inverse navbar-fixed-top" style = "background-color: #f47f58; color:black;">
-			<div class="container-fluid">
-				<div id = "navbar" class= "navbar-header nav navbar-nav">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarButton" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#"><img src="{% static 'img/diseasylogo.png' %}" width="50" height="50" hspace = "20" alt=""></a>
-				</div>
-				<div class="collapse navbar-collapse" id="navbarButton">
-  					<ul class="nav navbar-nav">
-    					<li><a href="/form">Home</a></li>
-    					<li><a href="/about">About</a></li> 
-  					</ul>
-  				</div>
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarButton" aria-expanded="false" aria-controls="navbarButton" style="vertical-align: center">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#"><img src="{% static 'img/diseasylogo.png' %}" width="50" height="50" hspace = "20" alt=""></a>
+		<div id = "navbar" class= "navbar-header nav navbar-nav">
+		</div>
+			<div class="collapse navbar-collapse" id="navbarButton" style="">
+				<ul class="nav navbar-nav">
+					<li><a href="/form">Home</a></li>
+					<li><a href="/about">About</a></li> 
+				</ul>
 			</div>
 		</nav>
 		</div>

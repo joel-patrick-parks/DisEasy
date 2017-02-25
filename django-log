@@ -4315,3 +4315,46 @@ Invalid HTTP_HOST header: 'localhost:8000'. You may need to add u'localhost' to 
 "GET /about HTTP/1.1" 200 7395
 "GET /static/img/DiseasyMission.PNG HTTP/1.1" 304 0
 "GET /static/img/patientdiagram.PNG HTTP/1.1" 304 0
+(0.000) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+(0.003) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 224090
+"GET /static/css/starter-template.css HTTP/1.1" 200 103
+"GET /static/css/ie10-viewport-bug-workaround.css HTTP/1.1" 200 446
+"GET /static/js/ie-emulation-modes-warning.js HTTP/1.1" 200 2181
+"GET /static/css/bootstrap.min.css HTTP/1.1" 200 121205
+"GET /static/js/sampleVisual.js HTTP/1.1" 200 1318
+"GET /static/js/bootstrap.min.js HTTP/1.1" 200 37051
+"GET /static/img/diseasylogo.png HTTP/1.1" 200 18721
+"GET /static/js/ie10-viewport-bug-workaround.js HTTP/1.1" 200 664
+"GET /static/img/favicon.ico HTTP/1.1" 404 1747
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 224090
+"GET /static/img/favicon.ico HTTP/1.1" 404 1747
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 224222
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 224217
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 224243
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 224306
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 224315
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 224349
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 224249
+(0.000) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 224304
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 224236
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 224348
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 224366
+(0.001) SELECT "UI_visualization"."id", "UI_visualization"."IV", "UI_visualization"."FeatureType", "UI_visualization"."FeatureValue", "UI_visualization"."Data", "UI_visualization"."UserResult", "UI_visualization"."UserProbability" FROM "UI_visualization"; args=()
+"GET /result/8-9-85 HTTP/1.1" 200 224567
