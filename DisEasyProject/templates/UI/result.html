@@ -17,7 +17,7 @@
 
 	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
       <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
-
+      <link href='//fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
 	    <!-- Custom styles for this template -->
       <link href="{% static 'css/starter-template.css' %}" rel="stylesheet">
 
@@ -40,17 +40,22 @@
 			    fill: none;
 			    stroke: #333;
 			    shape-rendering: crispEdges;
+			    font-family: Abel;
+			    font-weight: bold;
 			}
 			.axis text 
 			{
-			    font-family: Arial;
+			    font-family: Abel;
+			    font-weight: bold;
 			    font-size: 13px;
 			}
 			.nav > li > a:hover,.nav > li > a:focus
 			{
-  			background-color: #f47f58 !important;
+  			background-color: #77bbbb !important;
   			color:black !important;
   			text-decoration: none;
+  			font-family: Abel;
+			    font-weight: bold;
   			}
   			body
   			{
@@ -58,15 +63,19 @@
   			}
   			.navbar-nav > li > a, .navbar-nav > li.hover, .navbar-nav > li.active > a:focus, .navbar-nav > li.active > a:hover 
   			{
-  				background-color: #f47f58 !important;
+  				background-color: #77bbbb !important;
   				color:black !important;
   				text-decoration: none;
+  				font-family: Abel;
+			    font-weight: bold;
   			}
   			.navbar-nav > li.active > a:hover 
   			{
-  				background-color: #f47f58 !important;
+  				background-color: #77bbbb !important;
   				color:grey !important;
   				text-decoration: none;
+  				font-family: Abel;
+			    font-weight: bold;
   			}
   			.navbar 
   			{
@@ -74,6 +83,8 @@
   				max-height:50px !important;
   				padding:0px;
   				color:black;
+  				font-family: Abel;
+			    font-weight: bold;
 
   			}
   			.navbar-brand 
@@ -81,6 +92,8 @@
   				padding: 0px;
   				min-height:50px !important;
   				max-height:50px !important;
+  				font-family: Abel;
+			    font-weight: bold;
   			}
   			.navbar-brand>img 
   			{
@@ -89,15 +102,26 @@
   				max-height:50px !important;
   				padding: 0px;
   				width: auto;
+  				font-family: Abel;
+			    font-weight: bold;
   			}
   			.nav-pills> li.active > a, .nav-pills > li.active > a:hover
   			{
-  				background-color: #f47f58 !important;
+  				background-color: #77bbbb !important;
   				color:black !important;
+  				font-family: Abel;
+			    font-weight: bold;
   			}
   			.nav-pills > li > a
   			{
-  				color: #f47f58;
+  				color: #77bbbb;
+  				font-family: Abel;
+			    font-weight: bold;
+  			}
+  			h2
+  			{
+  				font-family: Abel;
+			    font-weight: bold;
   			}
   			
 
@@ -106,7 +130,7 @@
 
 	<body>
 	<div class="container">
-		<nav class="navbar navbar-inverse navbar-fixed-top" style = "background-color: #f47f58; color:black;">
+		<nav class="navbar navbar-inverse navbar-fixed-top" style = "background-color: #77bbbb; color:black;">
 		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarButton" aria-expanded="false" aria-controls="navbarButton" style="vertical-align: center">
 			<span class="sr-only">Toggle navigation</span>
 			<span class="icon-bar"></span>
@@ -217,14 +241,9 @@
 								}
 
 								var xTicks = xScale.ticks();
-								xTicks.push(LineData.User.result);
+								xTicks.push({{ albumin  }});
 
 								console.log(xTicks);
-
-								var yTicks = yScale.ticks();
-								yTicks.push(LineData.User.probability);
-
-								console.log(yTicks);
 
 								//drawing axis
 
@@ -250,7 +269,7 @@
 
 								//add tick for user value
 								d3.selectAll('g.tick')
-									.filter(function(d){ return d==4.0;} )
+                .filter(function(d){ return d=={{ albumin }} ;} )
 									//only ticks that returned true for the filter will be included
 									//in the rest of the method calls:
 									.select('line') //grab the tick line
@@ -263,6 +282,8 @@
 								vis.append('text')
 							    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
 							    	.style('text-anchor', 'middle')
+							    	.style('font-family', 'Abel')
+			    					.style('font-weight', 'bold')
 							    	.text(IV + ' Value');
 
 								//writting y axis label
@@ -272,6 +293,8 @@
 							        .attr('x',0 - (HEIGHT / 2))
 							        .attr('dy', '1em')
 							        .style('text-anchor', 'middle')
+							        .style('font-family', 'Abel')
+			    					.style('font-weight', 'bold')
 							        .text('Percentage');
 
 								//drawing data line
@@ -301,6 +324,8 @@
 							        .attr('text-anchor', 'middle')
 							        .style('font-size', '16px')
 							        .style('text-decoration', 'underline')
+							        .style('font-family', 'Abel')
+			    					.style('font-weight', 'bold')
 							        .text(IV + ' vs ' + LineData.Feature.Type + ' ' + LineData.Feature.Value);
 							}
 							
@@ -390,12 +415,12 @@
 								}
 
 								var xTicks = xScale.ticks();
-								xTicks.push(LineData.User.result);
+								xTicks.push({{ result }});
 
 								console.log(xTicks);
 
 								var yTicks = yScale.ticks();
-								yTicks.push(LineData.User.probability);
+								yTicks.push({{ probability }});
 
 								console.log(yTicks);
 
@@ -422,7 +447,7 @@
 
 								//add tick for user value
 								d3.selectAll('g.tick')
-									.filter(function(d){ return d==6;} )
+                .filter(function(d){ return d=={{ glycohemoglobin }};} )
 									//only ticks that returned true for the filter will be included
 									//in the rest of the method calls:
 									.select('line') //grab the tick line
@@ -435,6 +460,8 @@
 								vis.append('text')
 							    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
 							    	.style('text-anchor', 'middle')
+							    	.style('font-family', 'Abel')
+			    					.style('font-weight', 'bold')
 							    	.text(IV + ' Value');
 
 								//writting y axis label
@@ -444,6 +471,8 @@
 							        .attr('x',0 - (HEIGHT / 2))
 							        .attr('dy', '1em')
 							        .style('text-anchor', 'middle')
+							        .style('font-family', 'Abel')
+			    					.style('font-weight', 'bold')
 							        .text('Percentage');
 
 								//drawing data line
@@ -474,6 +503,8 @@
 							        .attr('text-anchor', 'middle')
 							        .style('font-size', '16px')
 							        .style('text-decoration', 'underline')
+							        .style('font-family', 'Abel')
+			    					.style('font-weight', 'bold')
 							        .text(IV + ' vs ' + LineData.Feature.Type + ' ' + LineData.Feature.Value);
 							}
 
@@ -483,7 +514,7 @@
 				</div>
 			</div>
 		</div>
-		<nav class="navbar navbar-fixed-bottom" style="background-color: #f47f58; color:black;">
+		<nav class="navbar navbar-fixed-bottom" style="background-color: #77bbbb; color:black;">
 			<div class="container">
 				<p style="text-align: center; margin-top: 10px"><i>Some sample text for the footer</i></p>
 			</div>
