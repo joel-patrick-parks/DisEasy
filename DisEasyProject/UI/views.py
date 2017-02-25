@@ -12,7 +12,15 @@ def form(request):
     return render(request, 'UI/form.html')
 
 # display results page
-def result(request, uprob = 0, ures = 0, age = 0, gender = -1, bmi = 0):
+def result(request, 
+        uprob = 0, 
+        ures = 0, 
+        age = 0, 
+        gender = -1, 
+        bmi = 0, 
+        albu = 0,
+        glyco = 0):
+
     visualizations = []
     for visualization in Visualization.objects.filter(FeatureType="All"):
         visualizations.append(visualization)
@@ -38,12 +46,14 @@ def result(request, uprob = 0, ures = 0, age = 0, gender = -1, bmi = 0):
                 FeatureValue=bmiRange(bmi)):
             visualizations.append(visualization)
 
-    for visualization in visualizations:
-        visualization.UserProbability = uprob
-        visualization.UserResult = ures
     context = {
             'visualizations': visualizations,
+            'probability': uprob,
+            'result': ures,
+            'albumin': albu,
+            'glycohemoglobin': glyco,
             }
+
     return render(request, 'UI/result.html', context)
 
 def ageRange(age):

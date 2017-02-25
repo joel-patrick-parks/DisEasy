@@ -217,14 +217,9 @@
 								}
 
 								var xTicks = xScale.ticks();
-								xTicks.push(LineData.User.result);
+								xTicks.push({{ albumin  }});
 
 								console.log(xTicks);
-
-								var yTicks = yScale.ticks();
-								yTicks.push(LineData.User.probability);
-
-								console.log(yTicks);
 
 								//drawing axis
 
@@ -250,7 +245,7 @@
 
 								//add tick for user value
 								d3.selectAll('g.tick')
-									.filter(function(d){ return d==4.0;} )
+                .filter(function(d){ return d=={{ albumin }} ;} )
 									//only ticks that returned true for the filter will be included
 									//in the rest of the method calls:
 									.select('line') //grab the tick line
@@ -390,12 +385,12 @@
 								}
 
 								var xTicks = xScale.ticks();
-								xTicks.push(LineData.User.result);
+								xTicks.push({{ result }});
 
 								console.log(xTicks);
 
 								var yTicks = yScale.ticks();
-								yTicks.push(LineData.User.probability);
+								yTicks.push({{ probability }});
 
 								console.log(yTicks);
 
@@ -422,7 +417,7 @@
 
 								//add tick for user value
 								d3.selectAll('g.tick')
-									.filter(function(d){ return d==6;} )
+                .filter(function(d){ return d=={{ glycohemoglobin }};} )
 									//only ticks that returned true for the filter will be included
 									//in the rest of the method calls:
 									.select('line') //grab the tick line

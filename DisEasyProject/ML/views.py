@@ -83,9 +83,13 @@ def submit(request):
     #prediction score
     result = mlp.predict_proba(np.array(normPoint).reshape(1,-1))[0][0]
     accuracy = mlp.score(X_test, y_test)
-    # set values - real version will take results of analysis
-    figure = random.randint(0,100)
-    supplementary = random.randint(0,100)
-    score = random.randint(0,100)
 
-    return HttpResponse("/result/%s-%s" % (accuracy * 100, result * 100))
+    return HttpResponse("/result/%s-%s-%s-%s-%s-%s-%s" % (
+        accuracy * 100, 
+        result * 100,
+        age,
+        gender,
+        weight / height,
+        albumin,
+        gh
+        ))

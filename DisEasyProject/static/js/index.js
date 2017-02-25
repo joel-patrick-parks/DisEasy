@@ -89,7 +89,7 @@ $(document).ready(function() {
 			data: jString
 		},
 		function(data, status){
-			windows.location = data;
+			window.location = data;
 		});
 	}
   });
