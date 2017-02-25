@@ -71,11 +71,11 @@ def submit(request):
         normPoint.append(float(val/1000))
     
     #prediction score
-    probability = mlp.predict_proba(np.array(normPoint).reshape(1,-1))[0][0]
-    result = int(probability + 0.5)
+    result = mlp.predict_proba(np.array(normPoint).reshape(1,-1))[0][0]
+    accuracy = mlp.score(X_test, y_test)
     # set values - real version will take results of analysis
     figure = random.randint(0,100)
     supplementary = random.randint(0,100)
     score = random.randint(0,100)
 
-    return HttpResponse("/result/%s-%s" % (probability * 100, result))
+    return HttpResponse("/result/%s-%s" % (accuracy * 100, result * 100))
