@@ -28,19 +28,19 @@ $(document).ready(function() {
 	var heightNum = parseInt(heightVal);
 	
 	var jString = {};
-	jString["diseaseState"] = conditionVal;
-	jString["gender"] = genderVal
-	jString["age"] = ageVal;
-	jString["height"] = heightVal;
-	jString["weight"] = weightVal;
-	jString["lab"] = labVal;
-	jString["testOne"] = testOneVal;
-	jString["testOneUnit"] = testOneUnitVal;
-	jString["testTwo"] = testTwoVal;
-	jString["testTwoUnit"] = testTwoUnitVal;
-	jString["familyHistory"] = familyHistoryVal;
-	jString["diagnosedDiabetic"] = diagnosedDiabeticVal;
-	jString["diagnosedPreDiabetic"] = diagnosedPreDiabeticVal;
+	jString["diseaseState"] = conditionVal.trim();
+	jString["gender"] = genderVal.trim();
+	jString["age"] = ageVal.trim();
+	jString["height"] = heightVal.trim();
+	jString["weight"] = weightVal.trim();
+	jString["lab"] = labVal.trim();
+	jString["testOne"] = testOneVal.trim();
+	jString["testOneUnit"] = testOneUnitVal.trim();
+	jString["testTwo"] = testTwoVal.trim();
+	jString["testTwoUnit"] = testTwoUnitVal.trim();
+	jString["familyHistory"] = familyHistoryVal.trim();
+	jString["diagnosedDiabetic"] = diagnosedDiabeticVal.trim();
+	jString["diagnosedPreDiabetic"] = diagnosedPreDiabeticVal.trim();
 	
 	/*if(jString.diseaseState !== " Type II Diabetes  "){
 		$('#conditionWarning').show();
@@ -78,14 +78,18 @@ $(document).ready(function() {
 		$('#testTwoUnitWarning').show();
 		isValid = false;
 	}*/
+  
+  // DELETE ME LATER
+  isValid = true;
 	
 	if(isValid){
+    console.log(jString);
 		$.post("/submit",
 		{
-			PatiantResults: jString
+			data: jString
 		},
 		function(data, status){
-			alert("Sent the object.");
+			windows.location = data;
 		});
 	}
   });

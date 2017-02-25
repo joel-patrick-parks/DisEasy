@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 import random
 import sys
 import math
@@ -7,11 +7,12 @@ import numpy as np
 from sklearn.neural_network import MLPClassifier
 from sklearn import preprocessing
 from sklearn.utils import shuffle
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt
 
+@require_http_methods(["POST", "GET"])
+@csrf_exempt
 def submit(request):
-    # get JSON out of request (ask Lucy when you get here)
-    # <code here>
-
     # do ML analysis
     dataFile = "testDataSet_no_NA.csv"
     data = np.loadtxt(dataFile, delimiter=',', skiprows=1)
@@ -34,7 +35,7 @@ def submit(request):
     for row in range(len(data)) :
         line = []
         for col in range(len(data[row])) :
-            tempval = ((data[row][col])-m[col])/(s[col]+0.001)
+            tempval = ((data[row][col])-m[col])/(s[col]+0.0001)
             val = int(tempval*1000)
             line.append(float(val/1000))
         normData.append(line)
@@ -53,9 +54,26 @@ def submit(request):
     mlp = MLPClassifier(solver='lbfgs', alpha=1e-4, hidden_layer_sizes=(5, 5), random_state=2)
 
     tempfit = mlp.fit(X_train, y_train)
+
+    # extract and convert data
+    age = float(request.POST.get('age','0'))
+    gender = request.POST.get('gender','')
+    if gender.lower() == 'male':
+        gender = 1
+    elif gender.lower() == 'female':
+        gender = 0
+    else:
+        gender = -1
+    weight = float(request.POST.get('weight','0')) / 2.2
+    height = float(request.POST.get('height','0')) * 2.54
+    gh = float(request.POST.get('testOne','0'))
+    albumin = float(request.POST.get('testTwo','0'))
+
+    if age == 0 or gender == -1 or weight == 0 or height == 0 or gh == 0 or albumin == 0:
+        return HttpResponse("Invalid Input")
     
-    #example of making a prediction for a sample
-    testPoint = [34.16666667, 87.4, 164.7, 5.2, 0.94, 4.8]
+    # example of making a prediction for a sample
+    testPoint = [age, gender, weight, height, gh, albumin]
     normPoint = []
     for item in range(len(testPoint)) :
         tempval = ((testPoint[item])-m[item])/(s[item]+0.0001)
@@ -63,11 +81,11 @@ def submit(request):
         normPoint.append(float(val/1000))
     
     #prediction score
-    #score = mlp.predict_proba(np.array(normPoint).reshape(1,-1))[0]
-    
+    result = mlp.predict_proba(np.array(normPoint).reshape(1,-1))[0][0]
+    accuracy = mlp.score(X_test, y_test)
     # set values - real version will take results of analysis
     figure = random.randint(0,100)
     supplementary = random.randint(0,100)
     score = random.randint(0,100)
 
-    return HttpResponseRedirect("/result/%s-%s-%s" % (figure, supplementary, score))
+    return HttpResponse("/result/%s-%s" % (accuracy * 100, result * 100))
