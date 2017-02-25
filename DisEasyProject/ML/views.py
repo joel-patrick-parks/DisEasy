@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 import random
 import sys
 import math
@@ -53,9 +53,16 @@ def submit(request):
     mlp = MLPClassifier(solver='lbfgs', alpha=1e-4, hidden_layer_sizes=(5, 5), random_state=2)
 
     tempfit = mlp.fit(X_train, y_train)
+
+
+    age = 34
+    weight = 87.4 # kilogram
+    height = 164.7 # centimeters
+    gh = 5.2 # g/dL
+    albumin = 4.8 #%
     
     #example of making a prediction for a sample
-    testPoint = [34.16666667, 87.4, 164.7, 5.2, 4.8]
+    testPoint = [age, weight, height, gh, albumin]
     normPoint = []
     for item in range(len(testPoint)) :
         tempval = ((testPoint[item])-m[item])/(s[item]+0.0001)
@@ -70,4 +77,4 @@ def submit(request):
     supplementary = random.randint(0,100)
     score = random.randint(0,100)
 
-    return HttpResponseRedirect("/result/%s-%s" % (probability * 100, result))
+    return HttpResponse("/result/%s-%s" % (probability * 100, result))
