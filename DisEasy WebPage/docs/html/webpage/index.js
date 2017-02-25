@@ -7,6 +7,8 @@ $(document).ready(function() {
 
   //Submit button click
   $('#submitButton').click(function() {
+	var isValid = true;  
+	  
 	var conditionVal = $('#conditionDropdown').text();
 	var genderVal = $('#genderDropdown').text();
     var ageVal = $('#ageInput').val();
@@ -20,12 +22,18 @@ $(document).ready(function() {
 	var familyHistoryVal = $('#familyHistoryDropdown').text();
 	var diagnosedDiabeticVal = $('#diabeticDropdown').text();
 	var diagnosedPreDiabeticVal = $('#prediabeticDropdown').text();
+	
+	var ageNum = parseInt(ageVal);
+	var weightNum = parseInt(weightVal);
+	var heightNum = parseInt(heightVal);
+	
 	var jString = {};
 	jString["diseaseState"] = conditionVal;
 	jString["gender"] = genderVal
 	jString["age"] = ageVal;
 	jString["height"] = heightVal;
 	jString["weight"] = weightVal;
+	jString["lab"] = labVal;
 	jString["testOne"] = testOneVal;
 	jString["testOneUnit"] = testOneUnitVal;
 	jString["testTwo"] = testTwoVal;
@@ -33,6 +41,52 @@ $(document).ready(function() {
 	jString["familyHistory"] = familyHistoryVal;
 	jString["diagnosedDiabetic"] = diagnosedDiabeticVal;
 	jString["diagnosedPreDiabetic"] = diagnosedPreDiabeticVal;
-	alert(JSON.stringify(jString, null, ' '));
+	
+	if(jString.diseaseState !== " Type II Diabetes  "){
+		$('#conditionWarning').show();
+		isValid = false;
+	}
+	if(jString.gender !== " Male  " || jString.gender !== " Female  "){
+		$('#genderWarning').show();
+		isValid = false;
+	}
+	if(ageNum == NaN && jString.age == null){
+		$('#ageWarning').show();
+		isValid = false;
+	}
+	if(weightNum == NaN && jString.weight == ""){
+		$('#weightWarning').show();
+		isValid = false;
+	}
+	if(heightNum == NaN && jString.height == ""){
+		$('#heightWarning').show();
+		isValid = false;
+	}
+	if(testOneVal == NaN && jString.testOne == ""){
+		$('#testOneWarning').show();
+		isValid = false;
+	}
+	if(jString.testOneUnit !== " mM/L  " || jString.testOneUnit !== " mg/dL  "){
+		$('#testOneUnitWarning').show();
+		isValid = false;
+	}
+	if(testTwoVal == NaN && jString.testTwo == ""){
+		$('#testTwoWarning').show();
+		isValid = false;
+	}
+	if(jString.testTwoUnit !== " mM/L  " || jString.testTwoUnit !== " mg/dL  "){
+		$('#testTwoUnitWarning').show();
+		isValid = false;
+	}
+	
+	if(isValid){
+		$.post("/submit",
+		{
+			PatiantResults: jString
+		},
+		function(data, status){
+			alert("Sent the object.");
+		});
+	}
   });
 });
