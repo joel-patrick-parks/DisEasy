@@ -7,11 +7,12 @@ import numpy as np
 from sklearn.neural_network import MLPClassifier
 from sklearn import preprocessing
 from sklearn.utils import shuffle
+from django.views.decorators.http import require_http_methods
+from django.views.decorators.csrf import csrf_exempt
 
+@require_http_methods(["POST", "GET"])
+@csrf_exempt
 def submit(request):
-    # get JSON out of request (ask Lucy when you get here)
-    # <code here>
-
     # do ML analysis
     dataFile = "testDataSet_no_NA.csv"
     data = np.loadtxt(dataFile, delimiter=',', skiprows=1)
@@ -54,15 +55,24 @@ def submit(request):
 
     tempfit = mlp.fit(X_train, y_train)
 
+    # extract and convert data
+    age = float(request.POST.get('age','0'))
+    gender = request.POST.get('gender','')
+    if gender.lower() == 'male':
+        gender = 1
+    elif gender.lower() == 'female':
+        gender = 0
+    else:
+        gender = -1
+    weight = float(request.POST.get('weight','0')) / 2.2
+    height = float(request.POST.get('height','0')) * 2.54
+    gh = float(request.POST.get('testOne','0'))
+    albumin = float(request.POST.get('testTwo','0'))
 
-    age = 34
-    gender = 1 # 0 = female, 1 = male
-    weight = 87.4 # kilogram
-    height = 164.7 # centimeters
-    gh = 5.2 # g/dL
-    albumin = 4.8 #%
+    if age == 0 or gender == -1 or weight == 0 or height == 0 or gh == 0 or albumin == 0:
+        return HttpResponse("Invalid Input")
     
-    #example of making a prediction for a sample
+    # example of making a prediction for a sample
     testPoint = [age, gender, weight, height, gh, albumin]
     normPoint = []
     for item in range(len(testPoint)) :
