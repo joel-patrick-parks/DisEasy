@@ -63,7 +63,7 @@ def submit(request):
         normPoint.append(float(val/1000))
     
     #prediction score
-    probability = mlp.predict_proba(np.array(normPoint).reshape(1,-1))[0] * 100
+    probability = mlp.predict_proba(np.array(normPoint).reshape(1,-1))[0][0] * 100
     result = int(probability + 0.5)
     # set values - real version will take results of analysis
     figure = random.randint(0,100)
