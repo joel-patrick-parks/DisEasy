@@ -3303,6 +3303,7 @@ TemplateSyntaxError: Invalid block tag on line 10: 'static'. Did you forget to r
 "GET /starter-template.css HTTP/1.1" 302 0
 "GET /form HTTP/1.1" 200 11943
 "GET /static/js/index.js HTTP/1.1" 404 1733
+<<<<<<< Updated upstream
 (0.000) 
             SELECT name, type FROM sqlite_master
             WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
@@ -4315,3 +4316,10 @@ Invalid HTTP_HOST header: 'localhost:8000'. You may need to add u'localhost' to 
 "GET /about HTTP/1.1" 200 7395
 "GET /static/img/DiseasyMission.PNG HTTP/1.1" 304 0
 "GET /static/img/patientdiagram.PNG HTTP/1.1" 304 0
+=======
+(0.002) 
+            SELECT name, type FROM sqlite_master
+            WHERE type in ('table', 'view') AND NOT name='sqlite_sequence'
+            ORDER BY name; args=None
+(0.000) SELECT "django_migrations"."app", "django_migrations"."name" FROM "django_migrations"; args=()
+>>>>>>> Stashed changes
