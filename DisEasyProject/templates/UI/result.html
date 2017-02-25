@@ -44,24 +44,29 @@
 			    shape-rendering: crispEdges;
 			    font-family: Abel;
 			    font-weight: bold;
+			    text-rendering: optimizeLegibility;
+			    -webkit-font-smoothing: antialiased;
 			}
 			.axis text 
 			{
 			    font-family: Abel;
 			    font-weight: bold;
+			    text-rendering: optimizeLegibility;
+			    -webkit-font-smoothing: antialiased;
 			    font-size: 13px;
 			}
 			.nav > li > a:hover,.nav > li > a:focus
 			{
-  			background-color: #77bbbb !important;
-  			color:black !important;
-  			text-decoration: none;
-  			font-family: Abel;
+	  			background-color: #77bbbb !important;
+	  			color:black !important;
+	  			text-decoration: none;
+	  			font-family: Abel;
 			    font-weight: bold;
   			}
   			body
   			{
   				padding-top: 60px;
+  				padding-bottom: 60px;
   			}
   			.navbar-nav > li > a, .navbar-nav > li.hover, .navbar-nav > li.active > a:focus, .navbar-nav > li.active > a:hover 
   			{
@@ -120,7 +125,7 @@
   				font-family: Abel;
 			    font-weight: bold;
   			}
-  			h2
+  			h2, h1
   			{
   				font-family: Abel;
 			    font-weight: bold;
@@ -152,8 +157,11 @@
 		</nav>
 		</div>
 		<div class="container">
+		<p> some text here <p>
+		</div>
+		<div class="container">
 			<ul class="nav nav-pills nav-stacked">
-				<li class="active">
+				<li>
 					<a data-toggle="pill" href="#fig">Albumin</a>
 				</li>
 				<li>
@@ -161,31 +169,37 @@
 				</li> 
 			</ul>
 			<div class="tab-content">
-				<div id="fig" class="tab-pane fade in active">
+				<div id="fig" class="tab-pane fade in">
 					<h2>ALBUMIN FIGURES</h2>
 					<div class="container">
 					<svg id="albuVisAll" width="1000" height="500"></svg>
 					</div>
+					<br>
 					<div class="container">
 					<svg id="albuVisAge" width="1000" height="500"></svg>
 					</div>
+					<br>
 					<div class="container">
 					<svg id="albuVisGend" width="1000" height="500"></svg>
 					</div>
+					<br>
 					<div class="container">
 					<svg id="albuVisBMI" width="1000" height="500"></svg>
 					</div>
+					<br>
 					<div class="container">
 					<svg id="albuVisDiab" width="1000" height="500"></svg>
 					</div>
+					<br>
 					<div class="container">
 					<svg id="albuVisNoDiab" width="1000" height="500"></svg>
 					</div>
+					<br>
 					<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
 					<script>
 						//dimensions for svg elements
-						WIDTH = 500,
-							HEIGHT = 300,
+						WIDTH = 1000,
+							HEIGHT = 500,
 							MARGINS = {
 								top: 50,
 								right: 20,
@@ -203,17 +217,21 @@
 							var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
 
 							var vis;
+							var maxY = 0;
 							var IV = LineData.IV;
-							console.log(LineData);
 							if(IV == "Albumin")
 							{
 								//console.log("Length of Data array: " + LineData.Data.length);
-								var myValues = []
+								var myValues = [];
 								for(i = 0; i < LineData.Data.length; i++)
 								{
-									myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]})
+									myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]});
+									if(maxY < LineData.Data[i][1])
+										maxY = LineData.Data[i][1];
+
 								}
-								//console.log(myValues);
+							
+								console.log("Max Y value = " + maxY);
 								//svg selection
 								if(LineData.Feature.Type == "All")
 								{
@@ -248,9 +266,10 @@
 
 								console.log(xTicks);
 
+
 								//drawing axis
 
-								var userMark = -HEIGHT+MARGINS.top+MARGINS.bottom;
+								var userMark = (-HEIGHT+MARGINS.top+MARGINS.bottom)*maxY;
 								console.log("usermark: " + userMark);
 							  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
 								var yAxis = d3.svg.axis().scale(yScale).orient("left");
@@ -277,28 +296,31 @@
 									//in the rest of the method calls:
 									.select('line') //grab the tick line
 									.style('stroke', 'black')
-									.style('stroke-width',2)
+									.style('stroke-width',3)
 									.style('shape-rendering', 'crispEdges')
 									.style('opacity',0.5);;
 
 								//writting x axis label
 								vis.append('text')
 							    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
+							    	.attr('y', -5)
 							    	.style('text-anchor', 'middle')
 							    	.style('font-family', 'Abel')
 			    					.style('font-weight', 'bold')
+			    					.style('font-size', '20px')
 							    	.text(IV + ' Value');
 
 								//writting y axis label
 								vis.append('text')
 							        .attr('transform', 'rotate(-90)')
-							        .attr('y', 0)
+							        .attr('y', -5)
 							        .attr('x',0 - (HEIGHT / 2))
 							        .attr('dy', '1em')
 							        .style('text-anchor', 'middle')
 							        .style('font-family', 'Abel')
 			    					.style('font-weight', 'bold')
-							        .text('Percentage');
+			    					.style('font-size', '20px')
+							        .text('Probability');
 
 								//drawing data line
 							    var lineFunc = d3.svg.line()
@@ -315,7 +337,8 @@
 
 							    vis.append('path')
 							    	.attr('stroke', "red")
-							    	.attr('stroke-width', 2)
+							    	.attr('opacity', 0.6)
+							    	.attr('stroke-width', 4)
 							    	.attr('fill', 'none')
 							    	.attr('d', lineFunc(myValues));
 							    console.log("Read data for: " + LineData.Feature.Type + " " + LineData.Feature.Value);
@@ -325,8 +348,7 @@
 							        .attr('x', (WIDTH / 2))     
 							        .attr('y', 0 + (MARGINS.top / 2))
 							        .attr('text-anchor', 'middle')
-							        .style('font-size', '16px')
-							        .style('text-decoration', 'underline')
+							        .style('font-size', '24px')
 							        .style('font-family', 'Abel')
 			    					.style('font-weight', 'bold')
 							        .text(IV + ' vs ' + LineData.Feature.Type + ' ' + LineData.Feature.Value);
@@ -341,26 +363,32 @@
 					<div class="container">
 					<svg id="glycoVisAll" width="1000" height="500"></svg>
 					</div>
+					<br>
 					<div class="container">
 					<svg id="glycoVisAge" width="1000" height="500"></svg>
 					</div>
+					<br>
 					<div class="container">
 					<svg id="glycoVisGend" width="1000" height="500"></svg>
 					</div>
+					<br>
 					<div class="container">
 					<svg id="glycoVisBMI" width="1000" height="500"></svg>
 					</div>
+					<br>
 					<div class="container">
 					<svg id="glycoVisDiab" width="1000" height="500"></svg>
 					</div>
+					<br>
 					<div class="container">
 					<svg id="glycoVisNoDiab" width="1000" height="500"></svg>
 					</div>
+					<br>
 					<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
 					<script>
 						//Dimensions for svg elements
-						WIDTH = 500,
-						HEIGHT = 300,
+						WIDTH = 1000,
+						HEIGHT = 500,
 						MARGINS = {
 							top: 50,
 							right: 20,
@@ -377,18 +405,20 @@
 							var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4, 13.5]);
 							var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
 
+							var maxY = 0;
 							var vis;
 							var IV = LineData.IV;
 								
 							if(IV == "Glycohemoglobin")
 							{
-								console.log("Length of Data array: " + LineData.Data.length);
 								var myValues = []
 								for(i = 0; i < LineData.Data.length; i++)
 								{
 									myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]})
+									if(maxY < LineData.Data[i][1])
+										maxY = LineData.Data[i][1];
+
 								}
-								console.log(myValues);
 								if(LineData.Feature.Type == "All")
 								{
 									vis = d3.select("#glycoVisAll");
@@ -418,7 +448,7 @@
 								}
 
 								var xTicks = xScale.ticks();
-								xTicks.push({{ result }});
+								xTicks.push({{ glycohemoglobin  }});
 
 								console.log(xTicks);
 
@@ -428,7 +458,7 @@
 								console.log(yTicks);
 
 								//drawing axis
-							  	var userMark = -HEIGHT+MARGINS.top+MARGINS.bottom;
+							  	var userMark = (-HEIGHT+MARGINS.top+MARGINS.bottom) * maxY;
 								console.log("usermark: " + userMark);
 							  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
 								var yAxis = d3.svg.axis().scale(yScale).orient("left");
@@ -455,28 +485,31 @@
 									//in the rest of the method calls:
 									.select('line') //grab the tick line
 									.style('stroke', 'black')
-									.style('stroke-width',2)
+									.style('stroke-width',3)
 									.style('shape-rendering', 'crispEdges')
 									.style('opacity',0.5);
 
 								//writting x axis label
 								vis.append('text')
 							    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
+							    	.attr('y', -5)
 							    	.style('text-anchor', 'middle')
 							    	.style('font-family', 'Abel')
 			    					.style('font-weight', 'bold')
+			    					.style('font-size', '20px')
 							    	.text(IV + ' Value');
 
 								//writting y axis label
 								vis.append('text')
 							        .attr('transform', 'rotate(-90)')
-							        .attr('y', 0)
+							        .attr('y', -5)
 							        .attr('x',0 - (HEIGHT / 2))
 							        .attr('dy', '1em')
 							        .style('text-anchor', 'middle')
 							        .style('font-family', 'Abel')
 			    					.style('font-weight', 'bold')
-							        .text('Percentage');
+			    					.style('font-size', '20px')
+							        .text('Probability');
 
 								//drawing data line
 							    var lineFunc = d3.svg.line()
@@ -493,7 +526,8 @@
 
 							    vis.append('path')
 							    	.attr('stroke', "red")
-							    	.attr('stroke-width', 2)
+							    	.attr('stroke-width', 4)
+							    	.attr('opacity', 0.6)
 							    	.attr('fill', 'none')
 							    	.attr('d', lineFunc(myValues));
 							    console.log("Read data for: " + LineData.Feature.Type + " " + LineData.Feature.Value);
@@ -504,8 +538,7 @@
 							        .attr('x', (WIDTH / 2))     
 							        .attr('y', 0 + (MARGINS.top / 2))
 							        .attr('text-anchor', 'middle')
-							        .style('font-size', '16px')
-							        .style('text-decoration', 'underline')
+							        .style('font-size', '24px')
 							        .style('font-family', 'Abel')
 			    					.style('font-weight', 'bold')
 							        .text(IV + ' vs ' + LineData.Feature.Type + ' ' + LineData.Feature.Value);
