@@ -99,6 +99,8 @@
   			{
   				color: #f47f58;
   			}
+  			
+
 		</style>
 	</head>
 
@@ -175,16 +177,16 @@
 
 							var vis;
 							var IV = LineData.IV;
-							
+							console.log(LineData);
 							if(IV == "Albumin")
 							{
-								console.log("Length of Data array: " + LineData.Data.length);
+								//console.log("Length of Data array: " + LineData.Data.length);
 								var myValues = []
 								for(i = 0; i < LineData.Data.length; i++)
 								{
 									myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]})
 								}
-								console.log(myValues);
+								//console.log(myValues);
 								//svg selection
 								if(LineData.Feature.Type == "All")
 								{
@@ -213,9 +215,22 @@
 										vis = d3.select("#albuVisNoDiab");
 									}
 								}
+
+								var xTicks = xScale.ticks();
+								xTicks.push(LineData.User.result);
+
+								console.log(xTicks);
+
+								var yTicks = yScale.ticks();
+								yTicks.push(LineData.User.probability);
+
+								console.log(yTicks);
+
 								//drawing axis
 
-							  	var xAxis = d3.svg.axis().scale(xScale).ticks(20);
+								var userMark = -HEIGHT+MARGINS.top+MARGINS.bottom;
+								console.log("usermark: " + userMark);
+							  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
 								var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
 							  	vis.append('g')
@@ -232,6 +247,17 @@
 								    .attr('class', 'axis')
 								    .attr('transform', 'translate(' + (MARGINS.left) + ',' + (MARGINS.top - MARGINS.bottom) + ')')
 								    .call(yAxis);
+
+								//add tick for user value
+								d3.selectAll('g.tick')
+									.filter(function(d){ return d==4.0;} )
+									//only ticks that returned true for the filter will be included
+									//in the rest of the method calls:
+									.select('line') //grab the tick line
+									.style('stroke', 'black')
+									.style('stroke-width',2)
+									.style('shape-rendering', 'crispEdges')
+									.style('opacity',0.5);;
 
 								//writting x axis label
 								vis.append('text')
@@ -363,8 +389,20 @@
 									}
 								}
 
+								var xTicks = xScale.ticks();
+								xTicks.push(LineData.User.result);
+
+								console.log(xTicks);
+
+								var yTicks = yScale.ticks();
+								yTicks.push(LineData.User.probability);
+
+								console.log(yTicks);
+
 								//drawing axis
-							  	var xAxis = d3.svg.axis().scale(xScale).ticks(20);
+							  	var userMark = -HEIGHT+MARGINS.top+MARGINS.bottom;
+								console.log("usermark: " + userMark);
+							  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
 								var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
 							  vis.append('svg:g')
@@ -381,6 +419,17 @@
 							    .attr('class', 'axis')
 								.attr('transform', 'translate(' + (MARGINS.left) + ',' + (MARGINS.top - MARGINS.bottom) + ')')
 								.call(yAxis);
+
+								//add tick for user value
+								d3.selectAll('g.tick')
+									.filter(function(d){ return d==6;} )
+									//only ticks that returned true for the filter will be included
+									//in the rest of the method calls:
+									.select('line') //grab the tick line
+									.style('stroke', 'black')
+									.style('stroke-width',2)
+									.style('shape-rendering', 'crispEdges')
+									.style('opacity',0.5);
 
 								//writting x axis label
 								vis.append('text')
