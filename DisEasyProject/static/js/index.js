@@ -78,8 +78,12 @@ $(document).ready(function() {
 		$('#testTwoUnitWarning').show();
 		isValid = false;
 	}
+  
+  // DELETE ME LATER
+  isValid = true;
 	
 	if(isValid){
+    console.log(jString);
 		$.post("/submit",
 		{
 			PatiantResults: jString
