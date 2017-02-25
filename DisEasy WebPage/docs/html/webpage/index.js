@@ -42,7 +42,7 @@ $(document).ready(function() {
 	jString["diagnosedDiabetic"] = diagnosedDiabeticVal;
 	jString["diagnosedPreDiabetic"] = diagnosedPreDiabeticVal;
 	
-	if(jString.diseaseState !== " Type II Diabetes  "){
+	/*if(jString.diseaseState !== " Type II Diabetes  "){
 		$('#conditionWarning').show();
 		isValid = false;
 	}
@@ -77,7 +77,7 @@ $(document).ready(function() {
 	if(jString.testTwoUnit !== " mM/L  " || jString.testTwoUnit !== " mg/dL  "){
 		$('#testTwoUnitWarning').show();
 		isValid = false;
-	}
+	}*/
 	
 	if(isValid){
 		$.post("/submit",
