@@ -56,13 +56,14 @@ def submit(request):
 
 
     age = 34
+    gender = 1 # 0 = female, 1 = male
     weight = 87.4 # kilogram
     height = 164.7 # centimeters
     gh = 5.2 # g/dL
     albumin = 4.8 #%
     
     #example of making a prediction for a sample
-    testPoint = [age, weight, height, gh, albumin]
+    testPoint = [age, gender, weight, height, gh, albumin]
     normPoint = []
     for item in range(len(testPoint)) :
         tempval = ((testPoint[item])-m[item])/(s[item]+0.0001)
