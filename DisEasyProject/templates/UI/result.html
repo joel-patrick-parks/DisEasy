@@ -58,7 +58,7 @@
 			}
 			.nav > li > a:hover,.nav > li > a:focus
 			{
-	  			background-color: #77bbbb !important;
+	  			background-color: #88c4c4 !important;
 	  			color:black !important;
 	  			text-decoration: none;
 	  			font-family: Abel;
@@ -131,7 +131,12 @@
   				font-family: Abel;
 			    font-weight: bold;
   			}
-  			
+  			#classification
+  			{
+  				margin-left:auto;
+  				margin-right:auto;
+  				display:block;
+  			}
 
 		</style>
 	</head>
@@ -160,9 +165,47 @@
 		<div class="container">
 			<div class="container">
 			<h2>Your Results</h2>
-			<p>You are received the following classification:</p>
+			<p>You have received the following classification:</p>
+			<br>
+			<div class="container" width="300" height="30" >
+				<svg id="classification" width="300" height="30">
+				</svg>
+			</div>
+			<br>
+			<script>
 
-			<p align="center">[classification bar]</p>
+			var svg = d3.select('#classification');
+
+			//Append a defs (for definition) element to your SVG
+			var defs = svg.append("defs");
+
+			//Append a linearGradient element to the defs and give it a unique id
+			var linearGradient = defs.append("linearGradient")
+			    .attr("id", "linear-gradient");
+
+			linearGradient
+			    .attr("x1", "0%")
+			    .attr("y1", "0%")
+			    .attr("x2", "100%")
+			    .attr("y2", "0%");
+
+			//Set the color for the start (0%)
+			linearGradient.append("stop") 
+			    .attr("offset", "0%")   
+			    .attr("stop-color", "#ffffff"); //light blue
+
+			//Set the color for the end (100%)
+			linearGradient.append("stop") 
+			    .attr("offset", "100%")   
+			    .attr("stop-color", "#71945A"); //dark blue
+			svg.append("rect")
+				.attr("width", 300)
+				.attr("height", 20)
+				.style("fill", "url(#linear-gradient)")
+				.style("stroke", "black")
+				.style("stroke-width", 3);
+
+		    </script>
 
 			<p>To view the your results relative to the United States population, expand the Glycohemoglobin and Albumin results below. Scroll to view the graphs conditioned by your age range, BMI range, gender, and diabetic status. On the graphs below, the y-axis (vertical line) signifies the probability of the lab value specified on the x-axis (horizontal line). The black vertical indicator line marks where your lab result falls.</p>
 
