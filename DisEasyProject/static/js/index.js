@@ -16,9 +16,7 @@ $(document).ready(function() {
     var weightVal = $('#weightInput').val();
 	var labVal = $('#labDropdown').text();
     var testOneVal = $('#testOneInput').val();
-    var testOneUnitVal = $('#testOneDropdown').text();
     var testTwoVal = $('#testTwoInput').val();
-    var testTwoUnitVal = $('#testTwoDropdown').text();
 	var familyHistoryVal = $('#familyHistoryDropdown').text();
 	var diagnosedDiabeticVal = $('#diabeticDropdown').text();
 	var diagnosedPreDiabeticVal = $('#prediabeticDropdown').text();
@@ -35,9 +33,7 @@ $(document).ready(function() {
 	jString["weight"] = weightVal.trim();
 	jString["lab"] = labVal.trim();
 	jString["testOne"] = testOneVal.trim();
-	jString["testOneUnit"] = testOneUnitVal.trim();
 	jString["testTwo"] = testTwoVal.trim();
-	jString["testTwoUnit"] = testTwoUnitVal.trim();
 	jString["familyHistory"] = familyHistoryVal.trim();
 	jString["diagnosedDiabetic"] = diagnosedDiabeticVal.trim();
 	jString["diagnosedPreDiabetic"] = diagnosedPreDiabeticVal.trim();
