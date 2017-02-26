@@ -48,44 +48,38 @@
 	    <![endif]-->
 	</head>
 
-	<body>
+	<body background="{% static 'img/backgroundpattern.jpg' %}">
 		<nav class="navbar navbar-fixed-top" style="background-color: #77bbbb; color:black;">
 			<div class="container">
 				<div id="navbar" class="navbar-header">
-          <img src="{% static 'img/diseasylogo.png' %}" width="50" height="50" alt="">
+					<img src="{% static 'img/diseasylogo.png' %}" width="50" height="50" alt="">
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="/form" style="color: black;">Home</a></li>
-						<li><a href="/about" style="color: black;">About</a></li>
-						<li><a href="" style="color: black;">Log-In</a></li>
+						<li class="active"><a href="index.html" style="color: black;">HOME</a></li>
+						<li><a href="about.html" style="color: black;">ABOUT</a></li>
+						<li><a href="" style="color: black;">SERVICES</a></li>
+						<li><a href="" style="color: black;">LOG-IN</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
 		</nav>
-		<div class="container" style="padding-top:40px;padding-bottom:40px;">
+		<div class="container" style="padding-top:40px; padding-bottom:40px;">
 			<div class="panel panel-default" style="border:0; box-shadow: none;">
 				<div class="row row-centered">
-					<div class="col-sm-6">
+					<div class="col-sm-2"></div>
+			        <div class="col-sm-8">
+			        	<div class="panel panel-default" style="border:0; box-shadow: none;">
+			        		<h2 class="panel-heading">Lab Results</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row row-centered">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-4">
 						<div class="panel panel-default" style="border:0; box-shadow: none;">
-							<h2 class="panel-heading">Demographics</h2>
 			    			<!--This is the form that contains the demographics information-->
 			    			<form class="form-horizontal">
-			    			<!--Condition label and dropdown menu-->
-				    			<div class="form-group" style="margin-left: 10px">
-				    				<!--<label for="inputEmail3" class="col-sm-2 control-label">Condition:</label>-->
-				    				<div class="col-sm-10">
-				    					<div class="dropdown">
-				    						<button class="btn btn-default dropdown-toggle conditionDropdown" type="button" id="conditionDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-				    							Condition
-				    							<span class="caret"></span>
-				    						</button>
-											<ul class="dropdown-menu" aria-labelledby="conditionDropdown">
-							  					<li><a href="#">Diabetes</a></li>
-											</ul>
-						  				</div>
-									</div>
-					  			</div>
 				  				<!--Gender label and dropdown menu-->
 					  			<div class="form-group" style="margin-left: 10px">
 									<!--<label for="inputEmail3" class="col-sm-2 control-label">Gender:</label>-->
@@ -99,6 +93,7 @@
 							  					<li><a href="#">Male</a></li>
 							 					<li><a href="#">Female</a></li>
 											</ul>
+											<div id="genderWarning" style="color:RED; display:none; font-size:smaller; margin-bottom:-15px">Please select a gender.</div>
 										</div>
 									</div>
 					  			</div>
@@ -107,6 +102,7 @@
 									<!--<label for="inputEmail3" class="col-sm-2 control-label">Age:</label>-->
 									<div class="col-sm-10">
 						  				<input type="text" class="form-control" id="ageInput" style="width: 100px;" placeholder="Age">
+										<div id="ageWarning" style="color:RED; display:none; font-size:smaller; margin-bottom:-15px">Please enter a valid age.</div>
 									</div>
 								</div>
 								<!--Weight label and text field-->
@@ -114,6 +110,7 @@
 									<!--<label for="inputEmail3" class="col-sm-2 control-label">Weight (lbs):</label>-->
 									<div class="col-sm-10">
 										<input type="text" class="form-control" id="weightInput" style="width: 125px;" placeholder="Weight (lbs)">
+										<div id="weightWarning" style="color:RED; display:none; font-size:smaller; margin-bottom:-15px">Please enter a valid weight.</div>
 									</div>
 					  			</div>
 					  			<!--Height label and text field-->
@@ -121,15 +118,15 @@
 									<!--<label for="inputEmail3" class="col-sm-2 control-label">Height (inches):</label>-->
 									<div class="col-sm-10">
 						  				<input type="text" class="form-control" id="heightInput" style="width: 125px;" placeholder="Height (inches)">
+										<div id="heightWarning" style="color:RED; display:none; font-size:smaller; margin-bottom:-15px">Please enter a valid height.</div>
 									</div>
 					  			</div>
 					  		<!--Form has ended-->
 							</form>
             			</div>
           			</div>
-			        <div class="col-sm-6">
+			        <div class="col-sm-4">
 			        	<div class="panel panel-default" style="border:0; box-shadow: none;">
-			        		<h2 class="panel-heading">Lab Results</h2>
 							<!--This is the form that contains the Lab Results information-->
 							<form class="form-horizontal">
 								<!--Lab label and dropdown menu-->
@@ -145,6 +142,7 @@
 									  			<li><a href="#">Lab 1</a></li>
 									  			<li><a href="#">Lab 2</a></li>
 											</ul>
+											<div id="labWarning" style="color:RED; display:none; font-size:smaller; margin-bottom:-15px">Please select a lab.</div>
 								  		</div>
 									</div>
 							  	</div>
@@ -152,14 +150,14 @@
 							  	<div class="form-group" style="margin-left: 10px">
 									<!--<label for="inputEmail3" class="col-sm-2 control-label">Test 1:</label>-->
 									<div class="col-sm-2">
-								  		<input type="text" class="form-control" id="testOneInput" style="width: 100px;" placeholder="Hemoglobin A1c">
+								  		<input type="text" class="form-control" id="testOneInput" style="width: 100px;" placeholder="Test 1">
 									</div>
 									<div class="col-sm-2">
 									  	<div class="dropdown">
 											<button class="btn btn-default dropdown-toggle" type="button" id="testOneDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
 										  		Units
 										  		<span class="caret"></span>
-											</button>	
+											</button>
 											<ul class="dropdown-menu" aria-labelledby="testOneDropdown">
 										  		<li><a href="#">mM/L</a></li>
 										  		<li><a href="#">mg/dL</a></li>
@@ -167,11 +165,13 @@
 										</div>
 									</div>
 								</div>
+								<div id="testOneWarning" style="color:RED; display:none; font-size:smaller; margin-left:25px; margin-top:-14px">Please enter number of units.</div>
+								<div id="testOneUnitWarning" style="color:RED; display:none; font-size:smaller; margin-left:25px; margin-top:-5px">Please select a unit of measurement.</div>
 				  				<!--Test 2 label, text field, and unit selector-->
 				  				<div class="form-group" style="margin-left: 10px">
 									<!--<label for="inputEmail3" class="col-sm-2 control-label">Test 2:</label>-->
 									<div class="col-sm-2">
-					  					<input type="text" class="form-control" id="testTwoInput" style="width: 100px;" placeholder="Albumin">
+					  					<input type="text" class="form-control" id="testTwoInput" style="width: 100px;" placeholder="Test 2">
 									</div>
 									<div class="col-sm-2">
 					  					<div class="dropdown">
@@ -186,11 +186,13 @@
 					  					</div>
 									</div>
 				  				</div>
+								<div id="testTwoWarning" style="color:RED; display:none; font-size:smaller; margin-left:25px; margin-top:-14px">Please enter number of units.</div>
+								<div id="testTwoUnitWarning" style="color:RED; display:none; font-size:smaller; margin-left:25px; margin-top:-5px">Please select a unit of measurement.</div>
 								<!--Question 1 and answer selector-->
 				  				<div class="form-group" style="margin-left: 25px">
 									<label for="inputEmail3" class="control-label">Do you have a family history of diabetes?</label>
 								</div>
-								<div class="form-group" style="margin-left: 10px">
+								<div class="form-group" style="margin-left: 10px; margin-top:-10px">
 									<div class="col-sm-2">
 					  					<div class="dropdown">
 											<button class="btn btn-default dropdown-toggle" type="button" id="familyHistoryDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -204,11 +206,12 @@
 					  					</div>
 									</div>
 								</div>
+								<div id="familyHistoryWarning" style="color:RED; display:none; font-size:smaller; margin-left:25px; margin-top:-14px">Please select "Yes" or "No".</div>
 								<!--Question 2 and answer selector-->
 				  				<div class="form-group" style="margin-left: 25px">
 									<label for="inputEmail3" class="control-label">Have you ever been diagnosed as diabetic?</label>
 								</div>
-								<div class="form-group" style="margin-left: 10px">
+								<div class="form-group" style="margin-left: 10px; margin-top:-10px">
 									<div class="col-sm-2">
 					  					<div class="dropdown">
 											<button class="btn btn-default dropdown-toggle" type="button" id="diabeticDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -222,11 +225,12 @@
 					  					</div>
 									</div>
 								</div>
+								<div id="diabeticWarning" style="color:RED; display:none; font-size:smaller; margin-left:25px; margin-top:-14px">Please select "Yes" or "No".</div>
 								<!--Question 3 and answer selector-->
 								<div class="form-group" style="margin-left: 25px">
 									<label for="inputEmail3" class="control-label">Have you ever been diagnosed as pre-diabetic?</label>
 								</div>
-								<div class="form-group" style="margin-left: 10px">
+								<div class="form-group" style="margin-left: 10px; margin-top:-10px;">
 									<div class="col-sm-2">
 					  					<div class="dropdown">
 											<button class="btn btn-default dropdown-toggle" type="button" id="prediabeticDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -240,6 +244,7 @@
 					  					</div>
 									</div>
 								</div>
+								<div id="prediabteticWarning" style="color:RED; display:none; font-size:smaller; margin-left:25px; margin-top:-14px">Please select "Yes" or "No".</div>
 							<!--Form has ended-->
 							</form>
 						</div>
@@ -249,15 +254,18 @@
 					<div class="col-sm-12 col-centered">
 						<form class="form-horizontal">
 							<!--Lab label and dropdown menu-->
-							<input type="button" class="btn btn-primary btn-block" id="submitButton" value="Submit" style="width: 100px; background-color:#f47f58; color:black; border-color:black">
+							<input type="submit" class="btn btn-primary btn-block" id="submitButton" value="Submit" style="width: 100px; background-color:#77bbbb; color:black; border-color:black">
 						</form>
 					</div>
 				</div>
+			<div class="container" style="padding-top:25px;padding-bottom:30px;width:1000px">
+				<p>Diabetes means your blood glucose, or blood sugar, levels are too high. With Type-II diabetes, the more common type, your body does not make or use insulin well. Blood tests can show if you are at risk for diabetes.</p>
+				<p>Fill in the form above to receive your personalized Type-II Diabetes likelihood evaluation.</p>
 			</div>
 		</div>
-		<nav class="navbar navbar-fixed-bottom" style="background-color: #f47f58; color:black;">
+		<nav class="navbar navbar-fixed-bottom" style="background-color: #77bbbb; color:black;">
 			<div class="container">
-				<p style="text-align: center; margin-top: 10px"><i>Some sample text for the footer</i></p>
+				<p style="text-align: center; margin-top: 10px"><i>Understand your lab results today</i></p>
 			</div>
 		</nav>
 

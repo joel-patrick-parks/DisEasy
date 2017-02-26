@@ -37,10 +37,10 @@
   			text-decoration: none;
 			}
 
-		body{
+			body{
 			font-family: Abel;
 				font-weight: bold;
-		}
+			}
 	    </style>
 
 	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -50,7 +50,7 @@
 	    <![endif]-->
 	</head>
 
-	<body>
+	<body background="backgroundpattern.jpg">
 		<nav class="navbar navbar-fixed-top" style="background-color: #77bbbb; color:black;">
 			<div class="container">
 				<div id="navbar" class="navbar-header">
@@ -66,30 +66,22 @@
 				</div><!--/.nav-collapse -->
 			</div>
 		</nav>
-		<div class="container" style="padding-top:40px; padding-bottom:40px">
+		<div class="container" style="padding-top:40px; padding-bottom:40px;">
 			<div class="panel panel-default" style="border:0; box-shadow: none;">
 				<div class="row row-centered">
-					<div class="col-sm-6">
+					<div class="col-sm-2"></div>
+			        <div class="col-sm-8">
+			        	<div class="panel panel-default" style="border:0; box-shadow: none;">
+			        		<h2 class="panel-heading">Lab Results</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row row-centered">
+					<div class="col-sm-2"></div>
+					<div class="col-sm-4">
 						<div class="panel panel-default" style="border:0; box-shadow: none;">
-							<h2 class="panel-heading">Demographics</h2>
 			    			<!--This is the form that contains the demographics information-->
 			    			<form class="form-horizontal">
-			    			<!--Condition label and dropdown menu-->
-				    			<div class="form-group" style="margin-left: 10px">
-				    				<!--<label for="inputEmail3" class="col-sm-2 control-label">Condition:</label>-->
-				    				<div class="col-sm-10">
-				    					<div class="dropdown">
-				    						<button class="btn btn-default dropdown-toggle conditionDropdown" type="button" id="conditionDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-				    							Condition
-				    							<span class="caret"></span>
-				    						</button>
-											<ul class="dropdown-menu" aria-labelledby="conditionDropdown">
-							  					<li><a href="#">Type II Diabetes</a></li>
-											</ul>
-						  				</div>
-										<div id="conditionWarning" style="color:RED; display:none; font-size:smaller; margin-bottom:-15px">Please select a condition.</div>
-									</div>
-					  			</div>
 				  				<!--Gender label and dropdown menu-->
 					  			<div class="form-group" style="margin-left: 10px">
 									<!--<label for="inputEmail3" class="col-sm-2 control-label">Gender:</label>-->
@@ -135,9 +127,8 @@
 							</form>
             			</div>
           			</div>
-			        <div class="col-sm-6">
+			        <div class="col-sm-4">
 			        	<div class="panel panel-default" style="border:0; box-shadow: none;">
-			        		<h2 class="panel-heading">Lab Results</h2>
 							<!--This is the form that contains the Lab Results information-->
 							<form class="form-horizontal">
 								<!--Lab label and dropdown menu-->
@@ -175,7 +166,6 @@
 											</ul>
 										</div>
 									</div>
-									
 								</div>
 								<div id="testOneWarning" style="color:RED; display:none; font-size:smaller; margin-left:25px; margin-top:-14px">Please enter number of units.</div>
 								<div id="testOneUnitWarning" style="color:RED; display:none; font-size:smaller; margin-left:25px; margin-top:-5px">Please select a unit of measurement.</div>
@@ -270,11 +260,46 @@
 						</form>
 					</div>
 				</div>
+			<div class="container" style="padding-top:25px;padding-bottom:30px;width:1000px">
+				<p>Diabetes means your blood glucose, or blood sugar, levels are too high. With Type-II diabetes, the more common type, your body does not make or use insulin well. Blood tests can show if you are at risk for diabetes.</p>
+				<p>Fill in the form above to receive your personalized Type-II Diabetes likelihood evaluation.</p>
 			</div>
+
+			<script src="https://d3js.org/d3.v3.min.js"></script>
+			<script>//Append a defs (for definition) element to your SVG
+			var defs = svg.append("defs");
+
+			//Append a linearGradient element to the defs and give it a unique id
+			var linearGradient = defs.append("linearGradient")
+			    .attr("id", "linear-gradient");
+
+			linearGradient
+			    .attr("x1", "0%")
+			    .attr("y1", "0%")
+			    .attr("x2", "100%")
+			    .attr("y2", "0%");
+
+			//Set the color for the start (0%)
+			linearGradient.append("stop") 
+			    .attr("offset", "0%")   
+			    .attr("stop-color", "#ffa474"); //light blue
+
+			//Set the color for the end (100%)
+			linearGradient.append("stop") 
+			    .attr("offset", "100%")   
+			    .attr("stop-color", "#8b0000"); //dark blue
+
+			svg.append("rect")
+				.attr("width", 300)
+				.attr("height", 20)
+				.style("fill", "url(#linear-gradient)");
+
+		    </script>
+		    
 		</div>
 		<nav class="navbar navbar-fixed-bottom" style="background-color: #77bbbb; color:black;">
 			<div class="container">
-				<p style="text-align: center; margin-top: 10px"><i>Some sample text for the footer</i></p>
+				<p style="text-align: center; margin-top: 10px"><i>Understand your lab results today</i></p>
 			</div>
 		</nav>
 
