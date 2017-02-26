@@ -56,10 +56,9 @@
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="index.html" style="color: black;">HOME</a></li>
-						<li><a href="about.html" style="color: black;">ABOUT</a></li>
-						<li><a href="" style="color: black;">SERVICES</a></li>
-						<li><a href="" style="color: black;">LOG-IN</a></li>
+						<li class="active"><a href="/" style="color: black;">HOME</a></li>
+						<li><a href="/about" style="color: black;">ABOUT</a></li>
+						<li><a href="/login" style="color: black;">LOG-IN</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
@@ -70,7 +69,9 @@
 					<div class="col-sm-2"></div>
 			        <div class="col-sm-8">
 			        	<div class="panel panel-default" style="border:0; box-shadow: none;">
-			        		<h2 class="panel-heading">Lab Results</h2>
+			        		<h2 class="panel-heading">Type-II Diabetes</h2>
+    						<h4><p>Diabetes means your blood glucose, or blood sugar, levels are too high. With Type-II diabetesyour body does not make or use insulin well. Blood tests can show if you are at risk for diabetes.</p>
+							<p>Fill in the form above to receive your personalized Type-II Diabetes likelihood evaluation.</p></h4>
 						</div>
 					</div>
 				</div>
@@ -139,8 +140,8 @@
 									  			<span class="caret"></span>
 											</button>
 											<ul class="dropdown-menu" aria-labelledby="labDropdown">
-									  			<li><a href="#">Lab 1</a></li>
-									  			<li><a href="#">Lab 2</a></li>
+									  			<li><a href="#">Quest Diagnostics</a></li>
+									  			<li><a href="#">LabCore</a></li>
 											</ul>
 											<div id="labWarning" style="color:RED; display:none; font-size:smaller; margin-bottom:-15px">Please select a lab.</div>
 								  		</div>
@@ -150,44 +151,18 @@
 							  	<div class="form-group" style="margin-left: 10px">
 									<!--<label for="inputEmail3" class="col-sm-2 control-label">Test 1:</label>-->
 									<div class="col-sm-2">
-								  		<input type="text" class="form-control" id="testOneInput" style="width: 100px;" placeholder="Test 1">
-									</div>
-									<div class="col-sm-2">
-									  	<div class="dropdown">
-											<button class="btn btn-default dropdown-toggle" type="button" id="testOneDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-										  		Units
-										  		<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu" aria-labelledby="testOneDropdown">
-										  		<li><a href="#">mM/L</a></li>
-										  		<li><a href="#">mg/dL</a></li>
-											</ul>
-										</div>
+								  		<input type="text" class="form-control" id="testOneInput" style="width: 150px;" placeholder="Glycohemoglobin">
 									</div>
 								</div>
 								<div id="testOneWarning" style="color:RED; display:none; font-size:smaller; margin-left:25px; margin-top:-14px">Please enter number of units.</div>
-								<div id="testOneUnitWarning" style="color:RED; display:none; font-size:smaller; margin-left:25px; margin-top:-5px">Please select a unit of measurement.</div>
 				  				<!--Test 2 label, text field, and unit selector-->
 				  				<div class="form-group" style="margin-left: 10px">
 									<!--<label for="inputEmail3" class="col-sm-2 control-label">Test 2:</label>-->
 									<div class="col-sm-2">
-					  					<input type="text" class="form-control" id="testTwoInput" style="width: 100px;" placeholder="Test 2">
-									</div>
-									<div class="col-sm-2">
-					  					<div class="dropdown">
-											<button class="btn btn-default dropdown-toggle" type="button" id="testTwoDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-						  						Units
-						  						<span class="caret"></span>
-											</button>
-											<ul class="dropdown-menu" aria-labelledby="testTwoDropdown">
-						  						<li><a href="#">mM/L</a></li>
-						  						<li><a href="#">mg/dL</a></li>
-											</ul>
-					  					</div>
+					  					<input type="text" class="form-control" id="testTwoInput" style="width: 150px;" placeholder="Albumin (g/dL)">
 									</div>
 				  				</div>
 								<div id="testTwoWarning" style="color:RED; display:none; font-size:smaller; margin-left:25px; margin-top:-14px">Please enter number of units.</div>
-								<div id="testTwoUnitWarning" style="color:RED; display:none; font-size:smaller; margin-left:25px; margin-top:-5px">Please select a unit of measurement.</div>
 								<!--Question 1 and answer selector-->
 				  				<div class="form-group" style="margin-left: 25px">
 									<label for="inputEmail3" class="control-label">Do you have a family history of diabetes?</label>
@@ -258,15 +233,10 @@
 						</form>
 					</div>
 				</div>
-			<div class="container" style="padding-top:25px;padding-bottom:30px;width:1000px">
-				<p>Diabetes means your blood glucose, or blood sugar, levels are too high. With Type-II diabetes, the more common type, your body does not make or use insulin well. Blood tests can show if you are at risk for diabetes.</p>
-				<p>Fill in the form above to receive your personalized Type-II Diabetes likelihood evaluation.</p>
-			</div>
 		</div>
 		<nav class="navbar navbar-fixed-bottom" style="background-color: #77bbbb; color:black;">
 			<div class="container">
-				<p style="text-align: center; margin-top: 10px"><i>Understand your lab results today</i></p>
-			</div>
+				<p style="text-align: center; margin-top: 10px">DisEasy. All Rights Reserved &copy;</p>
 		</nav>
 
 	    <!-- Bootstrap core JavaScript
