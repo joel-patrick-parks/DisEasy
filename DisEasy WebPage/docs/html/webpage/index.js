@@ -9,6 +9,10 @@ $(document).ready(function() {
         $(this).find('.card').toggleClass('flipped');
 
     });
+	
+	$('.flip').click(function() {
+	  window.location = 'index.html';
+  });
 
   //Submit button click
   $('#submitButton').click(function() {

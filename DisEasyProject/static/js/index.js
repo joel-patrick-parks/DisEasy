@@ -4,17 +4,12 @@ $(document).ready(function() {
     var $toggle = $(this).parent().siblings('.dropdown-toggle');
     $toggle.html("<i class=\"icon icon-envelope icon-white\"></i> " + $(this).text() + "  <span class=\"caret\"></span>")
   });
-  
-  $('.flip').hover(function(){
-        $(this).find('.card').toggleClass('flipped');
-
-    });
 
   //Submit button click
   $('#submitButton').click(function() {
 	var isValid = true;  
 	  
-	var conditionVal = $('#conditionDropdown').text();
+	var conditionVal = "Type II Diabetes";
 	var genderVal = $('#genderDropdown').text();
     var ageVal = $('#ageInput').val();
     var heightVal = $('#heightInput').val();
@@ -33,7 +28,7 @@ $(document).ready(function() {
 	var heightNum = parseInt(heightVal);
 	
 	var jString = {};
-	jString["diseaseState"] = conditionVal.trim();
+	jString["diseaseState"] = conditionVal;
 	jString["gender"] = genderVal.trim();
 	jString["age"] = ageVal.trim();
 	jString["height"] = heightVal.trim();
