@@ -26,7 +26,7 @@ urlpatterns = [
 
     # actual UI pages
     url(r'^form$', UIViews.form),
-    url(r'^result/(?P<uprob>\d+)-(?P<ures>\d+)-(?P<age>[\d.]+)-(?P<gender>\d+)-(?P<bmi>[\d.]+)-(?P<albu>[\d.]+)-(?P<glyco>[\d.]+)$', UIViews.result),
+    url(r'^result/(?P<uprob>[\d.]+)-(?P<ures>[\d.]+)-(?P<age>[\d.]+)-(?P<gender>\d+)-(?P<bmi>[\d.]+)-(?P<albu>[\d.]+)-(?P<glyco>[\d.]+)$', UIViews.result),
     url(r'^about$', UIViews.about),
 
     # fall-through to home page (can configure to 404 instead)

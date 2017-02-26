@@ -56,7 +56,7 @@ def submit(request):
     tempfit = mlp.fit(X_train, y_train)
 
     # extract and convert data
-    age = float(request.POST.get('age','0'))
+    age = float(request.POST.get('age','7'))
     gender = request.POST.get('gender','')
     if gender.lower() == 'male':
         gender = 1
@@ -69,9 +69,19 @@ def submit(request):
     gh = float(request.POST.get('testOne','0'))
     albumin = float(request.POST.get('testTwo','0'))
 
-    if age == 0 or gender == -1 or weight == 0 or height == 0 or gh == 0 or albumin == 0:
-        return HttpResponse("Invalid Input")
-    
+    if age == 0:
+        return HttpResponse("Invalid Age")
+    if gender == -1:
+        return HttpResponse("Invalid Gender")
+    if weight == 0:
+        return HttpResponse("Invalid Weight")
+    if height == 0:
+        return HttpResponse("Invalid Height")
+    if gh == 0:
+        return HttpResponse("Invalid Glycohemoglobin Value")
+    if albumin == 0:
+        return HttpResponse("Invalid Albumin Value")
+
     # example of making a prediction for a sample
     testPoint = [age, gender, weight, height, gh, albumin]
     normPoint = []
@@ -85,11 +95,11 @@ def submit(request):
     accuracy = mlp.score(X_test, y_test)
 
     return HttpResponse("/result/%s-%s-%s-%s-%s-%s-%s" % (
-        accuracy * 100, 
-        result * 100,
-        age,
+        round(accuracy * 100, 2),
+        round(result * 100, 2),
+        round(age, 2),
         gender,
-        weight / height,
-        albumin,
-        gh
+        round(weight / height, 2),
+        round(albumin, 2),
+        round(gh ,2),
         ))
