@@ -4,6 +4,11 @@ $(document).ready(function() {
     var $toggle = $(this).parent().siblings('.dropdown-toggle');
     $toggle.html("<i class=\"icon icon-envelope icon-white\"></i> " + $(this).text() + "  <span class=\"caret\"></span>")
   });
+  
+  $('.flip').hover(function(){
+        $(this).find('.card').toggleClass('flipped');
+
+    });
 
   //Submit button click
   $('#submitButton').click(function() {
