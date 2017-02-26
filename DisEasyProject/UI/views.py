@@ -5,7 +5,7 @@ from models import Visualization
 
 # display homepage
 def home(request):
-    return HttpResponseRedirect("/form");
+    return render(request, 'UI/home.html')
 
 # display form
 def form(request):
