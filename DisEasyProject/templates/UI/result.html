@@ -156,41 +156,9 @@
 			</div>
 		</nav>
 		</div>
+		
 		<div class="container">
-			<h2>What is Type-II Diabetes?</h2>
-
-			<p>Diabetes means your blood glucose, or blood sugar, levels are too high. With Type-II diabetes, the more common type, your body does not make or use insulin well. Insulin is a hormone that helps glucose get into your cells to give them energy. Without insulin, too much glucose stays in your blood. Over time, high blood glucose can lead to serious problems with your heart, eyes, kidneys, nerves, and gums and teeth.</p>
-
-			<p>You have a higher risk of type 2 diabetes if you are older, obese, have a family history of diabetes, or do not exercise. Having prediabetes also increases your risk. Prediabetes means that your blood sugar is higher than normal but not high enough to be called diabetes.</p>
-
-			<p>The symptoms of type 2 diabetes appear slowly. Some people do not notice symptoms at all. The symptoms can include:</p>
-
-			<ul>
-			<li>Being very thirsty</li>
-			<li>Urinating often</li>
-			<li>Feeling very hungry or tired</li>
-			<li>Losing weight without trying</li>
-			<li>Having sores that heal slowly</li>
-			<li>Having blurry eyesight</li>
-			</ul>
-
-			<p>Blood tests can show if you have diabetes. One type of test, the A1C, can also check on how you are managing your diabetes. Many people can manage their diabetes through healthy eating, physical activity, and blood glucose testing. Some people also need to take diabetes medicines.</p>
-
-			<p><i>NIH: National Institute of Diabetes and Digestive and Kidney Diseases</i></p>
-
-			<h2>Your Results</h2>
-			<p>You are received the following classification:</p>
-
-			<p align="center">[classification bar]</p>
-
-			<p>To view the your results relative to the United States population, expand the Glycohemoglobin and Albumin results below. Scroll to view the graphs conditioned by your age range, BMI range, gender, and diabetic status. The y-axis (vertical line) signifies the probability of the lab value specified on the x-axis (horizontal line). The black vertical indicator line marks where your lab result falls.</p>
-
-			<p>If you are concerned about about the results of this evaluation, please consult your primary physician for more information. (Disclaimer: These results are not to be used as a diagnostic tool.)</p>
-
-			<p>The machine-learning model has achieved a ##% classification accuracy based on the our data from the U.S. National Health and Nutrition Examination Survey.</p>
-		</div>
-		<div class="container">
-			<ul class="nav nav-pills nav-stacked">
+			<ul class="nav nav-pills ">
 				<li>
 					<a data-toggle="pill" href="#fig">Albumin</a>
 				</li>
@@ -482,11 +450,6 @@
 
 								console.log(xTicks);
 
-								var yTicks = yScale.ticks();
-								yTicks.push({{ probability }});
-
-								console.log(yTicks);
-
 								//drawing axis
 							  	var userMark = (-HEIGHT+MARGINS.top+MARGINS.bottom) * maxY;
 								console.log("usermark: " + userMark);
@@ -579,6 +542,39 @@
 					</script>
 				</div>
 			</div>
+			<div class="container">
+			<h2>What is Type-II Diabetes?</h2>
+
+			<p>Diabetes means your blood glucose, or blood sugar, levels are too high. With Type-II diabetes, the more common type, your body does not make or use insulin well. Insulin is a hormone that helps glucose get into your cells to give them energy. Without insulin, too much glucose stays in your blood. Over time, high blood glucose can lead to serious problems with your heart, eyes, kidneys, nerves, and gums and teeth.</p>
+
+			<p>You have a higher risk of type 2 diabetes if you are older, obese, have a family history of diabetes, or do not exercise. Having prediabetes also increases your risk. Prediabetes means that your blood sugar is higher than normal but not high enough to be called diabetes.</p>
+
+			<p>The symptoms of type 2 diabetes appear slowly. Some people do not notice symptoms at all. The symptoms can include:</p>
+
+			<ul>
+			<li>Being very thirsty</li>
+			<li>Urinating often</li>
+			<li>Feeling very hungry or tired</li>
+			<li>Losing weight without trying</li>
+			<li>Having sores that heal slowly</li>
+			<li>Having blurry eyesight</li>
+			</ul>
+
+			<p>Blood tests can show if you have diabetes. One type of test, the A1C, can also check on how you are managing your diabetes. Many people can manage their diabetes through healthy eating, physical activity, and blood glucose testing. Some people also need to take diabetes medicines.</p>
+
+			<p><i>NIH: National Institute of Diabetes and Digestive and Kidney Diseases</i></p>
+
+			<h2>Your Results</h2>
+			<p>You are received the following classification:</p>
+
+			<p align="center">[classification bar]</p>
+
+			<p>To view the your results relative to the United States population, expand the Glycohemoglobin and Albumin results below. Scroll to view the graphs conditioned by your age range, BMI range, gender, and diabetic status. The y-axis (vertical line) signifies the probability of the lab value specified on the x-axis (horizontal line). The black vertical indicator line marks where your lab result falls.</p>
+
+			<p>If you are concerned about about the results of this evaluation, please consult your primary physician for more information. (Disclaimer: These results are not to be used as a diagnostic tool.)</p>
+
+			<p>The machine-learning model has achieved a ##% classification accuracy based on the our data from the U.S. National Health and Nutrition Examination Survey.</p>
+		</div>
 		</div>
 		<nav class="navbar navbar-fixed-bottom" style="background-color: #77bbbb; color:black;">
 			<div class="container">
