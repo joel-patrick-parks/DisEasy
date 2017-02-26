@@ -264,6 +264,38 @@
 				<p>Diabetes means your blood glucose, or blood sugar, levels are too high. With Type-II diabetes, the more common type, your body does not make or use insulin well. Blood tests can show if you are at risk for diabetes.</p>
 				<p>Fill in the form above to receive your personalized Type-II Diabetes likelihood evaluation.</p>
 			</div>
+
+			<script src="https://d3js.org/d3.v3.min.js"></script>
+			<script>//Append a defs (for definition) element to your SVG
+			var defs = svg.append("defs");
+
+			//Append a linearGradient element to the defs and give it a unique id
+			var linearGradient = defs.append("linearGradient")
+			    .attr("id", "linear-gradient");
+
+			linearGradient
+			    .attr("x1", "0%")
+			    .attr("y1", "0%")
+			    .attr("x2", "100%")
+			    .attr("y2", "0%");
+
+			//Set the color for the start (0%)
+			linearGradient.append("stop") 
+			    .attr("offset", "0%")   
+			    .attr("stop-color", "#ffa474"); //light blue
+
+			//Set the color for the end (100%)
+			linearGradient.append("stop") 
+			    .attr("offset", "100%")   
+			    .attr("stop-color", "#8b0000"); //dark blue
+
+			svg.append("rect")
+				.attr("width", 300)
+				.attr("height", 20)
+				.style("fill", "url(#linear-gradient)");
+
+		    </script>
+		    
 		</div>
 		<nav class="navbar navbar-fixed-bottom" style="background-color: #77bbbb; color:black;">
 			<div class="container">
