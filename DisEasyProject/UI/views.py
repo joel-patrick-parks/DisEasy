@@ -87,3 +87,7 @@ def bmiRange(bmi):
 # about page
 def about(request):
     return render(request, 'UI/about.html')
+
+# login
+def login(request):
+    return render(request, 'UI/login.html')
