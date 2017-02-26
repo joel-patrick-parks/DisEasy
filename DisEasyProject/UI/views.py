@@ -5,7 +5,7 @@ from models import Visualization
 
 # display homepage
 def home(request):
-    return HttpResponseRedirect("/form");
+    return render(request, 'UI/home.html')
 
 # display form
 def form(request):
@@ -87,3 +87,7 @@ def bmiRange(bmi):
 # about page
 def about(request):
     return render(request, 'UI/about.html')
+
+# login
+def login(request):
+    return render(request, 'UI/login.html')

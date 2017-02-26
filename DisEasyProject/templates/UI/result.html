@@ -150,9 +150,9 @@
 		</div>
 			<div class="collapse navbar-collapse" id="navbarButton" style="">
 				<ul class="nav navbar-nav">
-					<li><a href="/form">Home</a></li>
-					<li><a href="/about">About</a></li> 
-					<li><a href="" style="color: black;">Log-In</a></li>
+					<li><a href="/form">HOME</a></li>
+					<li><a href="/about">ABOUT</a></li> 
+					<li><a href="/login" style="color: black;">LOG-IN</a></li>
 				</ul>
 			</div>
 		</nav>
@@ -163,14 +163,14 @@
 
 			<p align="center">[classification bar]</p>
 
-			<p>To view the your results relative to the United States population, expand the Glycohemoglobin and Albumin results below. Scroll to view the graphs conditioned by your age range, BMI range, gender, and diabetic status. The y-axis (vertical line) signifies the probability of the lab value specified on the x-axis (horizontal line). The black vertical indicator line marks where your lab result falls.</p>
+			<p>To view the your results relative to the United States population, expand the Glycohemoglobin and Albumin results below. Scroll to view the graphs conditioned by your age range, BMI range, gender, and diabetic status. On the graphs below, the y-axis (vertical line) signifies the probability of the lab value specified on the x-axis (horizontal line). The black vertical indicator line marks where your lab result falls.</p>
 
 			<p>If you are concerned about about the results of this evaluation, please consult your primary physician for more information. (Disclaimer: These results are not to be used as a diagnostic tool.)</p>
 
-			<p>The machine-learning model has achieved a ##% classification accuracy based on the our data from the U.S. National Health and Nutrition Examination Survey.</p>
+      <p>The machine-learning model has achieved a {{ probability }}% classification accuracy based on the our data from the U.S. National Health and Nutrition Examination Survey.</p>
 		</div>
-		<div class="container">
 			<ul class="nav nav-pills">
+        <li style="display:block;padding: 10px 15px;font-weight:bold">See your results relative to US population:</li>
 				<li>
 					<a data-toggle="pill" href="#fig">Albumin</a>
 				</li>

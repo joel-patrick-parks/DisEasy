@@ -84,10 +84,7 @@ $(document).ready(function() {
 	
 	if(isValid){
     console.log(jString);
-		$.post("/submit",
-		{
-			data: jString
-		},
+		$.post("/submit", jString,
 		function(data, status){
 			window.location = data;
 		});
