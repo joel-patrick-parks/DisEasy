@@ -166,8 +166,8 @@
 			<h2>Your Results</h2>
 			<p>You have received the following classification:</p>
 			<br>
-			<div class="container" width="300" height="30" >
-				<svg id="classification" width="300" height="30">
+			<div class="container" width="400" height="30" >
+				<svg id="classification" width="450" height="100">
 				</svg>
 			</div>
 			<br>
@@ -197,13 +197,82 @@
 			linearGradient.append("stop") 
 			    .attr("offset", "100%")   
 			    .attr("stop-color", "#71945A"); //dark blue
+
 			svg.append("rect")
 				.attr("width", 300)
-				.attr("height", 20)
+				.attr("height", 20)    
+		        .attr('y', 40)
+		        .attr('x', 75)
 				.style("fill", "url(#linear-gradient)")
+				.style('shape-rendering', 'crispEdges')
 				.style("stroke", "black")
 				.style("stroke-width", 3);
 
+			svg.append('text')
+		        .attr('x', (450/2))     
+		        .attr('y', 20)
+		        .attr('text-anchor', 'middle')
+		        .style('font-size', '24px')
+		        .style('font-family', 'Abel')
+				.style('font-weight', 'bold')
+		        .text('Classification');
+
+		    /*svg.append('text')
+		        .attr('x', (46))     
+		        .attr('y', 67)
+		        .attr('text-anchor', 'left')
+		        .style('font-size', '20px')
+		        .style('font-family', 'Abel')
+				.style('font-weight', 'bold')
+		        .text('0%');
+
+		    svg.append('text')
+		        .attr('x', (380))     
+		        .attr('y', 67)
+		        .attr('text-anchor', 'right')
+		        .style('font-size', '20px')
+		        .style('font-family', 'Abel')
+				.style('font-weight', 'bold')
+		        .text('100%');*/
+
+		    var xScale = d3.scale.linear().range([75, 375]).domain([0, 100]);
+		    var myResult = 90;
+		    var xTicks = xScale.ticks();
+			xTicks.push(myResult);
+			console.log("Classification ticks: " + xTicks);
+
+		    var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(-30).outerTickSize(0).orient('bottom');
+
+		    svg.append('g')
+		    	.attr('class', 'axis')
+		    	.attr('transform', 'translate(0, 60)')
+		    	.call(xAxis)
+		    	.selectAll('text')
+			    .style('text-anchor', 'end')
+			    .attr('dx', '-.8em')
+			    .attr('dy', '.15em')
+			    .attr('transform', 'rotate(-90)');
+
+			d3.selectAll('g.tick')
+                .filter(function(d){ return d== myResult;} )
+					//only ticks that returned true for the filter will be included
+					//in the rest of the method calls:
+					.select('line') //grab the tick line
+					.style('stroke', 'black')
+					.style('stroke-width',3)
+					.style('shape-rendering', 'crispEdges')
+					.style('opacity',1);
+
+			d3.selectAll('g.tick')
+                .filter(function(d){ return d== myResult;} )
+					//only ticks that returned true for the filter will be included
+					//in the rest of the method calls:
+					.select('text') //grab the tick line
+					.text('you')
+					.style('stroke','red');
+			d3.selectAll('g.tick')
+				.select('line')
+				.attr('transform', 'translate(0, 5)');
 		    </script>
 
 			<p>To view the your results relative to the United States population, expand the Glycohemoglobin and Albumin results below. Scroll to view the graphs conditioned by your age range, BMI range, gender, and diabetic status. On the graphs below, the y-axis (vertical line) signifies the probability of the lab value specified on the x-axis (horizontal line). The black vertical indicator line marks where your lab result falls.</p>
@@ -352,7 +421,15 @@
 									.style('stroke', 'black')
 									.style('stroke-width',3)
 									.style('shape-rendering', 'crispEdges')
-									.style('opacity',0.5);;
+									.style('opacity',0.5);
+
+								d3.selectAll('g.tick')
+				.filter(function(d){ return d== {{ albumin }} ;} )
+										//only ticks that returned true for the filter will be included
+										//in the rest of the method calls:
+										.select('text') //grab the tick line
+										.text('you')
+										.style('stroke','red');
 
 								//writting x axis label
 								vis.append('text')
@@ -457,7 +534,7 @@
 							//console.log(LineData);
 
 							//setting scales
-							var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4, 13.5]);
+							var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4.0, 13.5]);
 							var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
 
 							var maxY = 0;
@@ -543,6 +620,14 @@
 									.style('stroke-width',3)
 									.style('shape-rendering', 'crispEdges')
 									.style('opacity',0.5);
+
+								d3.selectAll('g.tick')
+				.filter(function(d){ return d== {{ glycohemoglobin }} ;} )
+										//only ticks that returned true for the filter will be included
+										//in the rest of the method calls:
+										.select('text') //grab the tick line
+										.text('you')
+										.style('stroke','red');
 
 								//writting x axis label
 								vis.append('text')
