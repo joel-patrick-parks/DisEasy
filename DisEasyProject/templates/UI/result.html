@@ -236,7 +236,7 @@
 		        .text('100%');*/
 
 		    var xScale = d3.scale.linear().range([75, 375]).domain([0, 100]);
-		    var myResult = 90;
+		    var myResult = {{ probability }};
 		    var xTicks = xScale.ticks();
 			xTicks.push(myResult);
 			console.log("Classification ticks: " + xTicks);
