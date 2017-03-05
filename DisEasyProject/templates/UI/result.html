@@ -85,7 +85,7 @@
   				font-family: Abel;
 			    font-weight: bold;
   			}
-  			.navbar 
+  			.navbar, .navbar-fixed-top
   			{
   				min-height:50px !important;
   				max-height:50px !important;
@@ -142,576 +142,582 @@
 	</head>
 
 	<body>
-	<div class="container">
-		<nav class="navbar navbar-inverse navbar-fixed-top" style = "background-color: #77bbbb; color:black;">
-		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarButton" aria-expanded="false" aria-controls="navbarButton" style="vertical-align: center">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href="#"><img src="{% static 'img/diseasylogo.png' %}" width="50" height="50" hspace = "20" alt=""></a>
-		<div id = "navbar" class= "navbar-header nav navbar-nav">
-		</div>
-			<div class="collapse navbar-collapse" id="navbarButton" style="">
-				<ul class="nav navbar-nav">
+	<div class="navbar navbar-inverse navbar-fixed-top" style = "background-color: #77bbbb; display:block">
+		<div class="navbar-static-top" style = "background-color: #77bbbb; color:black;">
+			<div class="container">
+				<a class="navbar-brand" href="#"><img src="{% static 'img/diseasylogo.png' %}" width="50" height="50" hspace="20" alt=""></a>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbarButton" aria-expanded="false" aria-controls="navbarButton">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			<div class= "navbar-header">
+			</div>
+			<div class="collapse navbar-collapse" id="navbarButton">
+				<ul class="nav navbar-nav navbar-left">
+	
 					<li><a href="/form">HOME</a></li>
 					<li><a href="/about">ABOUT</a></li> 
 					<li><a href="/login" style="color: black;">LOG-IN</a></li>
 				</ul>
 			</div>
-		</nav>
 		</div>
-		<div class="container">
-			<h2>Your Results</h2>
-			<p>You have received the following classification:</p>
-			<br>
-			<div class="container" width="400" height="30" >
-				<svg id="classification" width="450" height="100">
-				</svg>
-			</div>
-			<br>
-			<script>
+	</div>
+	</div>
+	<div class="container">
+		<h2>Your Results</h2>
+		<p>You have received the following classification:</p>
+		<br>
+		<div class="container" width="400" height="30" >
+			<svg id="classification" width="450" height="100">
+			</svg>
+		</div>
+		<br>
+		<script>
 
-			var svg = d3.select('#classification');
+		var svg = d3.select('#classification');
 
-			//Append a defs (for definition) element to your SVG
-			var defs = svg.append("defs");
+		//Append a defs (for definition) element to your SVG
+		var defs = svg.append("defs");
 
-			//Append a linearGradient element to the defs and give it a unique id
-			var linearGradient = defs.append("linearGradient")
-			    .attr("id", "linear-gradient");
+		//Append a linearGradient element to the defs and give it a unique id
+		var linearGradient = defs.append("linearGradient")
+		    .attr("id", "linear-gradient");
 
-			linearGradient
-			    .attr("x1", "0%")
-			    .attr("y1", "0%")
-			    .attr("x2", "100%")
-			    .attr("y2", "0%");
+		linearGradient
+		    .attr("x1", "0%")
+		    .attr("y1", "0%")
+		    .attr("x2", "100%")
+		    .attr("y2", "0%");
 
-			//Set the color for the start (0%)
-			linearGradient.append("stop") 
-			    .attr("offset", "0%")   
-			    .attr("stop-color", "#ffffff"); //light blue
+		//Set the color for the start (0%)
+		linearGradient.append("stop") 
+		    .attr("offset", "0%")   
+		    .attr("stop-color", "#ffffff"); //light blue
 
-			//Set the color for the end (100%)
-			linearGradient.append("stop") 
-			    .attr("offset", "100%")   
-			    .attr("stop-color", "#71945A"); //dark blue
+		//Set the color for the end (100%)
+		linearGradient.append("stop") 
+		    .attr("offset", "100%")   
+		    .attr("stop-color", "#71945A"); //dark blue
 
-			svg.append("rect")
-				.attr("width", 300)
-				.attr("height", 20)    
-		        .attr('y', 40)
-		        .attr('x', 75)
-				.style("fill", "url(#linear-gradient)")
+		svg.append("rect")
+			.attr("width", 300)
+			.attr("height", 20)    
+	        .attr('y', 40)
+	        .attr('x', 75)
+			.style("fill", "url(#linear-gradient)")
+			.style('shape-rendering', 'crispEdges')
+			.style("stroke", "black")
+			.style("stroke-width", 3);
+
+		svg.append('text')
+	        .attr('x', (450/2))     
+	        .attr('y', 20)
+	        .attr('text-anchor', 'middle')
+	        .style('font-size', '24px')
+	        .style('font-family', 'Abel')
+			.style('font-weight', 'bold')
+	        .text('Classification');
+
+	    /*svg.append('text')
+	        .attr('x', (46))     
+	        .attr('y', 67)
+	        .attr('text-anchor', 'left')
+	        .style('font-size', '20px')
+	        .style('font-family', 'Abel')
+			.style('font-weight', 'bold')
+	        .text('0%');
+
+	    svg.append('text')
+	        .attr('x', (380))     
+	        .attr('y', 67)
+	        .attr('text-anchor', 'right')
+	        .style('font-size', '20px')
+	        .style('font-family', 'Abel')
+			.style('font-weight', 'bold')
+	        .text('100%');*/
+
+	    var xScale = d3.scale.linear().range([75, 375]).domain([0, 100]);
+	    var myResult = {{ probability }};
+	    var xTicks = xScale.ticks();
+		xTicks.push(myResult);
+		console.log("Classification ticks: " + xTicks);
+
+	    var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(-30).outerTickSize(0).orient('bottom');
+
+	    svg.append('g')
+	    	.attr('class', 'axis')
+	    	.attr('transform', 'translate(0, 60)')
+	    	.call(xAxis)
+	    	.selectAll('text')
+		    .style('text-anchor', 'end')
+		    .attr('dx', '-.8em')
+		    .attr('dy', '.15em')
+		    .attr('transform', 'rotate(-90)');
+
+		d3.selectAll('g.tick')
+            .filter(function(d){ return d== myResult;} )
+				//only ticks that returned true for the filter will be included
+				//in the rest of the method calls:
+				.select('line') //grab the tick line
+				.style('stroke', 'black')
+				.style('stroke-width',3)
 				.style('shape-rendering', 'crispEdges')
-				.style("stroke", "black")
-				.style("stroke-width", 3);
+				.style('opacity',1);
 
-			svg.append('text')
-		        .attr('x', (450/2))     
-		        .attr('y', 20)
-		        .attr('text-anchor', 'middle')
-		        .style('font-size', '24px')
-		        .style('font-family', 'Abel')
-				.style('font-weight', 'bold')
-		        .text('Classification');
+		d3.selectAll('g.tick')
+            .filter(function(d){ return d== myResult;} )
+				//only ticks that returned true for the filter will be included
+				//in the rest of the method calls:
+				.select('text') //grab the tick line
+				.text('you')
+				.style('stroke','red');
+		d3.selectAll('g.tick')
+			.select('line')
+			.attr('transform', 'translate(0, 5)');
+	    </script>
 
-		    /*svg.append('text')
-		        .attr('x', (46))     
-		        .attr('y', 67)
-		        .attr('text-anchor', 'left')
-		        .style('font-size', '20px')
-		        .style('font-family', 'Abel')
-				.style('font-weight', 'bold')
-		        .text('0%');
+		<p>To view the your results relative to the United States population, expand the Glycohemoglobin and Albumin results below. Scroll to view the graphs conditioned by your age range, BMI range, gender, and diabetic status. On the graphs below, the y-axis (vertical line) signifies the probability of the lab value specified on the x-axis (horizontal line). The black vertical indicator line marks where your lab result falls.</p>
 
-		    svg.append('text')
-		        .attr('x', (380))     
-		        .attr('y', 67)
-		        .attr('text-anchor', 'right')
-		        .style('font-size', '20px')
-		        .style('font-family', 'Abel')
-				.style('font-weight', 'bold')
-		        .text('100%');*/
+		<p>If you are concerned about about the results of this evaluation, please consult your primary physician for more information. (Disclaimer: These results are not to be used as a diagnostic tool.)</p>
 
-		    var xScale = d3.scale.linear().range([75, 375]).domain([0, 100]);
-		    var myResult = {{ probability }};
-		    var xTicks = xScale.ticks();
-			xTicks.push(myResult);
-			console.log("Classification ticks: " + xTicks);
-
-		    var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(-30).outerTickSize(0).orient('bottom');
-
-		    svg.append('g')
-		    	.attr('class', 'axis')
-		    	.attr('transform', 'translate(0, 60)')
-		    	.call(xAxis)
-		    	.selectAll('text')
-			    .style('text-anchor', 'end')
-			    .attr('dx', '-.8em')
-			    .attr('dy', '.15em')
-			    .attr('transform', 'rotate(-90)');
-
-			d3.selectAll('g.tick')
-                .filter(function(d){ return d== myResult;} )
-					//only ticks that returned true for the filter will be included
-					//in the rest of the method calls:
-					.select('line') //grab the tick line
-					.style('stroke', 'black')
-					.style('stroke-width',3)
-					.style('shape-rendering', 'crispEdges')
-					.style('opacity',1);
-
-			d3.selectAll('g.tick')
-                .filter(function(d){ return d== myResult;} )
-					//only ticks that returned true for the filter will be included
-					//in the rest of the method calls:
-					.select('text') //grab the tick line
-					.text('you')
-					.style('stroke','red');
-			d3.selectAll('g.tick')
-				.select('line')
-				.attr('transform', 'translate(0, 5)');
-		    </script>
-
-			<p>To view the your results relative to the United States population, expand the Glycohemoglobin and Albumin results below. Scroll to view the graphs conditioned by your age range, BMI range, gender, and diabetic status. On the graphs below, the y-axis (vertical line) signifies the probability of the lab value specified on the x-axis (horizontal line). The black vertical indicator line marks where your lab result falls.</p>
-
-			<p>If you are concerned about about the results of this evaluation, please consult your primary physician for more information. (Disclaimer: These results are not to be used as a diagnostic tool.)</p>
-
-      <p>The machine-learning model has achieved a {{ probability }}% classification accuracy based on the our data from the U.S. National Health and Nutrition Examination Survey.</p>
-		</div>
-			<ul class="nav nav-pills">
-        <li style="display:block;padding: 10px 15px;font-weight:bold">See your results relative to US population:</li>
-				<li>
-					<a data-toggle="pill" href="#fig">Albumin</a>
-				</li>
-				<li>
-					<a data-toggle="pill" href="#supp">Glycohemoglobin</a>
-				</li> 
-			</ul>
-			<div class="tab-content">
-				<div id="fig" class="tab-pane fade in">
-					<h2>Albumin</h2> 
-					<h4>Blood test that measures the amount of albumin protein that is present in the blood plasma</h4>
-					<div class="container">
-					<svg id="albuVisAll" width="1000" height="500"></svg>
-					</div>
-					<br>
-					<div class="container">
-					<svg id="albuVisAge" width="1000" height="500"></svg>
-					</div>
-					<br>
-					<div class="container">
-					<svg id="albuVisGend" width="1000" height="500"></svg>
-					</div>
-					<br>
-					<div class="container">
-					<svg id="albuVisBMI" width="1000" height="500"></svg>
-					</div>
-					<br>
-					<div class="container">
-					<svg id="albuVisDiab" width="1000" height="500"></svg>
-					</div>
-					<br>
-					<div class="container">
-					<svg id="albuVisNoDiab" width="1000" height="500"></svg>
-					</div>
-					<br>
-					<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
-					<script>
-						//dimensions for svg elements
-						WIDTH = 1000,
-							HEIGHT = 500,
-							MARGINS = {
-								top: 50,
-								right: 20,
-								bottom: 50,
-								left: 50
-							};
-						//data
-						{% for visualization in visualizations %}
-
-       						var LineData = {{ visualization.as_json|safe }};
-							//console.log(LineData);
-
-							//setting scales
-							var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([2.5, 5.5]);
-							var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
-
-							var vis;
-							var maxY = 0;
-							var IV = LineData.IV;
-							if(IV == "Albumin")
-							{
-								//console.log("Length of Data array: " + LineData.Data.length);
-								var myValues = [];
-								for(i = 0; i < LineData.Data.length; i++)
-								{
-									myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]});
-									if(maxY < LineData.Data[i][1])
-										maxY = LineData.Data[i][1];
-
-								}
-							
-								console.log("Max Y value = " + maxY);
-								//svg selection
-								if(LineData.Feature.Type == "All")
-								{
-									vis = d3.select("#albuVisAll");
-								}
-								else if(LineData.Feature.Type == "Age")
-								{
-									vis = d3.select("#albuVisAge");
-								}
-								else if(LineData.Feature.Type == "Gender")
-								{
-									vis = d3.select("#albuVisGend");
-								}
-								else if(LineData.Feature.Type == "BMI")
-								{
-									vis = d3.select("#albuVisBMI");
-								}
-								else if(LineData.Feature.Type == "Diabetic")
-								{
-									if(LineData.Feature.Value == "True")
-									{
-										vis = d3.select("#albuVisDiab");
-									}
-									if(LineData.Feature.Value == "False")
-									{
-										vis = d3.select("#albuVisNoDiab");
-									}
-								}
-
-								var xTicks = xScale.ticks();
-								xTicks.push({{ albumin  }});
-
-								console.log(xTicks);
-
-
-								//drawing axis
-
-								var userMark = (-HEIGHT+MARGINS.top+MARGINS.bottom)*maxY;
-								console.log("usermark: " + userMark);
-							  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
-								var yAxis = d3.svg.axis().scale(yScale).orient("left");
-
-							  	vis.append('g')
-							    	.attr('class', 'axis')
-							    	.attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
-							    	.call(xAxis)
-							    	.selectAll('text')
-								    .style('text-anchor', 'end')
-								    .attr('dx', '-.8em')
-								    .attr('dy', '.15em')
-								    .attr('transform', 'rotate(-65)');
-
-							  	vis.append('g')
-								    .attr('class', 'axis')
-								    .attr('transform', 'translate(' + (MARGINS.left) + ',' + (MARGINS.top - MARGINS.bottom) + ')')
-								    .call(yAxis);
-
-								//add tick for user value
-								d3.selectAll('g.tick')
-                .filter(function(d){ return d=={{ albumin }} ;} )
-									//only ticks that returned true for the filter will be included
-									//in the rest of the method calls:
-									.select('line') //grab the tick line
-									.style('stroke', 'black')
-									.style('stroke-width',3)
-									.style('shape-rendering', 'crispEdges')
-									.style('opacity',0.5);
-
-								d3.selectAll('g.tick')
-				.filter(function(d){ return d== {{ albumin }} ;} )
-										//only ticks that returned true for the filter will be included
-										//in the rest of the method calls:
-										.select('text') //grab the tick line
-										.text('you')
-										.style('stroke','red');
-
-								//writting x axis label
-								vis.append('text')
-							    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
-							    	.attr('y', -5)
-							    	.style('text-anchor', 'middle')
-							    	.style('font-family', 'Abel')
-			    					.style('font-weight', 'bold')
-			    					.style('font-size', '20px')
-							    	.text(IV + ' Value');
-
-								//writting y axis label
-								vis.append('text')
-							        .attr('transform', 'rotate(-90)')
-							        .attr('y', -5)
-							        .attr('x',0 - (HEIGHT / 2))
-							        .attr('dy', '1em')
-							        .style('text-anchor', 'middle')
-							        .style('font-family', 'Abel')
-			    					.style('font-weight', 'bold')
-			    					.style('font-size', '20px')
-							        .text('Probability');
-
-								//drawing data line
-							    var lineFunc = d3.svg.line()
-							    	.x(function(d)
-							    	{
-							    		return xScale(d.value);
-							    	})
-							    	.y(function(d)
-							    	{
-							    		return yScale(d.percentage);
-							    	})
-							    	.interpolate("cardinal")
-							    	.tension(0.6);
-
-							    vis.append('path')
-							    	.attr('stroke', "red")
-							    	.attr('opacity', 0.6)
-							    	.attr('stroke-width', 4)
-							    	.attr('fill', 'none')
-							    	.attr('d', lineFunc(myValues));
-							    console.log("Read data for: " + LineData.Feature.Type + " " + LineData.Feature.Value);
-
-								//writting Title
-							    vis.append('text')
-							        .attr('x', (WIDTH / 2))     
-							        .attr('y', 0 + (MARGINS.top / 2))
-							        .attr('text-anchor', 'middle')
-							        .style('font-size', '24px')
-							        .style('font-family', 'Abel')
-			    					.style('font-weight', 'bold')
-							        .text(IV + ' vs ' + LineData.Feature.Type + ' ' + LineData.Feature.Value);
-							}
-							
-						{% endfor %}
-
-					</script>
-				</div>
-				<div id="supp" class="tab-pane fade">
-					<h2>GLYCOHEMOGLOBIN</h2> 
-					<h4>Blood test that measures the amount of glucose attached to the hemoglobin in the red blood cells and how thick the coating of glucose has been for the past three months</h4>
-					<div class="container">
-					<svg id="glycoVisAll" width="1000" height="500"></svg>
-					</div>
-					<br>
-					<div class="container">
-					<svg id="glycoVisAge" width="1000" height="500"></svg>
-					</div>
-					<br>
-					<div class="container">
-					<svg id="glycoVisGend" width="1000" height="500"></svg>
-					</div>
-					<br>
-					<div class="container">
-					<svg id="glycoVisBMI" width="1000" height="500"></svg>
-					</div>
-					<br>
-					<div class="container">
-					<svg id="glycoVisDiab" width="1000" height="500"></svg>
-					</div>
-					<br>
-					<div class="container">
-					<svg id="glycoVisNoDiab" width="1000" height="500"></svg>
-					</div>
-					<br>
-					<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
-					<script>
-						//Dimensions for svg elements
-						WIDTH = 1000,
-						HEIGHT = 500,
-						MARGINS = {
-							top: 50,
-							right: 20,
-							bottom: 50,
-							left: 50
-						};
-						//data
-						{% for visualization in visualizations %}
-
-							var LineData = {{ visualization.as_json|safe }};
-							//console.log(LineData);
-
-							//setting scales
-							var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4.0, 13.5]);
-							var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
-
-							var maxY = 0;
-							var vis;
-							var IV = LineData.IV;
-								
-							if(IV == "Glycohemoglobin")
-							{
-								var myValues = []
-								for(i = 0; i < LineData.Data.length; i++)
-								{
-									myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]})
-									if(maxY < LineData.Data[i][1])
-										maxY = LineData.Data[i][1];
-
-								}
-								if(LineData.Feature.Type == "All")
-								{
-									vis = d3.select("#glycoVisAll");
-								}
-								else if(LineData.Feature.Type == "Age")
-								{
-									vis = d3.select("#glycoVisAge");
-								}
-								else if(LineData.Feature.Type == "Gender")
-								{
-									vis = d3.select("#glycoVisGend");
-								}
-								else if(LineData.Feature.Type == "BMI")
-								{
-									vis = d3.select("#glycoVisBMI");
-								}
-								else if(LineData.Feature.Type == "Diabetic")
-								{
-									if(LineData.Feature.Value == "True")
-									{
-										vis = d3.select("#glycoVisDiab");
-									}
-									if(LineData.Feature.Value == "False")
-									{
-										vis = d3.select("#glycoVisNoDiab");
-									}
-								}
-
-								var xTicks = xScale.ticks();
-								xTicks.push({{ glycohemoglobin  }});
-
-								console.log(xTicks);
-
-								var yTicks = yScale.ticks();
-								yTicks.push({{ probability }});
-
-								console.log(yTicks);
-
-								//drawing axis
-							  	var userMark = (-HEIGHT+MARGINS.top+MARGINS.bottom) * maxY;
-								console.log("usermark: " + userMark);
-							  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
-								var yAxis = d3.svg.axis().scale(yScale).orient("left");
-
-							  vis.append('svg:g')
-							    .attr('class', 'axis')
-							    .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
-							    .call(xAxis)
-							    .selectAll('text')
-							    .style('text-anchor', 'end')
-							    .attr('dx', '-.8em')
-							    .attr('dy', '.15em')
-							    .attr('transform', 'rotate(-65)');
-
-							  vis.append('svg:g')
-							    .attr('class', 'axis')
-								.attr('transform', 'translate(' + (MARGINS.left) + ',' + (MARGINS.top - MARGINS.bottom) + ')')
-								.call(yAxis);
-
-								//add tick for user value
-								d3.selectAll('g.tick')
-                .filter(function(d){ return d=={{ glycohemoglobin }};} )
-									//only ticks that returned true for the filter will be included
-									//in the rest of the method calls:
-									.select('line') //grab the tick line
-									.style('stroke', 'black')
-									.style('stroke-width',3)
-									.style('shape-rendering', 'crispEdges')
-									.style('opacity',0.5);
-
-								d3.selectAll('g.tick')
-				.filter(function(d){ return d== {{ glycohemoglobin }} ;} )
-										//only ticks that returned true for the filter will be included
-										//in the rest of the method calls:
-										.select('text') //grab the tick line
-										.text('you')
-										.style('stroke','red');
-
-								//writting x axis label
-								vis.append('text')
-							    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
-							    	.attr('y', -5)
-							    	.style('text-anchor', 'middle')
-							    	.style('font-family', 'Abel')
-			    					.style('font-weight', 'bold')
-			    					.style('font-size', '20px')
-							    	.text(IV + ' Value');
-
-								//writting y axis label
-								vis.append('text')
-							        .attr('transform', 'rotate(-90)')
-							        .attr('y', -5)
-							        .attr('x',0 - (HEIGHT / 2))
-							        .attr('dy', '1em')
-							        .style('text-anchor', 'middle')
-							        .style('font-family', 'Abel')
-			    					.style('font-weight', 'bold')
-			    					.style('font-size', '20px')
-							        .text('Probability');
-
-								//drawing data line
-							    var lineFunc = d3.svg.line()
-							    	.x(function(d)
-							    	{
-							    		return xScale(d.value);
-							    	})
-							    	.y(function(d)
-							    	{
-							    		return yScale(d.percentage);
-							    	})
-							    	.interpolate("cardinal")
-							    	.tension(0.6);
-
-							    vis.append('path')
-							    	.attr('stroke', "red")
-							    	.attr('stroke-width', 4)
-							    	.attr('opacity', 0.6)
-							    	.attr('fill', 'none')
-							    	.attr('d', lineFunc(myValues));
-							    console.log("Read data for: " + LineData.Feature.Type + " " + LineData.Feature.Value);
-
-
-							    //writting Title
-							    vis.append('text')
-							        .attr('x', (WIDTH / 2))     
-							        .attr('y', 0 + (MARGINS.top / 2))
-							        .attr('text-anchor', 'middle')
-							        .style('font-size', '24px')
-							        .style('font-family', 'Abel')
-			    					.style('font-weight', 'bold')
-							        .text(IV + ' vs ' + LineData.Feature.Type + ' ' + LineData.Feature.Value);
-							}
-
-						{% endfor %}
-
-					</script>
-				</div>
-			</div>
+  		<p>The machine-learning model has achieved a {{ probability }}% classification accuracy based on the our data from the U.S. National Health and Nutrition Examination Survey.</p>
+	</div>
+	<ul class="nav nav-pills">
+    	<li style="display:block;padding: 10px 15px;font-weight:bold">See your results relative to US population:
+    	</li>
+		<li>
+			<a data-toggle="pill" href="#fig">Albumin</a>
+		</li>
+		<li>
+			<a data-toggle="pill" href="#supp">Glycohemoglobin</a>
+		</li> 
+	</ul>
+	<div class="tab-content">
+		<div id="fig" class="tab-pane fade in">
+			<h2>Albumin</h2> 
+			<h4>Blood test that measures the amount of albumin protein that is present in the blood plasma</h4>
 			<div class="container">
-			<h2>What is Type-II Diabetes?</h2>
+				<svg id="albuVisAll" width="1000" height="500"></svg>
+			</div>
+			<br>
+			<div class="container">
+				<svg id="albuVisAge" width="1000" height="500"></svg>
+			</div>
+			<br>
+			<div class="container">
+				<svg id="albuVisGend" width="1000" height="500"></svg>
+			</div>
+			<br>
+			<div class="container">
+				<svg id="albuVisBMI" width="1000" height="500"></svg>
+			</div>
+			<br>
+			<div class="container">
+				<svg id="albuVisDiab" width="1000" height="500"></svg>
+			</div>
+			<br>
+			<div class="container">
+				<svg id="albuVisNoDiab" width="1000" height="500"></svg>
+			</div>
+			<br>
+			<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
+			<script>
+				//dimensions for svg elements
+				WIDTH = 1000,
+					HEIGHT = 500,
+					MARGINS = {
+						top: 50,
+						right: 20,
+						bottom: 50,
+						left: 50
+					};
+				//data
+				{% for visualization in visualizations %}
 
-			<p>Diabetes means your blood glucose, or blood sugar, levels are too high. With Type-II diabetes, the more common type, your body does not make or use insulin well. Insulin is a hormone that helps glucose get into your cells to give them energy. Without insulin, too much glucose stays in your blood. Over time, high blood glucose can lead to serious problems with your heart, eyes, kidneys, nerves, and gums and teeth.</p>
+						var LineData = {{ visualization.as_json|safe }};
+					//console.log(LineData);
 
-			<p>You have a higher risk of type 2 diabetes if you are older, obese, have a family history of diabetes, or do not exercise. Having prediabetes also increases your risk. Prediabetes means that your blood sugar is higher than normal but not high enough to be called diabetes.</p>
+					//setting scales
+					var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([2.5, 5.5]);
+					var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
 
-			<p>The symptoms of type 2 diabetes appear slowly. Some people do not notice symptoms at all. The symptoms can include:</p>
+					var vis;
+					var maxY = 0;
+					var IV = LineData.IV;
+					if(IV == "Albumin")
+					{
+						//console.log("Length of Data array: " + LineData.Data.length);
+						var myValues = [];
+						for(i = 0; i < LineData.Data.length; i++)
+						{
+							myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]});
+							if(maxY < LineData.Data[i][1])
+								maxY = LineData.Data[i][1];
 
-			<ul>
+						}
+					
+						console.log("Max Y value = " + maxY);
+						//svg selection
+						if(LineData.Feature.Type == "All")
+						{
+							vis = d3.select("#albuVisAll");
+						}
+						else if(LineData.Feature.Type == "Age")
+						{
+							vis = d3.select("#albuVisAge");
+						}
+						else if(LineData.Feature.Type == "Gender")
+						{
+							vis = d3.select("#albuVisGend");
+						}
+						else if(LineData.Feature.Type == "BMI")
+						{
+							vis = d3.select("#albuVisBMI");
+						}
+						else if(LineData.Feature.Type == "Diabetic")
+						{
+							if(LineData.Feature.Value == "True")
+							{
+								vis = d3.select("#albuVisDiab");
+							}
+							if(LineData.Feature.Value == "False")
+							{
+								vis = d3.select("#albuVisNoDiab");
+							}
+						}
+
+						var xTicks = xScale.ticks();
+						xTicks.push({{ albumin  }});
+
+						console.log(xTicks);
+
+
+						//drawing axis
+
+						var userMark = (-HEIGHT+MARGINS.top+MARGINS.bottom)*maxY;
+						console.log("usermark: " + userMark);
+					  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
+						var yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+					  	vis.append('g')
+					    	.attr('class', 'axis')
+					    	.attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
+					    	.call(xAxis)
+					    	.selectAll('text')
+						    .style('text-anchor', 'end')
+						    .attr('dx', '-.8em')
+						    .attr('dy', '.15em')
+						    .attr('transform', 'rotate(-65)');
+
+					  	vis.append('g')
+						    .attr('class', 'axis')
+						    .attr('transform', 'translate(' + (MARGINS.left) + ',' + (MARGINS.top - MARGINS.bottom) + ')')
+						    .call(yAxis);
+
+						//add tick for user value
+						d3.selectAll('g.tick')
+        .filter(function(d){ return d=={{ albumin }} ;} )
+							//only ticks that returned true for the filter will be included
+							//in the rest of the method calls:
+							.select('line') //grab the tick line
+							.style('stroke', 'black')
+							.style('stroke-width',3)
+							.style('shape-rendering', 'crispEdges')
+							.style('opacity',0.5);
+
+						d3.selectAll('g.tick')
+		.filter(function(d){ return d== {{ albumin }} ;} )
+								//only ticks that returned true for the filter will be included
+								//in the rest of the method calls:
+								.select('text') //grab the tick line
+								.text('you')
+								.style('stroke','red');
+
+						//writting x axis label
+						vis.append('text')
+					    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
+					    	.attr('y', -5)
+					    	.style('text-anchor', 'middle')
+					    	.style('font-family', 'Abel')
+	    					.style('font-weight', 'bold')
+	    					.style('font-size', '20px')
+					    	.text(IV + ' Value');
+
+						//writting y axis label
+						vis.append('text')
+					        .attr('transform', 'rotate(-90)')
+					        .attr('y', -5)
+					        .attr('x',0 - (HEIGHT / 2))
+					        .attr('dy', '1em')
+					        .style('text-anchor', 'middle')
+					        .style('font-family', 'Abel')
+	    					.style('font-weight', 'bold')
+	    					.style('font-size', '20px')
+					        .text('Probability');
+
+						//drawing data line
+					    var lineFunc = d3.svg.line()
+					    	.x(function(d)
+					    	{
+					    		return xScale(d.value);
+					    	})
+					    	.y(function(d)
+					    	{
+					    		return yScale(d.percentage);
+					    	})
+					    	.interpolate("cardinal")
+					    	.tension(0.6);
+
+					    vis.append('path')
+					    	.attr('stroke', "red")
+					    	.attr('opacity', 0.6)
+					    	.attr('stroke-width', 4)
+					    	.attr('fill', 'none')
+					    	.attr('d', lineFunc(myValues));
+					    console.log("Read data for: " + LineData.Feature.Type + " " + LineData.Feature.Value);
+
+						//writting Title
+					    vis.append('text')
+					        .attr('x', (WIDTH / 2))     
+					        .attr('y', 0 + (MARGINS.top / 2))
+					        .attr('text-anchor', 'middle')
+					        .style('font-size', '24px')
+					        .style('font-family', 'Abel')
+	    					.style('font-weight', 'bold')
+					        .text(IV + ' vs ' + LineData.Feature.Type + ' ' + LineData.Feature.Value);
+					}
+					
+				{% endfor %}
+
+			</script>
+		</div>
+		<div id="supp" class="tab-pane fade">
+			<h2>GLYCOHEMOGLOBIN</h2> 
+			<h4>Blood test that measures the amount of glucose attached to the hemoglobin in the red blood cells and how thick the coating of glucose has been for the past three months</h4>
+			<div class="container">
+			<svg id="glycoVisAll" width="1000" height="500"></svg>
+			</div>
+			<br>
+			<div class="container">
+			<svg id="glycoVisAge" width="1000" height="500"></svg>
+			</div>
+			<br>
+			<div class="container">
+			<svg id="glycoVisGend" width="1000" height="500"></svg>
+			</div>
+			<br>
+			<div class="container">
+			<svg id="glycoVisBMI" width="1000" height="500"></svg>
+			</div>
+			<br>
+			<div class="container">
+			<svg id="glycoVisDiab" width="1000" height="500"></svg>
+			</div>
+			<br>
+			<div class="container">
+			<svg id="glycoVisNoDiab" width="1000" height="500"></svg>
+			</div>
+			<br>
+			<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
+			<script>
+				//Dimensions for svg elements
+				WIDTH = 1000,
+				HEIGHT = 500,
+				MARGINS = {
+					top: 50,
+					right: 20,
+					bottom: 50,
+					left: 50
+				};
+				//data
+				{% for visualization in visualizations %}
+
+					var LineData = {{ visualization.as_json|safe }};
+					//console.log(LineData);
+
+					//setting scales
+					var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4.0, 13.5]);
+					var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
+
+					var maxY = 0;
+					var vis;
+					var IV = LineData.IV;
+						
+					if(IV == "Glycohemoglobin")
+					{
+						var myValues = []
+						for(i = 0; i < LineData.Data.length; i++)
+						{
+							myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]})
+							if(maxY < LineData.Data[i][1])
+								maxY = LineData.Data[i][1];
+
+						}
+						if(LineData.Feature.Type == "All")
+						{
+							vis = d3.select("#glycoVisAll");
+						}
+						else if(LineData.Feature.Type == "Age")
+						{
+							vis = d3.select("#glycoVisAge");
+						}
+						else if(LineData.Feature.Type == "Gender")
+						{
+							vis = d3.select("#glycoVisGend");
+						}
+						else if(LineData.Feature.Type == "BMI")
+						{
+							vis = d3.select("#glycoVisBMI");
+						}
+						else if(LineData.Feature.Type == "Diabetic")
+						{
+							if(LineData.Feature.Value == "True")
+							{
+								vis = d3.select("#glycoVisDiab");
+							}
+							if(LineData.Feature.Value == "False")
+							{
+								vis = d3.select("#glycoVisNoDiab");
+							}
+						}
+
+						var xTicks = xScale.ticks();
+						xTicks.push({{ glycohemoglobin  }});
+
+						console.log(xTicks);
+
+						var yTicks = yScale.ticks();
+						yTicks.push({{ probability }});
+
+						console.log(yTicks);
+
+						//drawing axis
+					  	var userMark = (-HEIGHT+MARGINS.top+MARGINS.bottom) * maxY;
+						console.log("usermark: " + userMark);
+					  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
+						var yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+					  vis.append('svg:g')
+					    .attr('class', 'axis')
+					    .attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
+					    .call(xAxis)
+					    .selectAll('text')
+					    .style('text-anchor', 'end')
+					    .attr('dx', '-.8em')
+					    .attr('dy', '.15em')
+					    .attr('transform', 'rotate(-65)');
+
+					  vis.append('svg:g')
+					    .attr('class', 'axis')
+						.attr('transform', 'translate(' + (MARGINS.left) + ',' + (MARGINS.top - MARGINS.bottom) + ')')
+						.call(yAxis);
+
+						//add tick for user value
+						d3.selectAll('g.tick')
+        .filter(function(d){ return d=={{ glycohemoglobin }};} )
+							//only ticks that returned true for the filter will be included
+							//in the rest of the method calls:
+							.select('line') //grab the tick line
+							.style('stroke', 'black')
+							.style('stroke-width',3)
+							.style('shape-rendering', 'crispEdges')
+							.style('opacity',0.5);
+
+						d3.selectAll('g.tick')
+		.filter(function(d){ return d== {{ glycohemoglobin }} ;} )
+								//only ticks that returned true for the filter will be included
+								//in the rest of the method calls:
+								.select('text') //grab the tick line
+								.text('you')
+								.style('stroke','red');
+
+						//writting x axis label
+						vis.append('text')
+					    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
+					    	.attr('y', -5)
+					    	.style('text-anchor', 'middle')
+					    	.style('font-family', 'Abel')
+	    					.style('font-weight', 'bold')
+	    					.style('font-size', '20px')
+					    	.text(IV + ' Value');
+
+						//writting y axis label
+						vis.append('text')
+					        .attr('transform', 'rotate(-90)')
+					        .attr('y', -5)
+					        .attr('x',0 - (HEIGHT / 2))
+					        .attr('dy', '1em')
+					        .style('text-anchor', 'middle')
+					        .style('font-family', 'Abel')
+	    					.style('font-weight', 'bold')
+	    					.style('font-size', '20px')
+					        .text('Probability');
+
+						//drawing data line
+					    var lineFunc = d3.svg.line()
+					    	.x(function(d)
+					    	{
+					    		return xScale(d.value);
+					    	})
+					    	.y(function(d)
+					    	{
+					    		return yScale(d.percentage);
+					    	})
+					    	.interpolate("cardinal")
+					    	.tension(0.6);
+
+					    vis.append('path')
+					    	.attr('stroke', "red")
+					    	.attr('stroke-width', 4)
+					    	.attr('opacity', 0.6)
+					    	.attr('fill', 'none')
+					    	.attr('d', lineFunc(myValues));
+					    console.log("Read data for: " + LineData.Feature.Type + " " + LineData.Feature.Value);
+
+
+					    //writting Title
+					    vis.append('text')
+					        .attr('x', (WIDTH / 2))     
+					        .attr('y', 0 + (MARGINS.top / 2))
+					        .attr('text-anchor', 'middle')
+					        .style('font-size', '24px')
+					        .style('font-family', 'Abel')
+	    					.style('font-weight', 'bold')
+					        .text(IV + ' vs ' + LineData.Feature.Type + ' ' + LineData.Feature.Value);
+					}
+
+				{% endfor %}
+
+			</script>
+		</div>
+	</div>
+	<div class="container">
+		<h2>What is Type-II Diabetes?</h2>
+
+		<p>Diabetes means your blood glucose, or blood sugar, levels are too high. With Type-II diabetes, the more common type, your body does not make or use insulin well. Insulin is a hormone that helps glucose get into your cells to give them energy. Without insulin, too much glucose stays in your blood. Over time, high blood glucose can lead to serious problems with your heart, eyes, kidneys, nerves, and gums and teeth.</p>
+
+		<p>You have a higher risk of type 2 diabetes if you are older, obese, have a family history of diabetes, or do not exercise. Having prediabetes also increases your risk. Prediabetes means that your blood sugar is higher than normal but not high enough to be called diabetes.</p>
+
+		<p>The symptoms of type 2 diabetes appear slowly. Some people do not notice symptoms at all. The symptoms can include:</p>
+
+		<ul>
 			<li>Being very thirsty</li>
 			<li>Urinating often</li>
 			<li>Feeling very hungry or tired</li>
 			<li>Losing weight without trying</li>
 			<li>Having sores that heal slowly</li>
 			<li>Having blurry eyesight</li>
-			</ul>
+		</ul>
 
-			<p>Blood tests can show if you have diabetes. One type of test, the A1C, can also check on how you are managing your diabetes. Many people can manage their diabetes through healthy eating, physical activity, and blood glucose testing. Some people also need to take diabetes medicines.</p>
+		<p>Blood tests can show if you have diabetes. One type of test, the A1C, can also check on how you are managing your diabetes. Many people can manage their diabetes through healthy eating, physical activity, and blood glucose testing. Some people also need to take diabetes medicines.</p>
 
-			<p><i>NIH: National Institute of Diabetes and Digestive and Kidney Diseases</i></p>
-		</div>
-		</div>
+		<p>
+			<i>NIH: National Institute of Diabetes and Digestive and Kidney Diseases</i>
+		</p>
+	</div>
+	</div>
 		<nav class="navbar navbar-fixed-bottom" style="background-color: #77bbbb; color:black;">
 			<div class="container">
 				<p style="text-align: center; margin-top: 10px">DisEasy. All Rights Reserved &copy;</p>
