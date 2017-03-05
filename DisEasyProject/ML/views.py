@@ -94,12 +94,14 @@ def submit(request):
     result = mlp.predict_proba(np.array(normPoint).reshape(1,-1))[0][0]
     accuracy = mlp.score(X_test, y_test)
 
+    heightM = height / 100.;
+
     return HttpResponse("/result/%s-%s-%s-%s-%s-%s-%s" % (
         round(accuracy * 100, 2),
         round(result * 100, 2),
         round(age, 2),
         gender,
-        round(weight / height, 2),
+        round(weight / (heightM * heightM), 2),
         round(albumin, 2),
         round(gh ,2),
         ))
