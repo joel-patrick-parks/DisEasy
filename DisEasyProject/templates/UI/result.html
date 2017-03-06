@@ -56,6 +56,13 @@
 			    -webkit-font-smoothing: antialiased;
 			    font-size: 13px;
 			}
+			.legend
+			{
+				font-family: Abel;
+				font-size: 12px;
+			    font-weight: bold;
+			    text-anchor: left;
+			}
 			.nav > li > a:hover,.nav > li > a:focus
 			{
 	  			background-color: #88c4c4 !important;
@@ -299,6 +306,10 @@
 			<h2>Albumin</h2> 
 			<h4>Blood test that measures the amount of albumin protein that is present in the blood plasma</h4>
 			<div class="container">
+				<svg id="albuVisMulti" width="1000" height="500"></svg>
+			</div>
+			<br>
+			<div class="container">
 				<svg id="albuVisAll" width="1000" height="500"></svg>
 			</div>
 			<br>
@@ -334,6 +345,164 @@
 						left: 50
 					};
 				//data
+				var DataSet = [];
+				var DataValues = [];
+				var count = 0;
+				var maxY = 0;
+				{% for visualization in visualizations %}
+
+					var LineData = {{ visualization.as_json|safe }};
+
+					if(LineData.IV == "Albumin")
+					{
+						DataSet.push(LineData);
+						console.log(DataSet);
+					var myValues = [];
+						for(i = 0; i < LineData.Data.length; i++)
+						{
+							myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]});
+							if(maxY < LineData.Data[i][1])
+								maxY = LineData.Data[i][1];
+
+						}
+						DataSet[count].Data = myValues;
+						count++;
+					}
+				{% endfor %}
+
+				//console.log("my Dataset: " + DataSet);
+
+				var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([2.5, 5.5]);
+				var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
+
+				var xTicks = xScale.ticks();
+				xTicks.push({{ albumin  }});
+
+				//drawing axis
+
+				var userMark = (-HEIGHT+MARGINS.top+MARGINS.bottom)*maxY;
+				console.log("usermark: " + userMark);
+			  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
+				var yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+				var vis = d3.select("#albuVisMulti");
+
+				var lineFunc = d3.svg.line()
+					    	.x(function(d)
+					    	{
+					    		//console.log("value: " + d.value);
+					    		return xScale(d.value);
+					    	})
+					    	.y(function(d)
+					    	{
+					    		//console.log("percentage: " + d.percentage);
+					    		return yScale(d.percentage);
+					    	})
+					    	.interpolate("cardinal")
+					    	.tension(0.6);
+
+				vis.append('g')
+					    	.attr('class', 'axis')
+					    	.attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
+					    	.call(xAxis)
+					    	.selectAll('text')
+						    .style('text-anchor', 'end')
+						    .attr('dx', '-.8em')
+						    .attr('dy', '.15em')
+						    .attr('transform', 'rotate(-65)');
+
+					  	vis.append('g')
+						    .attr('class', 'axis')
+						    .attr('transform', 'translate(' + (MARGINS.left) + ',' + (MARGINS.top - MARGINS.bottom) + ')')
+						    .call(yAxis);
+
+						//add tick for user value
+						d3.selectAll('g.tick')
+        .filter(function(d){ return d=={{ albumin }} ;} )
+							//only ticks that returned true for the filter will be included
+							//in the rest of the method calls:
+							.select('line') //grab the tick line
+							.style('stroke', 'black')
+							.style('stroke-width',3)
+							.style('shape-rendering', 'crispEdges')
+							.style('opacity',0.5);
+
+						d3.selectAll('g.tick')
+		.filter(function(d){ return d== {{ albumin }} ;} )
+								//only ticks that returned true for the filter will be included
+								//in the rest of the method calls:
+								.select('text') //grab the tick line
+								.text('you')
+								.style('stroke','red');
+
+						//writting x axis label
+						vis.append('text')
+					    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
+					    	.attr('y', -5)
+					    	.style('text-anchor', 'middle')
+					    	.style('font-family', 'Abel')
+	    					.style('font-weight', 'bold')
+	    					.style('font-size', '20px')
+					    	.text('Albumin Value');
+
+						//writting y axis label
+						vis.append('text')
+					        .attr('transform', 'rotate(-90)')
+					        .attr('y', -5)
+					        .attr('x',0 - (HEIGHT / 2))
+					        .attr('dy', '1em')
+					        .style('text-anchor', 'middle')
+					        .style('font-family', 'Abel')
+	    					.style('font-weight', 'bold')
+	    					.style('font-size', '20px')
+					        .text('Probability');
+
+						var color = d3.scale.category10();
+						var legendSpace = HEIGHT/4/DataSet.length;
+
+						DataSet.forEach(function (d,i)
+						{
+							console.log(d.Feature.Value);
+							vis.append("path")
+								.attr("stroke", function() 
+								{
+		                			return d.color = color(d.Feature.Value);
+		                		})
+							    .attr('opacity', 0.6)
+							    .attr('stroke-width', 4)
+							    .attr('fill', 'none')
+							    .attr("id", 'Atag'+ d.Feature.Value.replace(/[\s.]+/g, '')) // assign ID **
+								.attr("d", lineFunc(d.Data));
+
+							vis.append("text")
+								.attr("x", WIDTH - MARGINS.right - MARGINS.left - 10)
+								.attr("y", (legendSpace/2) + i * legendSpace +MARGINS.top)
+								.attr("class", "legend")
+								 .attr("id", 'Atag'+ d.Feature.Value.replace(/[\s.]+/g, '') + "text") // assign ID ** 
+								.style("fill", function()
+								{
+									return d.color = color(d.Feature.Value);
+								})
+								.on("click", function()
+								{
+                				// Determine if current line is visible 
+                					var active   = d.active ? false : true,
+                					newOpacity = active ? 0 : 0.6,
+                					newTextColor = active ? "black" : color(d.Feature.Value);
+                				// Hide or show the elements based on the ID
+                					d3.select("#Atag"+d.Feature.Value.replace(/[\s.]+/g, ''))
+                    					.transition().duration(100)
+                    					.style("opacity", newOpacity);
+                    					d3.select("#Atag"+d.Feature.Value.replace(/[\s.]+/g, '')+"text")
+                    					.transition().duration(100)
+                    					.style("fill", newTextColor);
+                				// Update whether or not the elements are active
+                					d.active = active;
+                				})                            
+								.text(d.Feature.Type + ": " + d.Feature.Value);
+							})
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 				{% for visualization in visualizations %}
 
 						var LineData = {{ visualization.as_json|safe }};
@@ -358,7 +527,6 @@
 
 						}
 					
-						console.log("Max Y value = " + maxY);
 						//svg selection
 						if(LineData.Feature.Type == "All")
 						{
@@ -390,9 +558,6 @@
 
 						var xTicks = xScale.ticks();
 						xTicks.push({{ albumin  }});
-
-						console.log(xTicks);
-
 
 						//drawing axis
 
@@ -476,7 +641,6 @@
 					    	.attr('stroke-width', 4)
 					    	.attr('fill', 'none')
 					    	.attr('d', lineFunc(myValues));
-					    console.log("Read data for: " + LineData.Feature.Type + " " + LineData.Feature.Value);
 
 						//writting Title
 					    vis.append('text')
@@ -496,6 +660,10 @@
 		<div id="supp" class="tab-pane fade">
 			<h2>GLYCOHEMOGLOBIN</h2> 
 			<h4>Blood test that measures the amount of glucose attached to the hemoglobin in the red blood cells and how thick the coating of glucose has been for the past three months</h4>
+			<div class="container">
+			<svg id="glycoVisMulti" width="1000" height="500"></svg>
+			</div>
+			<br>
 			<div class="container">
 			<svg id="glycoVisAll" width="1000" height="500"></svg>
 			</div>
@@ -522,16 +690,166 @@
 			<br>
 			<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
 			<script>
-				//Dimensions for svg elements
-				WIDTH = 1000,
-				HEIGHT = 500,
-				MARGINS = {
-					top: 50,
-					right: 20,
-					bottom: 50,
-					left: 50
-				};
 				//data
+				var DataSet = [];
+				var DataValues = [];
+				var count = 0;
+				var maxY = 0;
+				{% for visualization in visualizations %}
+
+					var LineData = {{ visualization.as_json|safe }};
+
+					if(LineData.IV == "Glycohemoglobin")
+					{
+						DataSet.push(LineData);
+						console.log(DataSet);
+					var myValues = [];
+						for(i = 0; i < LineData.Data.length; i++)
+						{
+							myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]});
+							if(maxY < LineData.Data[i][1])
+								maxY = LineData.Data[i][1];
+
+						}
+						DataSet[count].Data = myValues;
+						count++;
+					}
+				{% endfor %}
+
+				//console.log("my Dataset: " + DataSet);
+
+				var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4.0, 13.5]);
+					var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
+
+				var xTicks = xScale.ticks();
+				xTicks.push({{ glycohemoglobin  }});
+
+				//drawing axis
+
+				var userMark = (-HEIGHT+MARGINS.top+MARGINS.bottom)*maxY;
+				console.log("usermark: " + userMark);
+			  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
+				var yAxis = d3.svg.axis().scale(yScale).orient("left");
+
+				var vis = d3.select("#glycoVisMulti");
+
+				var lineFunc = d3.svg.line()
+					    	.x(function(d)
+					    	{
+					    		//console.log("value: " + d.value);
+					    		return xScale(d.value);
+					    	})
+					    	.y(function(d)
+					    	{
+					    		//console.log("percentage: " + d.percentage);
+					    		return yScale(d.percentage);
+					    	})
+					    	.interpolate("cardinal")
+					    	.tension(0.6);
+
+				vis.append('g')
+					    	.attr('class', 'axis')
+					    	.attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
+					    	.call(xAxis)
+					    	.selectAll('text')
+						    .style('text-anchor', 'end')
+						    .attr('dx', '-.8em')
+						    .attr('dy', '.15em')
+						    .attr('transform', 'rotate(-65)');
+
+					  	vis.append('g')
+						    .attr('class', 'axis')
+						    .attr('transform', 'translate(' + (MARGINS.left) + ',' + (MARGINS.top - MARGINS.bottom) + ')')
+						    .call(yAxis);
+
+						//add tick for user value
+						d3.selectAll('g.tick')
+        .filter(function(d){ return d=={{ glycohemoglobin }} ;} )
+							//only ticks that returned true for the filter will be included
+							//in the rest of the method calls:
+							.select('line') //grab the tick line
+							.style('stroke', 'black')
+							.style('stroke-width',3)
+							.style('shape-rendering', 'crispEdges')
+							.style('opacity',0.5);
+
+						d3.selectAll('g.tick')
+		.filter(function(d){ return d== {{ glycohemoglobin }} ;} )
+								//only ticks that returned true for the filter will be included
+								//in the rest of the method calls:
+								.select('text') //grab the tick line
+								.text('you')
+								.style('stroke','red');
+
+						//writting x axis label
+						vis.append('text')
+					    	.attr('transform', 'translate(' + (WIDTH/2) + ',' + (HEIGHT) + ')')
+					    	.attr('y', -5)
+					    	.style('text-anchor', 'middle')
+					    	.style('font-family', 'Abel')
+	    					.style('font-weight', 'bold')
+	    					.style('font-size', '20px')
+					    	.text('Glycohemoglobin Value');
+
+						//writting y axis label
+						vis.append('text')
+					        .attr('transform', 'rotate(-90)')
+					        .attr('y', -5)
+					        .attr('x',0 - (HEIGHT / 2))
+					        .attr('dy', '1em')
+					        .style('text-anchor', 'middle')
+					        .style('font-family', 'Abel')
+	    					.style('font-weight', 'bold')
+	    					.style('font-size', '20px')
+					        .text('Probability');
+
+						var color = d3.scale.category10();
+						var legendSpace = HEIGHT/4/DataSet.length;
+
+						DataSet.forEach(function (d,i)
+						{
+							console.log(d.Feature.Value);
+							vis.append("path")
+								.attr("stroke", function() 
+								{
+		                			return d.color = color(d.Feature.Value);
+		                		})
+							    .attr('opacity', 0.6)
+							    .attr('stroke-width', 4)
+							    .attr('fill', 'none')
+							    .attr("id", 'Gtag'+ d.Feature.Value.replace(/[\s.]+/g, '')) // assign ID **
+								.attr("d", lineFunc(d.Data));
+
+							vis.append("text")
+								.attr("x", WIDTH - MARGINS.right - MARGINS.left - 10)
+								.attr("y", (legendSpace/2) + i * legendSpace +MARGINS.top)
+								.attr("class", "legend")
+								 .attr("id", 'Gtag'+ d.Feature.Value.replace(/[\s.]+/g, '') + "text") // assign ID ** 
+								.style("fill", function()
+								{
+									return d.color = color(d.Feature.Value);
+								})
+								.on("click", function()
+								{
+                				// Determine if current line is visible 
+                					var active   = d.active ? false : true,
+                					newOpacity = active ? 0 : 0.6,
+                					newTextColor = active ? "black" : color(d.Feature.Value);
+                				// Hide or show the elements based on the ID
+                					d3.select("#Gtag"+d.Feature.Value.replace(/[\s.]+/g, ''))
+                    					.transition().duration(100)
+                    					.style("opacity", newOpacity);
+                    					d3.select("#Gtag"+d.Feature.Value.replace(/[\s.]+/g, '')+"text")
+                    					.transition().duration(100)
+                    					.style("fill", newTextColor);
+                				// Update whether or not the elements are active
+                					d.active = active;
+                				})                            
+								.text(d.Feature.Type + ": " + d.Feature.Value);
+							})
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 				{% for visualization in visualizations %}
 
 					var LineData = {{ visualization.as_json|safe }};
@@ -586,16 +904,12 @@
 						var xTicks = xScale.ticks();
 						xTicks.push({{ glycohemoglobin  }});
 
-						console.log(xTicks);
-
 						var yTicks = yScale.ticks();
 						yTicks.push({{ probability }});
 
-						console.log(yTicks);
-
 						//drawing axis
 					  	var userMark = (-HEIGHT+MARGINS.top+MARGINS.bottom) * maxY;
-						console.log("usermark: " + userMark);
+
 					  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
 						var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
@@ -674,8 +988,6 @@
 					    	.attr('opacity', 0.6)
 					    	.attr('fill', 'none')
 					    	.attr('d', lineFunc(myValues));
-					    console.log("Read data for: " + LineData.Feature.Type + " " + LineData.Feature.Value);
-
 
 					    //writting Title
 					    vis.append('text')
