@@ -176,7 +176,7 @@
 		<h2>Your Results</h2>
 		<p>You have received the following classification:</p>
 		<br>
-		<div class="container" width="400" height="30" >
+		<div class="container">
 			<svg id="classification" width="450" height="100">
 			</svg>
 		</div>
@@ -291,7 +291,7 @@
 
   		<p>The machine-learning model has achieved a {{ probability }}% classification accuracy based on the our data from the U.S. National Health and Nutrition Examination Survey.</p>
 	</div>
-	<ul class="nav nav-pills">
+	<ul class="container nav nav-pills">
     	<li style="display:block;padding: 10px 15px;font-weight:bold">See your results relative to US population:
     	</li>
 		<li>
@@ -303,8 +303,10 @@
 	</ul>
 	<div class="tab-content">
 		<div id="fig" class="tab-pane fade in">
-			<h2>Albumin</h2> 
-			<h4>Blood test that measures the amount of albumin protein that is present in the blood plasma</h4>
+			<div class="container">
+				<h2>Albumin</h2> 
+				<h4>Blood test that measures the amount of albumin protein that is present in the blood plasma</h4>
+			</div>
 			<div class="container">
 				<svg id="albuVisMulti" viewBox = "0 0 1000 500"></svg>
 			</div>
@@ -687,8 +689,10 @@
 			</script>
 		</div>
 		<div id="supp" class="tab-pane fade">
-			<h2>GLYCOHEMOGLOBIN</h2> 
-			<h4>Blood test that measures the amount of glucose attached to the hemoglobin in the red blood cells and how thick the coating of glucose has been for the past three months</h4>
+			<div class="container">
+				<h2>GLYCOHEMOGLOBIN</h2> 
+				<h4>Blood test that measures the amount of glucose attached to the hemoglobin in the red blood cells and how thick the coating of glucose has been for the past three months</h4>
+			</div>
 			<div class="container">
 			<svg id="glycoVisMulti" viewBox = "0 0 1000 500"></svg>
 			</div>
