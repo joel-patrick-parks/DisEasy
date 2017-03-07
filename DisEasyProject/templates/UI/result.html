@@ -385,7 +385,18 @@
 			  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
 				var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
-				var vis = d3.select("#albuVisMulti");
+				var vis = d3.select("#albuVisMulti")
+					.attr('border', 1);
+
+				vis.append('rect')
+					.attr('x', 0)
+					.attr('y', 0)
+					.attr('height', HEIGHT)
+					.attr('width', WIDTH )
+					.style('stroke', 'black')
+					.style('fill', 'white')
+					.style('stroke-width', 1);
+
 
 				var lineFunc = d3.svg.line()
 					    	.x(function(d)
@@ -401,7 +412,7 @@
 					    	.interpolate("cardinal")
 					    	.tension(0.6);
 
-				vis.append('g')
+						vis.append('g')
 					    	.attr('class', 'axis')
 					    	.attr('transform', 'translate(0,' + (HEIGHT - MARGINS.bottom) + ')')
 					    	.call(xAxis)
@@ -448,7 +459,7 @@
 						//writting y axis label
 						vis.append('text')
 					        .attr('transform', 'rotate(-90)')
-					        .attr('y', -5)
+					        .attr('y', -2)
 					        .attr('x',0 - (HEIGHT / 2))
 					        .attr('dy', '1em')
 					        .style('text-anchor', 'middle')
@@ -478,12 +489,12 @@
 								.attr("x", WIDTH - MARGINS.right - MARGINS.left - 10)
 								.attr("y", (legendSpace/2) + i * legendSpace +MARGINS.top)
 								.attr("class", "legend")
-								 .attr("id", 'Atag'+ d.Feature.Value.replace(/[\s.]+/g, '') + "text") // assign ID ** 
+								.attr("id", 'Atag'+ d.Feature.Value.replace(/[\s.]+/g, '') + "text") // assign ID ** 
 								.style("fill", function()
 								{
 									return d.color = color(d.Feature.Value);
 								})
-								.on("click", function()
+								.on({"click": function()
 								{
                 				// Determine if current line is visible 
                 					var active   = d.active ? false : true,
@@ -498,7 +509,14 @@
                     					.style("fill", newTextColor);
                 				// Update whether or not the elements are active
                 					d.active = active;
-                				})                            
+                				},"mouseover": function(d) 
+                				{
+							        d3.select(this).style("cursor", "pointer")
+								},"mouseout": function(d)
+								{
+							        d3.select(this).style("cursor", "default")
+							    }
+							    })                            
 								.text(d.Feature.Type + ": " + d.Feature.Value);
 							})
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -555,6 +573,17 @@
 								vis = d3.select("#albuVisNoDiab");
 							}
 						}
+
+						vis.attr('border', 1);
+
+						vis.append('rect')
+							.attr('x', 0)
+							.attr('y', 0)
+							.attr('height', HEIGHT)
+							.attr('width', WIDTH )
+							.style('stroke', 'black')
+							.style('fill', 'white')
+							.style('stroke-width', 1);
 
 						var xTicks = xScale.ticks();
 						xTicks.push({{ albumin  }});
@@ -613,7 +642,7 @@
 						//writting y axis label
 						vis.append('text')
 					        .attr('transform', 'rotate(-90)')
-					        .attr('y', -5)
+					        .attr('y', -2)
 					        .attr('x',0 - (HEIGHT / 2))
 					        .attr('dy', '1em')
 					        .style('text-anchor', 'middle')
@@ -731,7 +760,17 @@
 			  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
 				var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
-				var vis = d3.select("#glycoVisMulti");
+				var vis = d3.select("#glycoVisMulti")
+					.attr('border', 1);
+
+				vis.append('rect')
+					.attr('x', 0)
+					.attr('y', 0)
+					.attr('height', HEIGHT)
+					.attr('width', WIDTH )
+					.style('stroke', 'black')
+					.style('fill', 'white')
+					.style('stroke-width', 1);
 
 				var lineFunc = d3.svg.line()
 					    	.x(function(d)
@@ -794,7 +833,7 @@
 						//writting y axis label
 						vis.append('text')
 					        .attr('transform', 'rotate(-90)')
-					        .attr('y', -5)
+					        .attr('y', -2)
 					        .attr('x',0 - (HEIGHT / 2))
 					        .attr('dy', '1em')
 					        .style('text-anchor', 'middle')
@@ -829,7 +868,7 @@
 								{
 									return d.color = color(d.Feature.Value);
 								})
-								.on("click", function()
+								.on({"click": function()
 								{
                 				// Determine if current line is visible 
                 					var active   = d.active ? false : true,
@@ -844,7 +883,14 @@
                     					.style("fill", newTextColor);
                 				// Update whether or not the elements are active
                 					d.active = active;
-                				})                            
+                				},"mouseover": function(d) 
+                				{
+							        d3.select(this).style("cursor", "pointer")
+								},"mouseout": function(d)
+								{
+							        d3.select(this).style("cursor", "default")
+							    }
+							    })                                
 								.text(d.Feature.Type + ": " + d.Feature.Value);
 							})
 
@@ -900,6 +946,17 @@
 								vis = d3.select("#glycoVisNoDiab");
 							}
 						}
+
+						vis.attr('border', 1);
+
+						vis.append('rect')
+							.attr('x', 0)
+							.attr('y', 0)
+							.attr('height', HEIGHT)
+							.attr('width', WIDTH )
+							.style('stroke', 'black')
+							.style('fill', 'white')
+							.style('stroke-width', 1);
 
 						var xTicks = xScale.ticks();
 						xTicks.push({{ glycohemoglobin  }});
@@ -960,7 +1017,7 @@
 						//writting y axis label
 						vis.append('text')
 					        .attr('transform', 'rotate(-90)')
-					        .attr('y', -5)
+					        .attr('y', -2)
 					        .attr('x',0 - (HEIGHT / 2))
 					        .attr('dy', '1em')
 					        .style('text-anchor', 'middle')
