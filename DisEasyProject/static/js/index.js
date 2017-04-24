@@ -9,7 +9,6 @@ $(document).ready(function() {
   $('#submitButton').click(function() {
 	var isValid = true;  
 	  
-	var conditionVal = "Type II Diabetes";
 	var genderVal = $('#genderDropdown').text();
     var ageVal = $('#ageInput').val();
     var heightVal = $('#heightInput').val();
@@ -24,59 +23,88 @@ $(document).ready(function() {
 	var ageNum = parseInt(ageVal);
 	var weightNum = parseInt(weightVal);
 	var heightNum = parseInt(heightVal);
+	var testOneNum = parseInt(testOneVal);
+	var testTwoNum = parseInt(testTwoVal);
 	
 	var jString = {};
-	jString["diseaseState"] = conditionVal;
-	jString["gender"] = genderVal.trim();
-	jString["age"] = ageVal.trim();
-	jString["height"] = heightVal.trim();
-	jString["weight"] = weightVal.trim();
-	jString["lab"] = labVal.trim();
-	jString["testOne"] = testOneVal.trim();
-	jString["testTwo"] = testTwoVal.trim();
-	jString["familyHistory"] = familyHistoryVal.trim();
-	jString["diagnosedDiabetic"] = diagnosedDiabeticVal.trim();
-	jString["diagnosedPreDiabetic"] = diagnosedPreDiabeticVal.trim();
+	jString["gender"] = genderVal
+	jString["age"] = ageVal;
+	jString["height"] = heightVal;
+	jString["weight"] = weightVal;
+	jString["lab"] = labVal;
+	jString["testOne"] = testOneVal;
+	jString["testTwo"] = testTwoVal;
+	jString["familyHistory"] = familyHistoryVal;
+	jString["diagnosedDiabetic"] = diagnosedDiabeticVal;
+	jString["diagnosedPreDiabetic"] = diagnosedPreDiabeticVal;
 	
-	/*if(jString.diseaseState !== " Type II Diabetes  "){
-		$('#conditionWarning').show();
-		isValid = false;
-	}
-	if(jString.gender !== " Male  " || jString.gender !== " Female  "){
+	//alert(isValid);
+	
+	if(jString.gender !== " Male  " && jString.gender !== " Female  "){
 		$('#genderWarning').show();
 		isValid = false;
 	}
-	if(ageNum == NaN && jString.age == null){
+	if(jString.gender == " Male  " || jString.gender == " Female  "){
+		$('#genderWarning').hide();
+	}
+	if(jString.lab !== " Quest Diagnostics  " && jString.lab !== " LabCorp  "){
+		$('#labWarning').show();
+		isValid = false;
+	}
+	if(jString.lab == " Quest Diagnostics  " || jString.lab == " LabCorp  "){
+		$('#labWarning').hide();
+	}
+	if(jString.familyHistory !== " Yes  " && jString.familyHistory !== " No  "){
+		$('#familyHistoryWarning').show();
+		isValid = false;
+	}
+	if(jString.familyHistory == " Yes  " || jString.familyHistory == " No  "){
+		$('#familyHistoryWarning').hide();
+	}
+	if(jString.diagnosedDiabetic !== " Yes  " && jString.diagnosedDiabetic !== " No  "){
+		$('#diabeticWarning').show();
+		isValid = false;
+	}
+	if(jString.diagnosedDiabetic == " Yes  " || jString.diagnosedDiabetic == " No  "){
+		$('#diabeticWarning').hide();
+	}
+	if(jString.diagnosedPreDiabetic !== " Yes  " && jString.diagnosedPreDiabetic !== " No  "){
+		$('#prediabteticWarning').show();
+		isValid = false;
+	}
+	if(jString.diagnosedPreDiabetic == " Yes  " || jString.diagnosedPreDiabetic == " No  "){
+		$('#prediabteticWarning').hide();
+	}
+	if(isNaN(ageNum)) {
 		$('#ageWarning').show();
 		isValid = false;
+	}else{
+		$('#ageWarning').hide();
 	}
-	if(weightNum == NaN && jString.weight == ""){
+	if(isNaN(weightNum)) {
 		$('#weightWarning').show();
 		isValid = false;
+	}else{
+		$('#weightWarning').hide();
 	}
-	if(heightNum == NaN && jString.height == ""){
+	if(isNaN(heightNum)) {
 		$('#heightWarning').show();
 		isValid = false;
+	}else{
+		$('#heightWarning').hide();
 	}
-	if(testOneVal == NaN && jString.testOne == ""){
+	if(isNaN(testOneNum)) {
 		$('#testOneWarning').show();
 		isValid = false;
+	}else{
+		$('#testOneWarning').hide();
 	}
-	if(jString.testOneUnit !== " mM/L  " || jString.testOneUnit !== " mg/dL  "){
-		$('#testOneUnitWarning').show();
-		isValid = false;
-	}
-	if(testTwoVal == NaN && jString.testTwo == ""){
+	if(isNaN(testTwoNum)) {
 		$('#testTwoWarning').show();
 		isValid = false;
+	}else{
+		$('#testTwoWarning').hide();
 	}
-	if(jString.testTwoUnit !== " mM/L  " || jString.testTwoUnit !== " mg/dL  "){
-		$('#testTwoUnitWarning').show();
-		isValid = false;
-	}*/
-  
-  // DELETE ME LATER
-  isValid = true;
 	
 	if(isValid){
     console.log(jString);

@@ -18,16 +18,13 @@ $(document).ready(function() {
   $('#submitButton').click(function() {
 	var isValid = true;  
 	  
-	var conditionVal = $('#conditionDropdown').text();
 	var genderVal = $('#genderDropdown').text();
     var ageVal = $('#ageInput').val();
     var heightVal = $('#heightInput').val();
     var weightVal = $('#weightInput').val();
 	var labVal = $('#labDropdown').text();
     var testOneVal = $('#testOneInput').val();
-    var testOneUnitVal = $('#testOneDropdown').text();
     var testTwoVal = $('#testTwoInput').val();
-    var testTwoUnitVal = $('#testTwoDropdown').text();
 	var familyHistoryVal = $('#familyHistoryDropdown').text();
 	var diagnosedDiabeticVal = $('#diabeticDropdown').text();
 	var diagnosedPreDiabeticVal = $('#prediabeticDropdown').text();
@@ -35,60 +32,90 @@ $(document).ready(function() {
 	var ageNum = parseInt(ageVal);
 	var weightNum = parseInt(weightVal);
 	var heightNum = parseInt(heightVal);
+	var testOneNum = parseInt(testOneVal);
+	var testTwoNum = parseInt(testTwoVal);
 	
 	var jString = {};
-	jString["diseaseState"] = conditionVal;
 	jString["gender"] = genderVal
 	jString["age"] = ageVal;
 	jString["height"] = heightVal;
 	jString["weight"] = weightVal;
 	jString["lab"] = labVal;
 	jString["testOne"] = testOneVal;
-	jString["testOneUnit"] = testOneUnitVal;
 	jString["testTwo"] = testTwoVal;
-	jString["testTwoUnit"] = testTwoUnitVal;
 	jString["familyHistory"] = familyHistoryVal;
 	jString["diagnosedDiabetic"] = diagnosedDiabeticVal;
 	jString["diagnosedPreDiabetic"] = diagnosedPreDiabeticVal;
 	
-	/*if(jString.diseaseState !== " Type II Diabetes  "){
-		$('#conditionWarning').show();
-		isValid = false;
-	}
-	if(jString.gender !== " Male  " || jString.gender !== " Female  "){
+	//alert(isValid);
+	
+	if(jString.gender !== " Male  " && jString.gender !== " Female  "){
 		$('#genderWarning').show();
 		isValid = false;
 	}
-	if(ageNum == NaN && jString.age == null){
+	if(jString.gender == " Male  " || jString.gender == " Female  "){
+		$('#genderWarning').hide();
+	}
+	if(jString.lab !== " Quest Diagnostics  " && jString.lab !== " LabCorp  "){
+		$('#labWarning').show();
+		isValid = false;
+	}
+	if(jString.lab == " Quest Diagnostics  " || jString.lab == " LabCorp  "){
+		$('#labWarning').hide();
+	}
+	if(jString.familyHistory !== " Yes  " && jString.familyHistory !== " No  "){
+		$('#familyHistoryWarning').show();
+		isValid = false;
+	}
+	if(jString.familyHistory == " Yes  " || jString.familyHistory == " No  "){
+		$('#familyHistoryWarning').hide();
+	}
+	if(jString.diagnosedDiabetic !== " Yes  " && jString.diagnosedDiabetic !== " No  "){
+		$('#diabeticWarning').show();
+		isValid = false;
+	}
+	if(jString.diagnosedDiabetic == " Yes  " || jString.diagnosedDiabetic == " No  "){
+		$('#diabeticWarning').hide();
+	}
+	if(jString.diagnosedPreDiabetic !== " Yes  " && jString.diagnosedPreDiabetic !== " No  "){
+		$('#prediabteticWarning').show();
+		isValid = false;
+	}
+	if(jString.diagnosedPreDiabetic == " Yes  " || jString.diagnosedPreDiabetic == " No  "){
+		$('#prediabteticWarning').hide();
+	}
+	if(isNaN(ageNum)) {
 		$('#ageWarning').show();
 		isValid = false;
+	}else{
+		$('#ageWarning').hide();
 	}
-	if(weightNum == NaN && jString.weight == ""){
+	if(isNaN(weightNum)) {
 		$('#weightWarning').show();
 		isValid = false;
+	}else{
+		$('#weightWarning').hide();
 	}
-	if(heightNum == NaN && jString.height == ""){
+	if(isNaN(heightNum)) {
 		$('#heightWarning').show();
 		isValid = false;
+	}else{
+		$('#heightWarning').hide();
 	}
-	if(testOneVal == NaN && jString.testOne == ""){
+	if(isNaN(testOneNum)) {
 		$('#testOneWarning').show();
 		isValid = false;
+	}else{
+		$('#testOneWarning').hide();
 	}
-	if(jString.testOneUnit !== " mM/L  " || jString.testOneUnit !== " mg/dL  "){
-		$('#testOneUnitWarning').show();
-		isValid = false;
-	}
-	if(testTwoVal == NaN && jString.testTwo == ""){
+	if(isNaN(testTwoNum)) {
 		$('#testTwoWarning').show();
 		isValid = false;
+	}else{
+		$('#testTwoWarning').hide();
 	}
-	if(jString.testTwoUnit !== " mM/L  " || jString.testTwoUnit !== " mg/dL  "){
-		$('#testTwoUnitWarning').show();
-		isValid = false;
-	}*/
 	
-	if(isValid){
+	/*if(isValid){
 		$.post("/submit",
 		{
 			PatiantResults: jString
@@ -96,6 +123,6 @@ $(document).ready(function() {
 		function(data, status){
 			alert("Sent the object.");
 		});
-	}
+	}*/
   });
 });
