@@ -17,7 +17,7 @@ def submit(request):
 
     # extract and convert data
     age = float(request.POST.get('age','7'))
-    gender = request.POST.get('gender','')
+    gender = request.POST.get('gender','').strip()
     if gender.lower() == 'male':
         gender = 1
     elif gender.lower() == 'female':
@@ -28,7 +28,7 @@ def submit(request):
     height = float(request.POST.get('height','0')) * 2.54
     gh = float(request.POST.get('testOne','0'))
     albumin = float(request.POST.get('testTwo','0'))
-
+    
     if age == 0:
         return HttpResponse("Invalid Age")
     if gender == -1:
