@@ -34,10 +34,11 @@ def submit(request):
 
     for row in range(len(data)) :
         line = []
-        for col in range(len(data[row])) :
+        for col in range(len(data[row])-1) :
             tempval = ((data[row][col])-m[col])/(s[col]+0.0001)
             val = int(tempval*1000)
             line.append(float(val/1000))
+        line.append(data[row][rlen-1])
         normData.append(line)
 
     X = []
@@ -91,7 +92,9 @@ def submit(request):
         normPoint.append(float(val/1000))
     
     #prediction score
-    result = mlp.predict_proba(np.array(normPoint).reshape(1,-1))[0][0]
+    prediction = mlp.predict_proba(np.array(normPoint).reshape(1,-1))
+    result = np.argmax(prediction)-3 #returns classification corresponding to data labels
+    confidence = prediction[0][result+3] 
     accuracy = mlp.score(X_test, y_test)
 
     heightM = height / 100.;
