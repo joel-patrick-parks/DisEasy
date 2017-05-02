@@ -19,14 +19,17 @@ from ML import views as MLViews
 from UI import views as UIViews
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    # these could all go into their own file but that's a task for another day
+    url(r'^diabetes/submit$', MLViews.submitDiabetes),
+    url(r'^diabetes/form$', UIViews.formDiabetes),
+    url(r'^diabetes/result/(?P<uprob>[\d.]+)-(?P<ures>[\d.]+)-(?P<age>[\d.]+)-(?P<gender>\d+)-(?P<bmi>[\d.]+)-(?P<albu>[\d.]+)-(?P<glyco>[\d.]+)$', UIViews.resultDiabetes),
 
-    # 'submission' endpoint - where ML analysis is run
-    url(r'^submit$', MLViews.submit),
+    # likewise
+    url(r'^thyroid/submit$', MLViews.submitThyroid),
+    url(r'^thyroid/form$', UIViews.formThyroid),
+    url(r'^thyroid/result$', UIViews.resultThyroid),
 
-    # actual UI pages
-    url(r'^form$', UIViews.form),
-    url(r'^result/(?P<uprob>[\d.]+)-(?P<ures>[\d.]+)-(?P<age>[\d.]+)-(?P<gender>\d+)-(?P<bmi>[\d.]+)-(?P<albu>[\d.]+)-(?P<glyco>[\d.]+)$', UIViews.result),
+    # generic urls - should stay here
     url(r'^about$', UIViews.about),
     url(r'^login$', UIViews.login),
 

@@ -5,7 +5,11 @@ $(document).ready(function() {
     });
 
   //Submit button click
-  $('.flip').click(function() {
-	  window.location = '/form';
+  $('#flip-diabetes').click(function() {
+	  window.location = '/diabetes/form';
+  });
+
+  $('#flip-thyroid').click(function() {
+    window.location='/thyroid/form';
   });
 });

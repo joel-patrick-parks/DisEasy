@@ -7,12 +7,11 @@ from models import Visualization
 def home(request):
     return render(request, 'UI/home.html')
 
-# display form
-def form(request):
-    return render(request, 'UI/form.html')
+def formDiabetes(request):
+    return render(request, 'UI/diabetes/form.html')
 
 # display results page
-def result(request, 
+def resultDiabetes(request, 
         uprob = 0, 
         ures = 0, 
         age = 0, 
@@ -54,7 +53,13 @@ def result(request,
             'glycohemoglobin': glyco,
             }
 
-    return render(request, 'UI/result.html', context)
+    return render(request, 'UI/diabetes/result.html', context)
+
+def formThyroid(request):
+    return render(request, 'UI/thyroid/form.html')
+
+def resultThyroid(request):
+    return render(request, 'UI/thyroid/form.html')
 
 def ageRange(age):
     if float(age)<31:
