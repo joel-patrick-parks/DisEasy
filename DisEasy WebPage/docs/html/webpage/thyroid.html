@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -8,37 +7,40 @@
 	    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 	    <meta name="description" content="">
 	    <meta name="author" content="">
-      <link rel="icon" href="{% static 'imgs/favicon.ico' %}">
+	    <link rel="icon" href="../../favicon.ico">
 
 	    <title>DisEasy</title>
 
 	    <!-- Bootstrap core CSS -->
-      <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+	    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
 	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-      <link href="{% static 'css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+	    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-	  <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+	    <link href='http://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
 
 	    <!-- Custom styles for this template -->
 	    <link href="starter-template.css" rel="stylesheet">
+		
 
-      <script src="{% static 'js/ie-emulation-modes-warning.js' %}"></script>
+	    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+	    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+	    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
 	    <!-- Our jQuery file, as well as the link to the google repository -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-      <script src="{% static 'js/thyroid.js' %}"></script>
+	    <script src="thyroid.js"></script>
 
 	    <style type="text/css">
 	    	.nav > li > a:hover, .nav > li > a:focus {
-  			background-color: #77bbbb;
+  			background-color: #88c4c4;
   			text-decoration: none;
-		}
-		body{
+			}
+
+			body{
 			font-family: Abel;
 				font-weight: bold;
-		}
+			}
 	    </style>
 
 	    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -48,17 +50,18 @@
 	    <![endif]-->
 	</head>
 
-	<body background="{% static 'img/backgroundpattern.jpg' %}">
+	<body background="backgroundpattern.jpg">
 		<nav class="navbar navbar-fixed-top" style="background-color: #77bbbb; color:black;">
 			<div class="container">
 				<div id="navbar" class="navbar-header">
-					<img src="{% static 'img/diseasylogo.png' %}" width="50" height="50" alt="">
+					<img src="../../assets/img/diseasylogo.png" width="50" height="50" alt="">
 				</div>
 				<div id="navbar" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="/" style="color: black;">HOME</a></li>
-						<li><a href="/about" style="color: black;">ABOUT</a></li>
-						<li><a href="/login" style="color: black;">LOG-IN</a></li>
+						<li class="active"><a href="index.html" style="color: black;">HOME</a></li>
+						<li><a href="about.html" style="color: black;">ABOUT</a></li>
+						<li><a href="" style="color: black;">SERVICES</a></li>
+						<li><a href="" style="color: black;">LOG-IN</a></li>
 					</ul>
 				</div><!--/.nav-collapse -->
 			</div>
@@ -69,9 +72,7 @@
 					<div class="col-sm-2"></div>
 			        <div class="col-sm-8">
 			        	<div class="panel panel-default" style="border:0; box-shadow: none;">
-			        		<h2 class="panel-heading">Type-II Diabetes</h2>
-    						<h4><p>Thyroid information.</p>
-							<p>Fill in the form above to receive your personalized Thyroid likelihood evaluation.</p></h4>
+			        		<h2 class="panel-heading">Lab Results</h2>
 						</div>
 					</div>
 				</div>
@@ -168,20 +169,57 @@
 						</form>
 					</div>
 				</div>
+			<div class="container" style="padding-top:25px;padding-bottom:30px;width:1000px">
+				<p>Diabetes means your blood glucose, or blood sugar, levels are too high. With Type-II diabetes, the more common type, your body does not make or use insulin well. Blood tests can show if you are at risk for diabetes.</p>
+				<p>Fill in the form above to receive your personalized Type-II Diabetes likelihood evaluation.</p>
+			</div>
+
+			<script src="https://d3js.org/d3.v3.min.js"></script>
+			<script>//Append a defs (for definition) element to your SVG
+			var defs = svg.append("defs");
+
+			//Append a linearGradient element to the defs and give it a unique id
+			var linearGradient = defs.append("linearGradient")
+			    .attr("id", "linear-gradient");
+
+			linearGradient
+			    .attr("x1", "0%")
+			    .attr("y1", "0%")
+			    .attr("x2", "100%")
+			    .attr("y2", "0%");
+
+			//Set the color for the start (0%)
+			linearGradient.append("stop") 
+			    .attr("offset", "0%")   
+			    .attr("stop-color", "#ffa474"); //light blue
+
+			//Set the color for the end (100%)
+			linearGradient.append("stop") 
+			    .attr("offset", "100%")   
+			    .attr("stop-color", "#8b0000"); //dark blue
+
+			svg.append("rect")
+				.attr("width", 300)
+				.attr("height", 20)
+				.style("fill", "url(#linear-gradient)");
+
+		    </script>
+		    
 		</div>
 		<nav class="navbar navbar-fixed-bottom" style="background-color: #77bbbb; color:black;">
 			<div class="container">
-				<p style="text-align: center; margin-top: 10px">DisEasy. All Rights Reserved &copy;</p>
+				<p style="text-align: center; margin-top: 10px"><i>Understand your lab results today</i></p>
+			</div>
 		</nav>
 
 	    <!-- Bootstrap core JavaScript
 	    ================================================== -->
 	    <!-- Placed at the end of the document so the pages load faster -->
 	    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="{% static 'js/jquery.min.js'%}"><\/script>')</script>
-      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+	    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+	    <script src="../../dist/js/bootstrap.min.js"></script>
 	    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-      <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+	    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 	    <script src="https://d3js.org/d3.v4.min.js"></script>
  
 	</body>
