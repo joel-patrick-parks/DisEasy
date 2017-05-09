@@ -27,7 +27,7 @@ urlpatterns = [
     # likewise
     url(r'^thyroid/submit$', MLViews.submitThyroid),
     url(r'^thyroid/form$', UIViews.formThyroid),
-    url(r'^thyroid/result$', UIViews.resultThyroid),
+    url(r'^thyroid/result/(?P<age>[\d.]+)-(?P<gender>[\d.]+)-(?P<TSH>[\d.]+)-(?P<T3>[\d.]+)-(?P<TT4>[\d.]+)$', UIViews.resultThyroid),
 
     # generic urls - should stay here
     url(r'^about$', UIViews.about),

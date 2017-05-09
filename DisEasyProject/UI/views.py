@@ -58,8 +58,16 @@ def resultDiabetes(request,
 def formThyroid(request):
     return render(request, 'UI/thyroid/form.html')
 
-def resultThyroid(request):
-    return render(request, 'UI/thyroid/result.html')
+def resultThyroid(request, age, gender, TSH, T3, TT4):
+    context = {
+            'age': age,
+            'gender': gender,
+            'TSH': TSH,
+            'T3': T3,
+            'TT4': TT4,
+            }
+
+    return render(request, 'UI/thyroid/result.html', context)
 
 def ageRange(age):
     if float(age)<31:

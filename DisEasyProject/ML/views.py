@@ -16,7 +16,7 @@ def submitDiabetes(request):
     model = TrainedModel.objects.get(diseaseState="diabetes")
 
     # extract and convert data
-    age = float(request.POST.get('age','7'))
+    age = float(request.POST.get('age','0'))
     gender = request.POST.get('gender','').strip()
     if gender.lower() == 'male':
         gender = 1
@@ -69,4 +69,73 @@ def submitDiabetes(request):
 @require_http_methods(["POST", "GET"])
 @csrf_exempt
 def submitThyroid(request):
-    return HttpResponse("Coming soon!")
+    # extract and convert data
+    age = float(request.POST.get('age','0'))
+    gender = request.POST.get('gender','').strip()
+    if gender.lower() == 'male':
+        gender = 0
+    elif gender.lower() == 'female':
+        gender = 1
+    else:
+        gender = -1
+    TSH = float(request.POST.get('TSH', '0'))
+    T3 = float(request.POST.get('T3', '0'))
+    TT4 = float(request.post.get('TT4', '0'))
+    
+    if age == 0:
+        return HttpResponse("Invalid Age")
+    if gender == -1:
+        return HttpResponse("Invalid Gender")
+    if TSH == 0:
+        return HttpResponse("Invalid TSH value.")
+    if T3 == 0:
+        return HttpResponse("Invalid T3 value.")
+    if TT4 == 0:
+        return HttpResponse("Invalid TT4 value.")
+
+    return predictOneThyroid(age, gender, TSH, T3, TT4)
+
+def predictOneThyroid(age, gender, TSH, T3, TT4):
+    model = TrainedModel.objects.get(diseaseState="Thyroid Individual")
+    
+    testPoint = [age, gender, TSH, T3, TT4]
+    normPoint = []
+    for item in range(len(testPoint)):
+        tempVal = ((testPoint[item])-model.medians[item])/(model.standarDeviations[item]+0.0001)
+        val = int(tempval*1000)
+        normPoint.append(float(val/1000))
+
+    #prediction score
+    prediction = model.model.predict_proba(np.array(normPoint).reshape(1,-1))
+    result = np.argmax(prediction)-3 #returns classification corresponding to data labels
+
+    return HttpResponse("/thyroid/result/%s-%s-%s-%s-%s-%s" % (
+        round(age, 2),
+        gender,
+        round(TSH, 2),
+        round(T3, 2),
+        round(TT4, 2),
+        result,
+        ))
+
+def predictAllThyroid(age, gender, TSH, T3, TT4):
+    model = TrainedModel.objects.get(diseaseState = "Thyroid IndividalClassifications")
+
+    testPoint = [age, gender, TSH, T3, TT4]
+    normPoint = []
+    for item in range(len(testPoint)):
+        tempVal = ((testPoint[item])-model.medians[item])/(model.standarDeviations[item]+0.0001)
+        val = int(tempval*1000)
+        normPoint.append(float(val/1000))
+
+    result = np.argmax(prediction)-3 # returns max classification corresponding to data labels
+
+    return HttpResponse("/thyroid/result/%s-%s-%s-%s-%s-%s" % (
+        round(age, 2),
+        gender,
+        round(TSH, 2),
+        round(T3, 2),
+        round(TT4, 2),
+        result,
+        ))
+
