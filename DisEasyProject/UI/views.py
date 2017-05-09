@@ -59,7 +59,7 @@ def formThyroid(request):
     return render(request, 'UI/thyroid/form.html')
 
 def resultThyroid(request):
-    return render(request, 'UI/thyroid/form.html')
+    return render(request, 'UI/thyroid/result.html')
 
 def ageRange(age):
     if float(age)<31:

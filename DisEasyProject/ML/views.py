@@ -56,7 +56,7 @@ def submitDiabetes(request):
     # convert height to meters for BMI
     heightM = height / 100.;
 
-    return HttpResponse("/result/%s-%s-%s-%s-%s-%s-%s" % (
+    return HttpResponse("/diabetes/result/%s-%s-%s-%s-%s-%s-%s" % (
         round(model.accuracy * 100, 2),
         round(result * 100, 2),
         round(age, 2),
