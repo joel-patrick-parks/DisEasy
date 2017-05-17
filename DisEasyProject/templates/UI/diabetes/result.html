@@ -178,7 +178,7 @@
 		<p>You have received the following classification:</p>
 		<br>
 		<div class="container">
-			<svg id="classification" width="450" height="100">
+			<svg id="classification" width="460" height="100">
 			</svg>
 		</div>
 		<br>
@@ -287,16 +287,20 @@
 				//only ticks that returned true for the filter will be included
 				//in the rest of the method calls:
 				.select('text') //grab the tick line
-				.text('no')
-				.style('stroke','red');
+				.text('low probability')
+				.style('stroke','black')
+				.style('font-weight', 'normal')
+				.attr('transform', 'translate(7, -10)');
 
 		d3.selectAll('g.tick')
             .filter(function(d){ return d== 100;} )
 				//only ticks that returned true for the filter will be included
 				//in the rest of the method calls:
 				.select('text') //grab the tick line
-				.text('yes')
-				.style('stroke','red');
+				.text('high probability')
+				.style('stroke','black')
+				.style('font-weight', 'normal')
+				.attr('transform', 'translate(88, -10)');
 
 		d3.selectAll('g.tick')
 			.select('line')
@@ -509,6 +513,8 @@
 							    .attr("id", 'Atag'+ d.Feature.Value.replace(/[\s.]+/g, '')) // assign ID **
 								.attr("d", lineFunc(d.Data));
 
+
+
 							vis.append("text")
 								.attr("x", WIDTH - MARGINS.right - MARGINS.left - 10)
 								.attr("y", (legendSpace/2) + i * legendSpace +MARGINS.top)
@@ -542,7 +548,7 @@
 							    }
 							    })                            
 								.text(d.Feature.Type + ": " + d.Feature.Value);
-							})
+						})
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 				{% for visualization in visualizations %}
