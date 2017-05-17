@@ -281,6 +281,23 @@
 				.select('text') //grab the tick line
 				.text('you')
 				.style('stroke','red');
+
+		d3.selectAll('g.tick')
+            .filter(function(d){ return d== 0;} )
+				//only ticks that returned true for the filter will be included
+				//in the rest of the method calls:
+				.select('text') //grab the tick line
+				.text('no')
+				.style('stroke','red');
+
+		d3.selectAll('g.tick')
+            .filter(function(d){ return d== 100;} )
+				//only ticks that returned true for the filter will be included
+				//in the rest of the method calls:
+				.select('text') //grab the tick line
+				.text('yes')
+				.style('stroke','red');
+
 		d3.selectAll('g.tick')
 			.select('line')
 			.attr('transform', 'translate(0, 5)');
