@@ -73,6 +73,7 @@
   			}
   			body
   			{
+				font-size: 15px;
   				font-family: Abel;
   				padding-top: 60px;
   				padding-bottom: 60px;
@@ -175,7 +176,8 @@
 	</div>
 	<div class="container">
 		<h2>Your Results</h2>
-		<p>You have received the following classification:</p>
+		<!-- MAKE THIS DYNAMIC -->
+		<p>You have been classified with a high probability for <b>Diabetes</b>:</p>
 		<br>
 		<div class="container">
 			<svg id="classification" width="450" height="100">
@@ -286,13 +288,13 @@
 			.attr('transform', 'translate(0, 5)');
 	    </script>
 
-		<p style="font-size:15px">To view the your results relative to the United States population,</p>
-		<ol><li style="font-size:15px"> Expand the Glycohemoglobin and Albumin results below.</li> 
-		<li style="font-size:15px"> Select and de-select items in the legend to view the graphs conditioned by your age range, BMI range, gender, and diabetic status.</li></ol>
+		<p style="font-size:18px">To view the your results relative to the United States population,</p>
+		<ol><li style="font-size:18px"> Expand the Glycohemoglobin and Albumin results below.</li> 
+		<li style="font-size:18px"> Select and de-select items in the legend to view the graphs conditioned by your age range, BMI range, gender, and diabetic status.</li></ol>
 
 		<p>On the graphs below, the y-axis (vertical line) signifies the probability of the lab value specified on the x-axis (horizontal line). The black vertical indicator line marks where your lab result falls.</p>
 
-		<p>If you are concerned about about the results of this evaluation, please consult your primary physician for more information. (Disclaimer: These results are not to be used as a diagnostic tool.)</p>
+		<p>If you are concerned about about the results of this evaluation, please consult your primary physician for more information. (Disclaimer: These results are not to be used as a diagnostic tool.) To view the anticipate treatment: <a data-toggle="pill" href="">Treatment Plan</a></p>
 
   		<p>The machine-learning model has achieved a {{ probability }}% classification accuracy based on the our data from the U.S. National Health and Nutrition Examination Survey.</p>
 	</div>
@@ -1076,9 +1078,9 @@
 
 		<p>Diabetes means your blood glucose, or blood sugar, levels are too high. With Type-II diabetes, the more common type, your body does not make or use insulin well. Insulin is a hormone that helps glucose get into your cells to give them energy. Without insulin, too much glucose stays in your blood. Over time, high blood glucose can lead to serious problems with your heart, eyes, kidneys, nerves, and gums and teeth.</p>
 
-		<p>You have a higher risk of type 2 diabetes if you are older, obese, have a family history of diabetes, or do not exercise. Having prediabetes also increases your risk. Prediabetes means that your blood sugar is higher than normal but not high enough to be called diabetes.</p>
+		<p>You have a higher risk of Type II diabetes if you are older, obese, have a family history of diabetes, or do not exercise. Having prediabetes also increases your risk. Prediabetes means that your blood sugar is higher than normal but not high enough to be called diabetes.</p>
 
-		<p>The symptoms of type 2 diabetes appear slowly. Some people do not notice symptoms at all. The symptoms can include:</p>
+		<p>The symptoms of Type II diabetes appear slowly. Some people do not notice symptoms at all. The symptoms can include:</p>
 
 		<ul>
 			<li>Being very thirsty</li>
