@@ -108,7 +108,7 @@ $(document).ready(function() {
 	
 	if(isValid){
     console.log(jString);
-		$.post("/submit", jString,
+		$.post("/diabetes/submit", jString,
 		function(data, status){
 			window.location = data;
 		});

@@ -180,7 +180,7 @@
 		<p>You have been classified with a high probability for <b>Diabetes</b>:</p>
 		<br>
 		<div class="container">
-			<svg id="classification" width="450" height="100">
+			<svg id="classification" width="460" height="100">
 			</svg>
 		</div>
 		<br>
@@ -283,6 +283,27 @@
 				.select('text') //grab the tick line
 				.text('you')
 				.style('stroke','red');
+
+		d3.selectAll('g.tick')
+            .filter(function(d){ return d== 0;} )
+				//only ticks that returned true for the filter will be included
+				//in the rest of the method calls:
+				.select('text') //grab the tick line
+				.text('low probability')
+				.style('stroke','black')
+				.style('font-weight', 'normal')
+				.attr('transform', 'translate(7, -10)');
+
+		d3.selectAll('g.tick')
+            .filter(function(d){ return d== 100;} )
+				//only ticks that returned true for the filter will be included
+				//in the rest of the method calls:
+				.select('text') //grab the tick line
+				.text('high probability')
+				.style('stroke','black')
+				.style('font-weight', 'normal')
+				.attr('transform', 'translate(88, -10)');
+
 		d3.selectAll('g.tick')
 			.select('line')
 			.attr('transform', 'translate(0, 5)');
@@ -316,30 +337,6 @@
 			</div>
 			<div class="container">
 				<svg id="albuVisMulti" viewBox = "0 0 1000 500"></svg>
-			</div>
-			<br>
-			<div class="container">
-				<svg id="albuVisAll" viewBox = "0 0 1000 500"></svg>
-			</div>
-			<br>
-			<div class="container">
-				<svg id="albuVisAge" viewBox = "0 0 1000 500"></svg>
-			</div>
-			<br>
-			<div class="container">
-				<svg id="albuVisGend" viewBox = "0 0 1000 500"></svg>
-			</div>
-			<br>
-			<div class="container">
-				<svg id="albuVisBMI" viewBox = "0 0 1000 500"></svg>
-			</div>
-			<br>
-			<div class="container">
-				<svg id="albuVisDiab" viewBox = "0 0 1000 500"></svg>
-			</div> 
-			<br>
-			<div class="container">
-				<svg id="albuVisNoDiab" viewBox = "0 0 1000 500"></svg>
 			</div>
 			<br>
 			<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
@@ -494,6 +491,8 @@
 							    .attr("id", 'Atag'+ d.Feature.Value.replace(/[\s.]+/g, '')) // assign ID **
 								.attr("d", lineFunc(d.Data));
 
+
+
 							vis.append("text")
 								.attr("x", WIDTH - MARGINS.right - MARGINS.left - 10)
 								.attr("y", (legendSpace/2) + i * legendSpace +MARGINS.top)
@@ -527,7 +526,7 @@
 							    }
 							    })                            
 								.text(d.Feature.Type + ": " + d.Feature.Value);
-							})
+						})
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 				{% for visualization in visualizations %}
@@ -705,28 +704,6 @@
 			</div>
 			<br>
 			<div class="container">
-			<svg id="glycoVisAll" viewBox = "0 0 1000 500"></svg>
-			</div>
-			<br>
-			<div class="container">
-			<svg id="glycoVisAge" viewBox = "0 0 1000 500"></svg>
-			</div>
-			<br>
-			<div class="container">
-			<svg id="glycoVisGend" viewBox = "0 0 1000 500"></svg>
-			</div>
-			<br>
-			<div class="container">
-			<svg id="glycoVisBMI" viewBox = "0 0 1000 500"></svg>
-			</div>
-			<br>
-			<div class="container">
-			<svg id="glycoVisDiab" viewBox = "0 0 1000 500"></svg>
-			</div>
-			<br>
-			<div class="container">
-			<svg id="glycoVisNoDiab" viewBox = "0 0 1000 500"></svg>
-			</div>
 			<br>
 			<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
 			<script>

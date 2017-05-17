@@ -72,9 +72,9 @@ $(document).ready(function() {
 	
 	if(isValid){
     console.log(jString);
-		$.post("/submit", jString,
+		$.post("/thyroid/submit", jString,
 		function(data, status){
-			window.location = data;
+//		window.location = data;
 		});
 	}
   });
