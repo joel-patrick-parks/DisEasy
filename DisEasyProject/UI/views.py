@@ -58,7 +58,7 @@ def resultDiabetes(request,
 def formThyroid(request):
     return render(request, 'UI/thyroid/form.html')
 
-def resultThyroid(request, age, gender, TSH, T3, TT4, result):
+def resultThyroid(request, age, gender, TSH, T3, TT4, result, accuracy, probability):
     context = {
             'age': age,
             'gender': gender,
@@ -66,6 +66,8 @@ def resultThyroid(request, age, gender, TSH, T3, TT4, result):
             'T3': T3,
             'TT4': TT4,
             'result': result,
+            'accuracy': accuracy,
+            'probability': probability,
             }
 
     return render(request, 'UI/thyroid/result.html', context)

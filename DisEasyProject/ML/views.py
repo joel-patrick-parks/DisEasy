@@ -78,9 +78,9 @@ def submitThyroid(request):
         gender = 1
     else:
         gender = -1
-    TSH = float(request.POST.get('TSH', '0'))
-    T3 = float(request.POST.get('T3', '0'))
-    TT4 = float(request.post.get('TT4', '0'))
+    TSH = float(request.POST.get('testOne', '0'))
+    T3 = float(request.POST.get('testTwo', '0'))
+    TT4 = float(request.POST.get('testThree', '0'))
     
     if age == 0:
         return HttpResponse("Invalid Age")
@@ -96,26 +96,28 @@ def submitThyroid(request):
     return predictOneThyroid(age, gender, TSH, T3, TT4)
 
 def predictOneThyroid(age, gender, TSH, T3, TT4):
-    model = TrainedModel.objects.get(diseaseState="Thyroid Individual")
+    model = TrainedModel.objects.get(diseaseState="Thyroid MultiPart")
     
     testPoint = [age, gender, TSH, T3, TT4]
     normPoint = []
     for item in range(len(testPoint)):
-        tempVal = ((testPoint[item])-model.medians[item])/(model.standarDeviations[item]+0.0001)
-        val = int(tempval*1000)
+        tempVal = ((testPoint[item])-model.medians[item])/(model.standardDeviations[item]+0.0001)
+        val = int(tempVal*1000)
         normPoint.append(float(val/1000))
 
     #prediction score
     prediction = model.model.predict_proba(np.array(normPoint).reshape(1,-1))
     result = np.argmax(prediction)-3 #returns classification corresponding to data labels
 
-    return HttpResponse("/thyroid/result/%s-%s-%s-%s-%s-%s" % (
+    return HttpResponse("/thyroid/result/%s-%s-%s-%s-%s-%s-%s-%s" % (
         round(age, 2),
         gender,
         round(TSH, 2),
         round(T3, 2),
         round(TT4, 2),
         result,
+        round(model.accuracy, 2),
+        round(prediction, 2),
         ))
 
 def predictAllThyroid(age, gender, TSH, T3, TT4):
@@ -125,7 +127,7 @@ def predictAllThyroid(age, gender, TSH, T3, TT4):
     normPoint = []
     for item in range(len(testPoint)):
         tempVal = ((testPoint[item])-model.medians[item])/(model.standarDeviations[item]+0.0001)
-        val = int(tempval*1000)
+        val = int(tempVal*1000)
         normPoint.append(float(val/1000))
 
     result = np.argmax(prediction)-3 # returns max classification corresponding to data labels
