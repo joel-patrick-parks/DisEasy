@@ -125,3 +125,12 @@ def about(request):
 # login
 def login(request):
     return render(request, 'UI/login.html')
+
+def treatmentDiabetes(request):
+    return render(request, 'UI/diabetes/treatment.html')
+
+def treatmentHypoThyroid(request):
+    return render(request, 'UI/thyroid/treatment-hypothyroidism.html')
+
+def treatmentHyperThyroid(request):
+    return render(request, 'UI/thyroid/treatment-hyperthyroidism.html')

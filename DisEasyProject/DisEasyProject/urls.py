@@ -23,11 +23,14 @@ urlpatterns = [
     url(r'^diabetes/submit$', MLViews.submitDiabetes),
     url(r'^diabetes/form$', UIViews.formDiabetes),
     url(r'^diabetes/result/(?P<uprob>[\d.]+)-(?P<ures>[\d.]+)-(?P<age>[\d.]+)-(?P<gender>\d+)-(?P<bmi>[\d.]+)-(?P<albu>[\d.]+)-(?P<glyco>[\d.]+)$', UIViews.resultDiabetes),
+    url(r'^diabetes/treatment', UIViews.treatmentDiabetes),
 
     # likewise
     url(r'^thyroid/submit$', MLViews.submitThyroid),
     url(r'^thyroid/form$', UIViews.formThyroid),
     url(r'^thyroid/result/(?P<age>[\d.]+)-(?P<gender>[\d.]+)-(?P<TSH>[\d.]+)-(?P<T3>[\d.]+)-(?P<TT4>[\d.]+)-(?P<result>[\d.]+)-(?P<accuracy>[\d.]+)-(?P<probability>[\d.]+)$', UIViews.resultThyroid),
+    url(r'^thyroid/treatment/hypo', UIViews.treatmentHypoThyroid),
+    url(r'^thyroid/treatment/hyper', UIViews.treatmentHyperThyroid),
 
     # generic urls - should stay here
     url(r'^about$', UIViews.about),

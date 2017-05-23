@@ -73,7 +73,7 @@
   			}
   			body
   			{
-				font-size: 15px;
+				font-size: 18px;
   				font-family: Abel;
   				padding-top: 60px;
   				padding-bottom: 60px;
@@ -176,8 +176,6 @@
 	</div>
 	<div class="container">
 		<h2>Your Results</h2>
-		<!-- MAKE THIS DYNAMIC -->
-				<!--<p>You have been classified with a high probability for <b>Diabetes</b>:</p>-->
 		<br>
 		<div class="container">
 			<svg id="classification" width="1400" height="150">
@@ -333,15 +331,21 @@
 
 		<p>On the graphs below, the y-axis (vertical line) signifies the probability of the lab value specified on the x-axis (horizontal line). The black vertical indicator line marks where your lab result falls.</p>
 
-		<p>If you are concerned about about the results of this evaluation, please consult your primary physician for more information. (Disclaimer: These results are not to be used as a diagnostic tool.) To view the anticipate treatment: <a data-toggle="pill" href="">Treatment Plan</a></p>
-
   		<p>The machine-learning model has achieved a {{ probability }}% classification accuracy based on the our data from the U.S. National Health and Nutrition Examination Survey.</p>
+
+      <p style="font-style:italic">If you are concerned about about the results of this evaluation, please consult your primary physician for more information. (Disclaimer: These results are not to be used as a diagnostic tool.) </p>
 	</div>
+    <ul class="container nav nav-pills">
+      <li style="display:block;padding: 10px 15px; font-weight:bold">To view the relevant treatment plan: </li>
+      <li><a href="/diabetes/treatment">Treatment Plan</a></li>
+    </ul>
+
 	<ul class="container nav nav-pills">
     	<li style="display:block;padding: 10px 15px;font-weight:bold">See your results relative to US population:
     	</li>
 		<li>
-			<a data-toggle="pill" href="#fig">Albumin</a>
+			<a data-toggle="pill" href="#fig
+			">Albumin</a>
 		</li>
 		<li>
 			<a data-toggle="pill" href="#supp">Glycohemoglobin</a>
@@ -350,7 +354,7 @@
 	<div class="tab-content">
 		<div id="fig" class="tab-pane fade in">
 			<div class="container">
-				<h2>Albumin</h2> 
+				<h2>ALBUMIN</h2> 
 				<h4>Blood test that measures the amount of albumin protein that is present in the blood plasma</h4>
 			</div>
 			<div class="container">
@@ -714,7 +718,7 @@
 		</div>
 		<div id="supp" class="tab-pane fade">
 			<div class="container">
-				<h2>GLYCOHEMOGLOBIN</h2> 
+				<h2>GLYCOHEMOGLOBIN (A1C)</h2> 
 				<h4>Blood test that measures the amount of glucose attached to the hemoglobin in the red blood cells and how thick the coating of glucose has been for the past three months</h4>
 			</div>
 			<div class="container">
@@ -1072,6 +1076,8 @@
 		<h2>What is Type-II Diabetes?</h2>
 
 		<p>Diabetes means your blood glucose, or blood sugar, levels are too high. With Type-II diabetes, the more common type, your body does not make or use insulin well. Insulin is a hormone that helps glucose get into your cells to give them energy. Without insulin, too much glucose stays in your blood. Over time, high blood glucose can lead to serious problems with your heart, eyes, kidneys, nerves, and gums and teeth.</p>
+
+		<p align = "center"><img src="{% static 'img/type-2-diabetes.png' %}" width="510" height="380" alt=""></p>
 
 		<p>You have a higher risk of Type II diabetes if you are older, obese, have a family history of diabetes, or do not exercise. Having prediabetes also increases your risk. Prediabetes means that your blood sugar is higher than normal but not high enough to be called diabetes.</p>
 
