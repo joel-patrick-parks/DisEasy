@@ -349,7 +349,7 @@
 				<h4>Blood test that measures the amount of albumin protein that is present in the blood plasma</h4>
 			</div>
 			<div class="container">
-				<svg id="albuVisMulti" viewBox = "0 0 1000 500"></svg>
+				<svg id="tshVisMulti" viewBox = "0 0 1000 500"></svg>
 			</div>
 			<br>
 			<!--JAVASCRIPT FOR DATA VISUALIZATIONS-->
@@ -370,6 +370,8 @@
 				var maxY = 0;
 				{% for visualization in visualizations %}
 
+					console.log("visualizations: " + {{ visualization.as_json|safe }});
+
 					var LineData = {{ visualization.as_json|safe }};
 
 					if(LineData.IV == "Albumin")
@@ -382,16 +384,15 @@
 							myValues.push({"value": LineData.Data[i][0], "percentage":LineData.Data[i][1]});
 							if(maxY < LineData.Data[i][1])
 								maxY = LineData.Data[i][1];
-
 						}
 						DataSet[count].Data = myValues;
 						count++;
 					}
 				{% endfor %}
 
-				//console.log("my Dataset: " + DataSet);
+				console.log("my Dataset: " + DataSet);
 
-				var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([2.5, 5.5]);
+				var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 10]);
 				var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
 
 				var xTicks = xScale.ticks();
@@ -405,7 +406,7 @@
 				var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
 
-				var vis = d3.select("#albuVisMulti")
+				var vis = d3.select("#tshVisMulti")
 					.attr('border', 1);
 
 				vis.append('rect')
@@ -545,10 +546,10 @@
 				{% for visualization in visualizations %}
 
 					var LineData = {{ visualization.as_json|safe }};
-					//console.log(LineData);
+					console.log(LineData);
 
 					//setting scales
-					var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([2.5, 5.5]);
+					var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 10]);
 					var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
 
 					var vis;
@@ -556,7 +557,7 @@
 					var IV = LineData.IV;
 					if(IV == "Albumin")
 					{
-						//console.log("Length of Data array: " + LineData.Data.length);
+						console.log("Length of Data array: " + LineData.Data.length);
 						var myValues = [];
 						for(i = 0; i < LineData.Data.length; i++)
 						{
@@ -569,29 +570,25 @@
 						//svg selection
 						if(LineData.Feature.Type == "All")
 						{
-							vis = d3.select("#albuVisAll");
+							vis = d3.select("#tshVisAll");
 						}
 						else if(LineData.Feature.Type == "Age")
 						{
-							vis = d3.select("#albuVisAge");
+							vis = d3.select("#tshVisAge");
 						}
 						else if(LineData.Feature.Type == "Gender")
 						{
-							vis = d3.select("#albuVisGend");
+							vis = d3.select("#tshVisGend");
 						}
-						else if(LineData.Feature.Type == "BMI")
-						{
-							vis = d3.select("#albuVisBMI");
-						}
-						else if(LineData.Feature.Type == "Diabetic")
+						else if(LineData.Feature.Type == "Hypoglycemic")
 						{
 							if(LineData.Feature.Value == "True")
 							{
-								vis = d3.select("#albuVisDiab");
+								vis = d3.select("#tshVisDiab");
 							}
 							if(LineData.Feature.Value == "False")
 							{
-								vis = d3.select("#albuVisNoDiab");
+								vis = d3.select("#tshVisNoDiab");
 							}
 						}
 
@@ -607,7 +604,7 @@
 							.style('stroke-width', 1);
 
 						var xTicks = xScale.ticks();
-						xTicks.push({{ albumin  }});
+						xTicks.push({{ TSH  }});
 
 						//drawing axis
 
@@ -713,7 +710,7 @@
 				<h4>Blood test that measures the amount of glucose attached to the hemoglobin in the red blood cells and how thick the coating of glucose has been for the past three months</h4>
 			</div>
 			<div class="container">
-			<svg id="glycoVisMulti" viewBox = "0 0 1000 500"></svg>
+			<svg id="t3VisMulti" viewBox = "0 0 1000 500"></svg>
 			</div>
 			<br>
 			<div class="container">
@@ -746,13 +743,13 @@
 					}
 				{% endfor %}
 
-				//console.log("my Dataset: " + DataSet);
+				console.log("my Dataset: " + DataSet);
 
-				var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4.0, 13.5]);
+				var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 300]);
 					var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
 
 				var xTicks = xScale.ticks();
-				xTicks.push({{ glycohemoglobin  }});
+				xTicks.push({{ T3  }});
 
 				//drawing axis
 
@@ -761,7 +758,7 @@
 			  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
 				var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
-				var vis = d3.select("#glycoVisMulti")
+				var vis = d3.select("#t3VisMulti")
 					.attr('border', 1);
 
 				vis.append('rect')
@@ -829,7 +826,7 @@
 					    	.style('font-family', 'Abel')
 	    					.style('font-weight', 'bold')
 	    					.style('font-size', '20px')
-					    	.text('Glycohemoglobin Value');
+					    	.text('T3 Value');
 
 						//writting y axis label
 						vis.append('text')
@@ -903,7 +900,7 @@
 					//console.log(LineData);
 
 					//setting scales
-					var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4.0, 13.5]);
+					var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 300]);
 					var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
 
 					var maxY = 0;
@@ -920,33 +917,29 @@
 								maxY = LineData.Data[i][1];
 
 						}
-						if(LineData.Feature.Type == "All")
+/*						if(LineData.Feature.Type == "All")
 						{
-							vis = d3.select("#glycoVisAll");
+							vis = d3.select("#t3VisMultiAll");
 						}
 						else if(LineData.Feature.Type == "Age")
 						{
-							vis = d3.select("#glycoVisAge");
+							vis = d3.select("#t3VisMultiAge");
 						}
 						else if(LineData.Feature.Type == "Gender")
 						{
-							vis = d3.select("#glycoVisGend");
-						}
-						else if(LineData.Feature.Type == "BMI")
-						{
-							vis = d3.select("#glycoVisBMI");
+							vis = d3.select("#t3VisMultiGender");
 						}
 						else if(LineData.Feature.Type == "Diabetic")
 						{
 							if(LineData.Feature.Value == "True")
 							{
-								vis = d3.select("#glycoVisDiab");
+								vis = d3.select("#t3VisMulti");
 							}
 							if(LineData.Feature.Value == "False")
 							{
-								vis = d3.select("#glycoVisNoDiab");
+								vis = d3.select("#t3VisMulti");
 							}
-						}
+						}*/
 
 						vis.attr('border', 1);
 
@@ -960,7 +953,7 @@
 							.style('stroke-width', 1);
 
 						var xTicks = xScale.ticks();
-						xTicks.push({{ glycohemoglobin  }});
+						xTicks.push({{ T3  }});
 
 						var yTicks = yScale.ticks();
 						yTicks.push({{ probability }});
@@ -1069,7 +1062,7 @@
 				<h4>Blood test that measures the amount of glucose attached to the hemoglobin in the red blood cells and how thick the coating of glucose has been for the past three months</h4>
 			</div>
 			<div class="container">
-			<svg id="glycoVisMulti" viewBox = "0 0 1000 500"></svg>
+			<svg id="tt4VisMulti" viewBox = "0 0 1000 500"></svg>
 			</div>
 			<br>
 			<div class="container">
@@ -1104,11 +1097,11 @@
 
 				//console.log("my Dataset: " + DataSet);
 
-				var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4.0, 13.5]);
+				var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 30]);
 					var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
 
 				var xTicks = xScale.ticks();
-				xTicks.push({{ glycohemoglobin  }});
+				xTicks.push({{ TT4  }});
 
 				//drawing axis
 
@@ -1117,7 +1110,7 @@
 			  	var xAxis = d3.svg.axis().scale(xScale).tickValues(xTicks).innerTickSize(userMark);
 				var yAxis = d3.svg.axis().scale(yScale).orient("left");
 
-				var vis = d3.select("#glycoVisMulti")
+				var vis = d3.select("#tt4VisMulti")
 					.attr('border', 1);
 
 				vis.append('rect')
@@ -1185,7 +1178,7 @@
 					    	.style('font-family', 'Abel')
 	    					.style('font-weight', 'bold')
 	    					.style('font-size', '20px')
-					    	.text('Glycohemoglobin Value');
+					    	.text('TT4 Value');
 
 						//writting y axis label
 						vis.append('text')
@@ -1256,10 +1249,10 @@
 				{% for visualization in visualizations %}
 
 					var LineData = {{ visualization.as_json|safe }};
-					//console.log(LineData);
+					console.log(LineData);
 
 					//setting scales
-					var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([4.0, 13.5]);
+					var xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([0, 30]);
 					var yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([0,1]);
 
 					var maxY = 0;
@@ -1276,33 +1269,33 @@
 								maxY = LineData.Data[i][1];
 
 						}
-						if(LineData.Feature.Type == "All")
+/*						if(LineData.Feature.Type == "All")
 						{
-							vis = d3.select("#glycoVisAll");
+							vis = d3.select("#tt4VisMulti");
 						}
 						else if(LineData.Feature.Type == "Age")
 						{
-							vis = d3.select("#glycoVisAge");
+							vis = d3.select("#tt4VisMulti");
 						}
 						else if(LineData.Feature.Type == "Gender")
 						{
-							vis = d3.select("#glycoVisGend");
+							vis = d3.select("#tt4VisMulti");
 						}
 						else if(LineData.Feature.Type == "BMI")
 						{
-							vis = d3.select("#glycoVisBMI");
+							vis = d3.select("#tt4VisMulti");
 						}
 						else if(LineData.Feature.Type == "Diabetic")
 						{
 							if(LineData.Feature.Value == "True")
 							{
-								vis = d3.select("#glycoVisDiab");
+								vis = d3.select("#tt4VisMulti");
 							}
 							if(LineData.Feature.Value == "False")
 							{
-								vis = d3.select("#glycoVisNoDiab");
+								vis = d3.select("#tt4VisMulti");
 							}
-						}
+						}*/
 
 						vis.attr('border', 1);
 
@@ -1316,7 +1309,7 @@
 							.style('stroke-width', 1);
 
 						var xTicks = xScale.ticks();
-						xTicks.push({{ glycohemoglobin  }});
+						xTicks.push({{ TT4  }});
 
 						var yTicks = yScale.ticks();
 						yTicks.push({{ probability }});
@@ -1415,7 +1408,7 @@
 					}
 
 				{% endfor %}
-
+				console.log("Stuff got here"); 
 			</script>
 		</div>
 	</div>
