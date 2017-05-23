@@ -459,7 +459,7 @@
 
 						//add tick for user value
 						d3.selectAll('g.tick')
-        .filter(function(d){ return d=={{ albumin }} ;} )
+        					.filter(function(d){ return d=={{ albumin }} ;} )
 							//only ticks that returned true for the filter will be included
 							//in the rest of the method calls:
 							.select('line') //grab the tick line
@@ -467,6 +467,41 @@
 							.style('stroke-width',3)
 							.style('shape-rendering', 'crispEdges')
 							.style('opacity',0.5);
+
+						d3.selectAll('g.tick')
+        					.filter(function(d){ return d== 3.5;} )
+							//only ticks that returned true for the filter will be included
+							//in the rest of the method calls:
+							.select('line') //grab the tick line
+							.style('stroke', 'black')
+							.style('stroke-width',3)
+							.style('shape-rendering', 'crispEdges')
+							.style('opacity',0.5);
+
+						d3.selectAll('g.tick')
+        					.filter(function(d){ return d=={{ 5.5 }} ;} )
+							//only ticks that returned true for the filter will be included
+							//in the rest of the method calls:
+							.select('line') //grab the tick line
+							.style('stroke', 'black')
+							.style('stroke-width',3)
+							.style('shape-rendering', 'crispEdges')
+							.style('opacity',0.5);					
+						d3.selectAll('g.tick')
+							.filter(function(d){ return d== {{ 3.5 }} ;} )
+							//only ticks that returned true for the filter will be included
+							//in the rest of the method calls:
+							.select('text') //grab the tick line
+							.text('Normal')
+							.style('stroke','red');
+
+						d3.selectAll('g.tick')
+							.filter(function(d){ return d== {{ 5.5 }} ;} )
+							//only ticks that returned true for the filter will be included
+							//in the rest of the method calls:
+							.select('text') //grab the tick line
+							.text('Normal')
+							.style('stroke','red');
 
 /*						d3.selectAll('g.tick')
 		.filter(function(d){ return d== {{ albumin }} ;} )
@@ -831,6 +866,43 @@
 								.select('text') //grab the tick line
 								.text('you')
 								.style('stroke','red');
+
+						d3.selectAll('g.tick')
+        					.filter(function(d){ return d== 4;} )
+							//only ticks that returned true for the filter will be included
+							//in the rest of the method calls:
+							.select('line') //grab the tick line
+							.style('stroke', 'black')
+							.style('stroke-width',3)
+							.style('shape-rendering', 'crispEdges')
+							.style('opacity',0.5);
+
+						d3.selectAll('g.tick')
+        					.filter(function(d){ return d=={{ 5.6 }} ;} )
+							//only ticks that returned true for the filter will be included
+							//in the rest of the method calls:
+							.select('line') //grab the tick line
+							.style('stroke', 'black')
+							.style('stroke-width',3)
+							.style('shape-rendering', 'crispEdges')
+							.style('opacity',0.5);					
+
+						d3.selectAll('g.tick')
+							.filter(function(d){ return d== {{ 4 }} ;} )
+							//only ticks that returned true for the filter will be included
+							//in the rest of the method calls:
+							.select('text') //grab the tick line
+							.text('Glyco Normal')
+							.style('stroke','red');
+
+						d3.selectAll('g.tick')
+							.filter(function(d){ return d== {{ 5.6 }} ;} )
+							//only ticks that returned true for the filter will be included
+							//in the rest of the method calls:
+							.select('text') //grab the tick line
+							.text('Normal')
+							.style('stroke','red');
+
 
 						//writting x axis label
 						vis.append('text')
