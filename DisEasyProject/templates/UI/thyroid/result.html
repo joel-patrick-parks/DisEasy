@@ -201,6 +201,33 @@
 		//Append a defs (for definition) element to your SVG
 		var defs = svg.append("defs");
 
+		var myResult = {{ result }};
+
+		var msg = svg.append("text")
+				.attr('x', 0)     
+		        .attr('y', 20)
+		        .attr('text-anchor', 'left')
+		        .style('font-size', '18px')
+		        .style('font-family', 'Abel')
+				.style('font-weight', 'bold');
+
+		if(myResult == -3)
+		{
+			msg.text('You have been classified with secondary hypothyroidism:');
+		} else if (myResult == -2) {
+			msg.text('You have been classified with compensated hypothyroidism:');
+		} else if(myResult == -1) {
+			msg.text('You have been classified with primary hypothyroidism:');
+		} else if(myResult == 0) {
+			msg.text('You have been classified with no thyroid disorder:');
+		} else if(myResult == 1) {
+			msg.text('You have been classified with hyperthyroidism:');
+		} else if(myResult == 2) {
+			msg.text('You have been classified with T3 Toxic:');
+		} else if(myResult == 3) {
+			msg.text('You have been classified with goitre:');
+		}
+
 		//Append a linearGradient element to the defs and give it a unique id
 		var linearGradient = defs.append("linearGradient")
 		    .attr("id", "linear-gradient");
@@ -320,15 +347,22 @@
 	    </script>
 
 		<p style="font-size:15px">To view the your results relative to the United States population,</p>
-		<ol><li style="font-size:15px"> Expand the TSH, T3, and  results below.</li> 
-		<li style="font-size:15px"> Select and de-select items in the legend to view the graphs conditioned by your age range, BMI range, gender, and diabetic status.</li></ol>
+		<ol><li style="font-size:15px"> Expand the TSH, T3, and T4 results below.</li> 
+		<li style="font-size:15px"> Select and de-select items in the legend to view the graphs conditioned by your age range, gender, and laboratory results.</li></ol>
 
 		<p>On the graphs below, the y-axis (vertical line) signifies the probability of the lab value specified on the x-axis (horizontal line). The black vertical indicator line marks where your lab result falls.</p>
 
 		<p>If you are concerned about about the results of this evaluation, please consult your primary physician for more information. (Disclaimer: These results are not to be used as a diagnostic tool.)</p>
 
   		<p>The machine-learning model has achieved a {{ probability }}% classification accuracy based on the our data from the U.S. National Health and Nutrition Examination Survey.</p>
+
+  		<p style="font-style:italic">If you are concerned about about the results of this evaluation, please consult your primary physician for more information. (Disclaimer: These results are not to be used as a diagnostic tool.) </p>
 	</div>
+    <ul class="container nav nav-pills">
+      <li style="display:block;padding: 10px 15px; font-weight:bold">To view the relevant treatment plan: </li>
+      <!-- MAKE DYNAMIC -->
+      <li><a href="/thyroid/treatment-hyperthyroidism">Treatment Plan</a></li>
+    </ul>
 	<ul class="container nav nav-pills">
     	<li style="display:block;padding: 10px 15px;font-weight:bold">See your results relative to US population:
     	</li>
