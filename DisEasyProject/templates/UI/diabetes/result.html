@@ -177,10 +177,10 @@
 	<div class="container">
 		<h2>Your Results</h2>
 		<!-- MAKE THIS DYNAMIC -->
-		<p>You have been classified with a high probability for <b>Diabetes</b>:</p>
+				<!--<p>You have been classified with a high probability for <b>Diabetes</b>:</p>-->
 		<br>
 		<div class="container">
-			<svg id="classification" width="460" height="100">
+			<svg id="classification" width="1400" height="150">
 			</svg>
 		</div>
 		<br>
@@ -191,6 +191,24 @@
 		//Append a defs (for definition) element to your SVG
 		var defs = svg.append("defs");
 
+		var myResult = {{ result }};
+
+		var msg = svg.append("text")
+				.attr('x', 0)     
+		        .attr('y', 20)
+		        .attr('text-anchor', 'left')
+		        .style('font-size', '18px')
+		        .style('font-family', 'Abel')
+				.style('font-weight', 'bold');
+
+		if(myResult > 50)
+		{
+			msg.text('You have been classified with a high probability for Type-II Diabetes:');
+		}
+		else
+		{
+			msg.text('You have been classified with a low probability for Type-II Diabetes:');
+		}
 		//Append a linearGradient element to the defs and give it a unique id
 		var linearGradient = defs.append("linearGradient")
 		    .attr("id", "linear-gradient");
@@ -214,16 +232,16 @@
 		svg.append("rect")
 			.attr("width", 300)
 			.attr("height", 20)    
-	        .attr('y', 40)
-	        .attr('x', 75)
+	        .attr('y', 90)
+	        .attr('x', 330)
 			.style("fill", "url(#linear-gradient)")
 			.style('shape-rendering', 'crispEdges')
 			.style("stroke", "black")
 			.style("stroke-width", 3);
 
 		svg.append('text')
-	        .attr('x', (450/2))     
-	        .attr('y', 20)
+	        .attr('x', (960/2))     
+	        .attr('y', 70)
 	        .attr('text-anchor', 'middle')
 	        .style('font-size', '24px')
 	        .style('font-family', 'Abel')
@@ -249,7 +267,7 @@
 	        .text('100%');*/
 
 	    var xScale = d3.scale.linear().range([75, 375]).domain([0, 100]);
-	    var myResult = {{ result }};
+	   // var myResult = {{ result }};
 	    var xTicks = xScale.ticks();
 		xTicks.push(myResult);
 		console.log("Classification ticks: " + xTicks);
@@ -258,7 +276,7 @@
 
 	    svg.append('g')
 	    	.attr('class', 'axis')
-	    	.attr('transform', 'translate(0, 60)')
+	    	.attr('transform', 'translate(255, 110)')
 	    	.call(xAxis)
 	    	.selectAll('text')
 		    .style('text-anchor', 'end')
