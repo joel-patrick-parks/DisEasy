@@ -117,7 +117,7 @@ def predictOneThyroid(age, gender, TSH, T3, TT4):
         round(TT4, 2),
         result,
         round(model.accuracy, 2),
-        round(prediction, 2),
+        round(prediction[0][result+3], 2),
         ))
 
 def predictAllThyroid(age, gender, TSH, T3, TT4):
