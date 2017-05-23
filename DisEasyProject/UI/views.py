@@ -59,9 +59,27 @@ def formThyroid(request):
     return render(request, 'UI/thyroid/form.html')
 
 def resultThyroid(request, age, gender, TSH, T3, TT4, result, accuracy, probability):
+    # visualizations = []
+    # for visualization in Visualization.objects.filter(FeatureType="All"):
+    #     visualizations.append(visualization)
+
+    # for visualization in Visualization.objects.filter(FeatureType="Diabetic"):
+    #     visualizations.append(visualization)
+
+    # if age > 0:
+    #     for visualization in Visualization.objects.filter(
+    #             FeatureType="Age",
+    #             FeatureValue=ageRange(age)):
+    #         visualizations.append(visualization)
+
+    # if gender > -1:
+    #     for visualization in Visualization.objects.filter(
+    #             FeatureType="Gender",
+    #             FeatureValue=genderVal(gender)):
+    #         visualizations.append(visualization)
+
     context = {
-            'age': age,
-            'gender': gender,
+            # 'visualizations' : visualizations,
             'TSH': TSH,
             'T3': T3,
             'TT4': TT4,
